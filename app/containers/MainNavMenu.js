@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
 import NavMenu from '../components/NavMenu'
-import { hideMainNav } from '../state/actions'
+import { toggleMainNav } from '../state/actions'
 
 const mapStateToProps = (state) => {
     return {
-        title: '',
         docked: state.ui.mainNavDocked,
         visible: state.ui.mainNavVisible
     }
@@ -12,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        closeNavMenu: () => {
-            dispatch(hideMainNav());
+        toggleMainNav: () => {
+            dispatch(toggleMainNav());
         }
     }
 }

@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
 import Toolbar from '../components/Toolbar'
-import { showMainNav } from '../state/actions'
+import { toggleMainNav } from '../state/actions'
 
 const mapStateToProps = (state) => {
     return {
         title: 'VascLab',
-        showNavButton: state.ui.showNavButton
+        showNavButton: state.ui.navButtonVisible
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onLeftIconButtonTouchTap: () => {
-            dispatch(showMainNav());
+            dispatch(toggleMainNav());
         }
     }
 }
