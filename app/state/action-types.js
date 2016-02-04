@@ -1,2 +1,5 @@
 export const SHOW_MAIN_NAV = 'SHOW_MAIN_NAV'
 export const HIDE_MAIN_NAV = 'HIDE_MAIN_NAV'
+export const TOGGLE_MAIN_NAV = 'TOGGLE_MAIN_NAV'
+export const SHOW_NAV_BUTTON = 'SHOW_NAV_BUTTON'
+export const HIDE_NAV_BUTTON = 'HIDE_NAV_BUTTON'
