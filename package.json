@@ -12,7 +12,8 @@
     "react-router": "2.0.0-rc5",
     "react-router-redux": "^2.1.0",
     "react-tap-event-plugin": "^0.2.2",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-responsive": "^0.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
