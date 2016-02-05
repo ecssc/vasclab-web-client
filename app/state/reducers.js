@@ -5,9 +5,7 @@ import * as types from './action-types'
 
 const initialState = {
     ui: {
-        navButtonVisible: true,
-        mainNavVisible: false,
-        mainNavDocked: false
+        mainNavVisible: false
     }
 }
 
@@ -27,16 +25,6 @@ const ui = (state = initialState.ui, { type }) => {
             return {
                 ...state,
                 mainNavVisible: !state.mainNavVisible
-            }
-        case types.SHOW_NAV_BUTTON:
-            return {
-                ...state,
-                navButtonVisible: true
-            }
-        case types.HIDE_NAV_BUTTON:
-            return {
-                ...state,
-                navButtonVisible: false
             }
     }
 

@@ -17,15 +17,3 @@ export const toggleMainNav = () => {
         type: types.TOGGLE_MAIN_NAV
     }
 }
-
-export const showNavButton = () => {
-    return {
-        type: types.SHOW_NAV_BUTTON
-    }
-}
-
-export const hideNavButton = () => {
-    return {
-        type: types.HIDE_NAV_BUTTON
-    }
-}

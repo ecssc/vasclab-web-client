@@ -2,15 +2,11 @@ import { connect } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
 
 const mapStateToProps = (state) => {
-    return {
-
-    }
+    return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
+    return {}
 }
 
 const HomePage = connect(

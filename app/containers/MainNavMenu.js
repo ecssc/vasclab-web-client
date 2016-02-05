@@ -3,9 +3,16 @@ import NavMenu from '../components/NavMenu'
 import { toggleMainNav } from '../state/actions'
 
 const mapStateToProps = (state) => {
+    let type = state.browser.mediaType
+    let visible = true
+
+    if (type === 'small' || type === 'extraSmall') {
+        visible = state.ui.mainNavVisible
+    }
+
     return {
-        docked: state.ui.mainNavDocked,
-        visible: state.ui.mainNavVisible
+        docked: (type === 'infinity' || type === 'large' || type === 'medium'),
+        visible: visible
     }
 }
 

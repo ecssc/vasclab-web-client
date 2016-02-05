@@ -3,9 +3,11 @@ import Toolbar from '../components/Toolbar'
 import { toggleMainNav } from '../state/actions'
 
 const mapStateToProps = (state) => {
+    let type = state.browser.mediaType
+
     return {
         title: 'VascLab',
-        showNavButton: state.ui.navButtonVisible
+        showNavButton: (type === 'small' || type === 'extraSmall')
     }
 }
 
