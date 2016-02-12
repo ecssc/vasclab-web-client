@@ -9,6 +9,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import reducers from './state/reducers'
 
 import HomePage from './containers/HomePage'
+import LoginPage from './containers/LoginPage'
 
 injectTapEventPlugin()
 
@@ -23,8 +24,8 @@ reduxRouterMiddleware.listenForReplays(store)
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={HomePage}>
-            </Route>
+            <Route path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
         </Router>
     </Provider>,
     document.getElementById('root')
