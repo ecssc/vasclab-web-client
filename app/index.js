@@ -11,6 +11,7 @@ import reducers from './state/reducers'
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 injectTapEventPlugin()
 
@@ -23,7 +24,7 @@ addResponsiveHandlers(store)
 reduxRouterMiddleware.listenForReplays(store)
 
 if (store.getState().user.id === null) {
-    browserHistory.replace('/login')
+    //browserHistory.replace('/login')
 }
 
 ReactDOM.render(
@@ -32,6 +33,7 @@ ReactDOM.render(
             <Router history={browserHistory}>
                 <Route path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
+                <Route path="/sign-up" component={SignUpPage} />
             </Router>
         </DocumentTitle>
     </Provider>,

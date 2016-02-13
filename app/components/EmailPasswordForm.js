@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
 import TextField from 'material-ui/lib/text-field';
 
-const AuthForm = () => {
+const EmailPasswordForm = ({title, subtitle, buttonText}) => {
     return (
         <Card style={{
             position: 'absolute',
@@ -18,21 +18,26 @@ const AuthForm = () => {
             width: '600px',
         }}>
             <CardHeader
-                title="Sign into VascLab"
-                subtitle={<div>New to VascLab? You can sign up <a href="#">here</a>.</div>}
+                title={title}
+                subtitle={subtitle}
             />
             <CardText>
                 <div>
-                    <TextField style={{width: '570px'}} floatingLabelText="Your Email Address"/>
+                    <TextField style={{width: '570px'}}
+                               floatingLabelText="Your Email Address"
+                    />
                 </div>
                 <div>
-                    <TextField style={{width: '570px'}} floatingLabelText="Your Password" type="password"/>
+                    <TextField style={{width: '570px'}}
+                               floatingLabelText="Your Password"
+                               type="password"
+                    />
                 </div>
             </CardText>
             <CardActions>
                 <RaisedButton
                     style={{float: 'right', marginTop: '-5px'}}
-                    label="Login"
+                    label={buttonText}
                     primary={true}
                 />
             </CardActions>
@@ -40,4 +45,4 @@ const AuthForm = () => {
     )
 }
 
-export default AuthForm;
+export default EmailPasswordForm;
