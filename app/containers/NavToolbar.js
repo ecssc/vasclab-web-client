@@ -19,9 +19,9 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const MainToolbar = connect(
+const NavToolbar = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Toolbar)
 
-export default MainToolbar
+export default NavToolbar

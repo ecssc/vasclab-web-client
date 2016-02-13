@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import NavMenu from '../components/NavMenu'
+import MainNavComponent from '../components/MainNav'
 import { toggleMainNav } from '../state/actions'
 
 const mapStateToProps = (state) => {
@@ -24,9 +24,9 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const MainNavMenu = connect(
+const MainNav = connect(
     mapStateToProps,
     mapDispatchToProps
-)(NavMenu)
+)(MainNavComponent)
 
-export default MainNavMenu
+export default MainNav

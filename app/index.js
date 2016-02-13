@@ -9,8 +9,8 @@ import DocumentTitle from 'react-document-title'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import reducers from './state/reducers'
 
-import HomePage from './containers/HomePage'
-import LoginPage from './containers/LoginPage'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 
 injectTapEventPlugin()
 
@@ -23,7 +23,7 @@ addResponsiveHandlers(store)
 reduxRouterMiddleware.listenForReplays(store)
 
 if (store.getState().user.id === null) {
-    browserHistory.push('/login')
+    browserHistory.replace('/login')
 }
 
 ReactDOM.render(
