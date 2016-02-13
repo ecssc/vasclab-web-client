@@ -19,7 +19,7 @@ const AuthForm = () => {
         }}>
             <CardHeader
                 title="Sign into VascLab"
-                subtitle={<div>Not yet a member? You can sign up <a href="#">here</a>.</div>}
+                subtitle={<div>New to VascLab? You can sign up <a href="#">here</a>.</div>}
             />
             <CardText>
                 <div>

@@ -1,38 +1,13 @@
 import { combineReducers } from 'redux'
 import { routeReducer } from 'react-router-redux'
 import { responsiveStateReducer } from 'redux-responsive'
-import * as types from './action-types'
 
-const initialState = {
-    ui: {
-        mainNavVisible: false
-    }
-}
-
-const ui = (state = initialState.ui, { type }) => {
-    switch (type) {
-        case types.SHOW_MAIN_NAV:
-            return {
-                ...state,
-                mainNavVisible: true
-            }
-        case types.HIDE_MAIN_NAV:
-            return {
-                ...state,
-                mainNavVisible: false
-            }
-        case types.TOGGLE_MAIN_NAV:
-            return {
-                ...state,
-                mainNavVisible: !state.mainNavVisible
-            }
-    }
-
-    return state
-}
+import ui from './reducers/ui'
+import user from './reducers/user'
 
 export default combineReducers({
     ui,
+    user,
     routing: routeReducer,
     browser: responsiveStateReducer,
 })

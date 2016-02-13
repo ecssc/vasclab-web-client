@@ -21,6 +21,10 @@ addResponsiveHandlers(store)
 
 reduxRouterMiddleware.listenForReplays(store)
 
+if (store.getState().user.id === null) {
+    browserHistory.push('/login')
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
