@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistory } from 'react-router-redux'
 import { addResponsiveHandlers } from 'redux-responsive'
+import DocumentTitle from 'react-document-title'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import reducers from './state/reducers'
 
@@ -27,10 +28,12 @@ if (store.getState().user.id === null) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-        </Router>
+        <DocumentTitle title="VascLab">
+            <Router history={browserHistory}>
+                <Route path="/" component={HomePage} />
+                <Route path="/login" component={LoginPage} />
+            </Router>
+        </DocumentTitle>
     </Provider>,
     document.getElementById('root')
 )
