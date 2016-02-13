@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import DocumentTitle from 'react-document-title'
 import NavToolbar from '../containers/NavToolbar'
 import MainNav from '../containers/MainNav'
 
-const Default = () => (
-    <div>
-        <NavToolbar />
-        <MainNav />
-    </div>
+const Default = ({...props}) => (
+    <DocumentTitle title={props.title}>
+        <div>
+            <NavToolbar />
+            <MainNav />
+        </div>
+    </DocumentTitle>
 )
+
+Default.propTypes = {
+    title: PropTypes.string,
+}
 
 export default Default;
