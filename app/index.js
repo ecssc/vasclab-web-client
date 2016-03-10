@@ -24,7 +24,7 @@ addResponsiveHandlers(store)
 reduxRouterMiddleware.listenForReplays(store)
 
 if (store.getState().user.id === null) {
-    //browserHistory.replace('/login')
+    browserHistory.replace('/login')
 }
 
 ReactDOM.render(

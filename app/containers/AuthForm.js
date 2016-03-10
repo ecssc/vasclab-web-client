@@ -1,27 +1,30 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 import EmailPasswordForm from '../components/EmailPasswordForm'
 
-const mapStateToProps = (state) => {
-    return {
-        title: 'Sign into VascLab',
-        subtitle: (
-            <div>
-                New to VascLab? You can sign up <Link to="/sign-up">here</Link>.
-            </div>
-        ),
-        buttonText: 'Sign In'
+class AuthForm extends Component {
+    /**
+     * Handles the on mouse down event of the form button.
+     */
+    submitHandler(model) {
+        console.log(model)
+    }
+
+    /**
+     * Renders the auth form component.
+     *
+     * @return {XML}
+     */
+    render() {
+        return (
+            <EmailPasswordForm
+                title="Sign into VascLab"
+                subtitle={<div>New to VascLab? You can sign up <Link to="/sign-up">here</Link>.</div>}
+                buttonText="Sign In"
+                submitHandler={this.submitHandler}
+            />
+        )
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
-
-const AuthFrom = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EmailPasswordForm)
-
-export default AuthFrom
+export default AuthForm

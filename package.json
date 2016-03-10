@@ -4,6 +4,8 @@
   "description": "The VascLab web app",
   "main": "public/index.html",
   "dependencies": {
+    "formsy-material-ui": "^0.3.8",
+    "formsy-react": "^0.17.0",
     "history": "^1.14.0",
     "material-ui": "^0.14.3",
     "react": "^0.14.2",

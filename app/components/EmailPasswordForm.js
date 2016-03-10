@@ -1,12 +1,13 @@
 import React from 'react'
+import FMUI, { FormsyText }  from 'formsy-material-ui';
+import { Form } from 'formsy-react'
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardHeader from 'material-ui/lib/card/card-header';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
-import TextField from 'material-ui/lib/text-field';
 
-const EmailPasswordForm = ({title, subtitle, buttonText}) => {
+const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler}) => {
     return (
         <Card style={{
             position: 'absolute',
@@ -17,30 +18,37 @@ const EmailPasswordForm = ({title, subtitle, buttonText}) => {
             height: '300px',
             width: '600px',
         }}>
-            <CardHeader
-                title={title}
-                subtitle={subtitle}
-            />
-            <CardText>
-                <div>
-                    <TextField style={{width: '570px'}}
-                               floatingLabelText="Your Email Address"
+            <Form onValidSubmit={submitHandler}>
+                <CardHeader title={title} subtitle={subtitle}/>
+                <CardText>
+                    <div>
+                        <FormsyText name="email"
+                                    validations="isEmail"
+                                    required
+                                    floatingLabelText="Your Email Address"
+                                    validationError="Please Enter Your Email Address"
+                                    style={{width: '570px'}}
+                        />
+                    </div>
+                    <div>
+                        <FormsyText name="password"
+                                    validations="isExisty"
+                                    required
+                                    type="password"
+                                    floatingLabelText="Your Password"
+                                    validationError="Please Enter Your Password"
+                                    style={{width: '570px'}}
+                        />
+                    </div>
+                </CardText>
+                <CardActions>
+                    <RaisedButton type="submit"
+                                  primary={true}
+                                  label={buttonText}
+                                  style={{float: 'right', marginTop: '-5px'}}
                     />
-                </div>
-                <div>
-                    <TextField style={{width: '570px'}}
-                               floatingLabelText="Your Password"
-                               type="password"
-                    />
-                </div>
-            </CardText>
-            <CardActions>
-                <RaisedButton
-                    style={{float: 'right', marginTop: '-5px'}}
-                    label={buttonText}
-                    primary={true}
-                />
-            </CardActions>
+                </CardActions>
+            </Form>
         </Card>
     )
 }
