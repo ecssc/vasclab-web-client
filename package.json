@@ -4,6 +4,7 @@
   "description": "The VascLab web app",
   "main": "public/index.html",
   "dependencies": {
+    "babel-polyfill": "^6.7.2",
     "formsy-material-ui": "^0.3.8",
     "formsy-react": "^0.17.0",
     "history": "^1.14.0",
@@ -16,7 +17,9 @@
     "react-router-redux": "^2.1.0",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.0.4",
+    "redux-logger": "^2.6.1",
     "redux-responsive": "^0.2.0",
+    "redux-saga": "^0.9.4",
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
