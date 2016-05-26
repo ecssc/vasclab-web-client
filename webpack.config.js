@@ -1,6 +1,8 @@
 var path = require('path');
 
 var config = {
+    target: 'web',
+    devTool: 'source-map',
     entry: path.resolve(__dirname, 'app/index.js'),
     output: {
         path: path.resolve(__dirname, 'build'),
