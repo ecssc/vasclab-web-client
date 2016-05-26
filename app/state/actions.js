@@ -32,3 +32,49 @@ export const toggleMainNav = () => {
         type: types.TOGGLE_MAIN_NAV
     }
 }
+
+/**
+ * Attempts to authenticate a user.
+ *
+ * @return {{type}}
+ */
+export const userAuthAttempt = (model) => {
+    return {
+        type: types.USER_AUTH_ATTEMPT,
+        ...model
+    }
+}
+
+/**
+ * Authentication has failed for the user.
+ *
+ * @return {{type}}
+ */
+export const userAuthFail = () => {
+    return {
+        type: types.USER_AUTH_FAIL
+    }
+}
+
+/**
+ * The user was successfully authenticated.
+ *
+ * @return {{type}}
+ */
+export const userAuthSuccess = () => {
+    return {
+        type: types.USER_AUTH_SUCCESS
+    }
+}
+
+
+/**
+ * Destroys the currently authenticated user's session.
+ *
+ * @return {{type}}
+ */
+export const userAuthLogout = () => {
+    return {
+        type: types.USER_AUTH_LOGOUT
+    }
+}
