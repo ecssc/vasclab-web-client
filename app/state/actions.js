@@ -67,7 +67,6 @@ export const userAuthSuccess = () => {
     }
 }
 
-
 /**
  * Destroys the currently authenticated user's session.
  *
@@ -76,5 +75,27 @@ export const userAuthSuccess = () => {
 export const userAuthLogout = () => {
     return {
         type: types.USER_AUTH_LOGOUT
+    }
+}
+
+/**
+ * Makes the progress bar component visible.
+ *
+ * @return {{type}}
+ */
+export const showProgreessBar = () => {
+    return {
+        type: types.SHOW_PROGRESS_BAR
+    }
+}
+
+/**
+ * Hides the progress bar component.
+ *
+ * @return {{type}}
+ */
+export const hideProgreessBar = () => {
+    return {
+        type: types.HIDE_PROGRESS_BAR
     }
 }

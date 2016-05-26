@@ -1,8 +1,14 @@
-export const SHOW_MAIN_NAV     = 'SHOW_MAIN_NAV'
-export const HIDE_MAIN_NAV     = 'HIDE_MAIN_NAV'
-export const TOGGLE_MAIN_NAV   = 'TOGGLE_MAIN_NAV'
+export const SHOW_MAIN_NAV       = 'SHOW_MAIN_NAV'
+export const HIDE_MAIN_NAV       = 'HIDE_MAIN_NAV'
+export const TOGGLE_MAIN_NAV     = 'TOGGLE_MAIN_NAV'
 
-export const USER_AUTH_ATTEMPT = 'USER_AUTH_ATTEMPT'
-export const USER_AUTH_FAIL    = 'USER_AUTH_FAIL'
-export const USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS'
-export const USER_AUTH_LOGOUT  = 'USER_AUTH_LOGOUT'
+export const SHOW_PROGRESS_BAR   = 'SHOW_PROGRESS_BAR'
+export const HIDE_PROGRESS_BAR   = 'HIDE_PROGRESS_BAR'
+
+export const ENABLE_FORM_INPUTS  = 'ENABLE_FORM_INPUTS'
+export const DISABLE_FORM_INPUTS = 'DISABLE_FORM_INPUTS'
+
+export const USER_AUTH_ATTEMPT   = 'USER_AUTH_ATTEMPT'
+export const USER_AUTH_FAIL      = 'USER_AUTH_FAIL'
+export const USER_AUTH_SUCCESS   = 'USER_AUTH_SUCCESS'
+export const USER_AUTH_LOGOUT    = 'USER_AUTH_LOGOUT'

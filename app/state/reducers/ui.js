@@ -1,8 +1,18 @@
-import { SHOW_MAIN_NAV, HIDE_MAIN_NAV, TOGGLE_MAIN_NAV } from '../action-types'
+import {
+    SHOW_MAIN_NAV,
+    HIDE_MAIN_NAV,
+    TOGGLE_MAIN_NAV,
+    SHOW_PROGRESS_BAR,
+    HIDE_PROGRESS_BAR,
+    ENABLE_FORM_INPUTS,
+    DISABLE_FORM_INPUTS
+} from '../action-types'
 
 const initialState = {
     ui: {
-        mainNavVisible: false
+        mainNavVisible: false,
+        progressBarVisible: false,
+        formInputsEnabled: true
     }
 }
 
@@ -21,7 +31,27 @@ export default (state = initialState.ui, { type }) => {
         case TOGGLE_MAIN_NAV:
             return {
                 ...state,
-                mainNavVisible: ! state.mainNavVisible
+                mainNavVisible: !state.mainNavVisible
+            }
+        case SHOW_PROGRESS_BAR:
+            return {
+                ...state,
+                progressBarVisible: true
+            }
+        case HIDE_PROGRESS_BAR:
+            return {
+                ...state,
+                progressBarVisible: false
+            }
+        case ENABLE_FORM_INPUTS:
+            return {
+                ...state,
+                formInputsEnabled: false
+            }
+        case DISABLE_FORM_INPUTS:
+            return {
+                ...state,
+                formInputsEnabled: false
             }
     }
 
