@@ -10,7 +10,7 @@ import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { addResponsiveHandlers } from 'redux-responsive'
 
-import mySaga from './state/sagas'
+import rootSaga from './state/sagas'
 import reducers from './state/reducers'
 import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
@@ -23,7 +23,7 @@ import SignUpPage from './pages/SignUpPage'
 injectTapEventPlugin()
 
 const loggerMiddleware = createLogger();
-const sagaMiddleware = createSagaMiddleware(mySaga)
+const sagaMiddleware = createSagaMiddleware(rootSaga)
 
 const store = createStore(
     reducers,

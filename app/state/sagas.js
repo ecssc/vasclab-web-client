@@ -1,14 +1,28 @@
-import { takeEvery, takeLatest } from 'redux-saga'
-import { call, put } from 'redux-saga/effects'
+import { takeEvery, delay } from 'redux-saga'
+import { put } from 'redux-saga/effects'
+import * as types from './action-types'
 
-function* fetchUser(action) {
-    try {
-        yield put({type: "USER_FETCH_SUCCEEDED", user: {}});
-    } catch (e) {
-        yield put({type: "USER_FETCH_FAILED",message: e.message});
-    }
+/**
+ * The root saga which exports all other sagas to middleware.
+ */
+export default function* rootSaga() {
+    yield [
+        watchUserLogin()
+    ]
 }
 
-export default function* mySaga() {
-    yield* takeLatest("USER_FETCH_REQUESTED", fetchUser);
+/**
+ * Watches for user login state change.
+ */
+function* watchUserLogin() {
+    yield* takeEvery(types.USER_AUTH_ATTEMPT, fetchUser)
+}
+
+/**
+ * Attempts to fetch the user from the api.
+ *
+ * @param {*} action
+ */
+function* fetchUser(action) {
+    //
 }
