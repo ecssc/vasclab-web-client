@@ -1,20 +1,25 @@
-import { USER_LOGIN, USER_LOGOUT } from '../action-types'
+import { USER_AUTH_SUCCESS, USER_AUTH_FAIL, USER_AUTH_LOGOUT } from '../action-types'
 
 const initialState = {
     user: {
-        id: null
+        id: null,
+        email: null,
+        name: null
     }
 }
 
 export default (state = initialState.user, { type }) => {
     switch (type) {
-        case USER_LOGIN:
+        case USER_AUTH_SUCCESS:
             return {
                 ...state
             }
-        case USER_LOGOUT:
+        case USER_AUTH_LOGOUT:
+        case USER_AUTH_FAIL:
             return {
-                ...state
+                id: null,
+                email: null,
+                name: null
             }
     }
 
