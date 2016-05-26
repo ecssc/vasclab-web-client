@@ -15,9 +15,9 @@ const mapDispatchToProps = (dispatch) => {
     return {}
 }
 
-const AuthFrom = connect(
+const SignUpForm = connect(
     mapStateToProps,
     mapDispatchToProps
 )(EmailPasswordForm)
 
-export default AuthFrom
+export default SignUpForm
