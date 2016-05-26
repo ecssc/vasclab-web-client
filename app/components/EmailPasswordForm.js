@@ -1,5 +1,5 @@
 import React from 'react'
-import FMUI, { FormsyText }  from 'formsy-material-ui';
+import { FormsyText }  from 'formsy-material-ui';
 import { Form } from 'formsy-react'
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
@@ -7,7 +7,7 @@ import CardHeader from 'material-ui/lib/card/card-header';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
 
-const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler}) => {
+const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler, formDisabled}) => {
     return (
         <Card style={{
             position: 'absolute',
@@ -28,6 +28,7 @@ const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler}) => {
                                     floatingLabelText="Your Email Address"
                                     validationError="Please Enter Your Email Address"
                                     style={{width: '570px'}}
+                                    disabled={formDisabled}
                         />
                     </div>
                     <div>
@@ -38,6 +39,7 @@ const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler}) => {
                                     floatingLabelText="Your Password"
                                     validationError="Please Enter Your Password"
                                     style={{width: '570px'}}
+                                    disabled={formDisabled}
                         />
                     </div>
                 </CardText>
@@ -46,6 +48,7 @@ const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler}) => {
                                   primary={true}
                                   label={buttonText}
                                   style={{float: 'right', marginTop: '-5px'}}
+                                  disabled={formDisabled}
                     />
                 </CardActions>
             </Form>

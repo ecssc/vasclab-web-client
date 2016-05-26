@@ -12,7 +12,7 @@ const initialState = {
     ui: {
         mainNavVisible: false,
         progressBarVisible: false,
-        formInputsEnabled: true
+        formInputsDisabled: false
     }
 }
 
@@ -46,12 +46,12 @@ export default (state = initialState.ui, { type }) => {
         case ENABLE_FORM_INPUTS:
             return {
                 ...state,
-                formInputsEnabled: false
+                formInputsDisabled: false
             }
         case DISABLE_FORM_INPUTS:
             return {
                 ...state,
-                formInputsEnabled: false
+                formInputsDisabled: true
             }
     }
 
