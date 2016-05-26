@@ -18,7 +18,7 @@
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.0.4",
     "redux-responsive": "^0.2.0",
-    "redux-saga": "^0.9.4"
+    "redux-saga": "^0.10.4"
   },
   "devDependencies": {
     "eslint": "^2.2.0",
