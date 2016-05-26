@@ -36,7 +36,7 @@ export default (state = initialState.ui, { type }) => {
         case SHOW_PROGRESS_BAR:
             return {
                 ...state,
-                progressBarVisible: true
+                progressBarVisible: false
             }
         case HIDE_PROGRESS_BAR:
             return {
