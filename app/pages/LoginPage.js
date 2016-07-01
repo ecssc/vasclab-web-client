@@ -1,11 +1,11 @@
 import React from 'react'
-import NoNavLayout from '../layouts/NoNav'
-import AuthForm from '../containers/AuthForm'
+import DefaultLayout from '../layouts/Default'
+import AuthForm from '../containers/forms/AuthForm'
 
 const LoginPage = () => (
-    <NoNavLayout title="Sign into VascLab">
+    <DefaultLayout title="Sign into VascLab">
         <AuthForm />
-    </NoNavLayout>
+    </DefaultLayout>
 )
 
 export default LoginPage

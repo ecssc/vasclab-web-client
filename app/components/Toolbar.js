@@ -1,15 +1,20 @@
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 
-const Toolbar = ({ title, showNavButton, onLeftIconButtonTouchTap }) => (
-    <AppBar onLeftIconButtonTouchTap={() => onLeftIconButtonTouchTap()}
+const Toolbar = ({
+    title,
+    style,
+    showNavButton,
+    onLeftIconButtonTouchTap,
+    iconElementRight,
+    onRightIconButtonTouchTap
+}) => (
+    <AppBar title={title}
+            style={style}
             showMenuIconButton={showNavButton}
-            title={title}
-            style={{
-                position: 'fixed',
-                zIndex: 2000,
-                top: 0
-            }}
+            iconClassNameRight={'123'}
+            onLeftIconButtonTouchTap={() => onLeftIconButtonTouchTap()}
+            onRightIconButtonTouchTap={() => onRightIconButtonTouchTap()}
     />
 )
 

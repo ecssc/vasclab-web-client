@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import EmailPasswordForm from '../components/EmailPasswordForm'
-import { userAuthAttempt } from '../state/actions'
+import EmailPasswordForm from '../../components/EmailPasswordForm'
+import { userAuthAttempt } from '../../state/actions'
 
 const mapStateToProps = (state) => {
     return {

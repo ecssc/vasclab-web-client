@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react'
 import DocumentTitle from 'react-document-title'
 
-import MainProgressBar from '../containers/MainProgressBar'
-import NavToolbar from '../containers/NavToolbar'
-import MainNav from '../containers/MainNav'
+import ProgressBar from '../containers/ProgressBar'
+import ErrorToolbar from '../containers/ErrorToolbar'
+import Toolbar from '../containers/Toolbar'
 
 const Default = ({...props}) => (
     <DocumentTitle title={props.title}>
         <div>
-            <NavToolbar />
-            <MainProgressBar />
-            <MainNav />
+            <ErrorToolbar />
+            <Toolbar />
+            <ProgressBar />
+            {props.children}
         </div>
     </DocumentTitle>
 )

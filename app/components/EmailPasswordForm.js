@@ -22,7 +22,7 @@ const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler, formDisa
                 <CardHeader title={title} subtitle={subtitle}/>
                 <CardText>
                     <div>
-                        <FormsyText name="email"
+                        <FormsyText name="username"
                                     validations="isEmail"
                                     required
                                     floatingLabelText="Your Email Address"

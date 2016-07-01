@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import EmailPasswordForm from '../components/EmailPasswordForm'
+import EmailPasswordForm from '../../components/EmailPasswordForm'
 
 const mapStateToProps = (state) => {
     return {

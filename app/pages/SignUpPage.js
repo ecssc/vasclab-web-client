@@ -1,11 +1,11 @@
 import React from 'react'
-import NoNavLayout from '../layouts/NoNav'
-import SignUpForm from '../containers/SignUpForm'
+import DefaultLayout from '../layouts/Default'
+import SignUpForm from '../containers/forms/SignUpForm'
 
 const SignUpPage = () => (
-    <NoNavLayout title="Sign up to VascLab">
+    <DefaultLayout title="Sign up to VascLab">
         <SignUpForm />
-    </NoNavLayout>
+    </DefaultLayout>
 )
 
 export default SignUpPage

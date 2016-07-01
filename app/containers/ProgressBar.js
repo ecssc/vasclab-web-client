@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ProgressBar from '../components/ProgressBar'
+import BaseProgressBar from '../components/ProgressBar'
 
 const mapStateToProps = (state) => {
     return {
@@ -11,9 +11,9 @@ const mapDispatchToProps = (dispatch) => {
     return {}
 }
 
-const MainProgressBar = connect(
+const ProgressBar = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProgressBar)
+)(BaseProgressBar)
 
-export default MainProgressBar
+export default ProgressBar

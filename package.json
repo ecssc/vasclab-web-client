@@ -5,6 +5,7 @@
   "main": "public/index.html",
   "dependencies": {
     "babel-polyfill": "^6.7.2",
+    "dotenv": "^2.0.0",
     "formsy-material-ui": "^0.3.8",
     "formsy-react": "^0.17.0",
     "history": "^1.14.0",
@@ -19,7 +20,8 @@
     "redux": "^3.0.4",
     "redux-responsive": "^0.2.0",
     "redux-saga": "^0.10.4",
-    "superagent": "^2.0.0-alpha.3"
+    "superagent": "^2.0.0-alpha.3",
+    "superagent-promise-plugin": "^3.2.0"
   },
   "devDependencies": {
     "eslint": "^2.2.0",
