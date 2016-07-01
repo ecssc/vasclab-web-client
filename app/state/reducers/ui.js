@@ -2,8 +2,12 @@ import * as actions from '../action-types'
 
 const initialState = {
     ui: {
-        progressBarVisible: false,
-        formInputsDisabled: false,
+        progressBar: {
+            visible: false,
+        },
+        formInputs: {
+            disabled: false,
+        },
         errorMessage: {
             visible: false,
             message: ''
@@ -16,23 +20,31 @@ export default (state = initialState.ui, { type, ...newState }) => {
         case actions.SHOW_PROGRESS_BAR:
             return {
                 ...state,
-                progressBarVisible: true
+                progressBar: {
+                    visible: true
+                }
             }
         case actions.HIDE_PROGRESS_BAR:
             return {
                 ...state,
-                progressBarVisible: false
+                progressBar: {
+                    visible: false
+                }
             }
 
         case actions.ENABLE_FORM_INPUTS:
             return {
                 ...state,
-                formInputsDisabled: false
+                formInputs: {
+                    disabled: false
+                }
             }
         case actions.DISABLE_FORM_INPUTS:
             return {
                 ...state,
-                formInputsDisabled: true
+                formInputs: {
+                    disabled: true
+                }
             }
 
         case actions.SHOW_ERROR_MESSAGE:

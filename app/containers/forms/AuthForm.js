@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
         title: 'Sign into VascLab',
         subtitle: (<div>New to VascLab? You can sign up <Link to="/sign-up">here</Link>.</div>),
         buttonText: 'Sign In',
-        formDisabled: state.ui.formInputsDisabled
+        formDisabled: state.ui.formInputs.disabled
     }
 }
 

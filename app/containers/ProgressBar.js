@@ -3,17 +3,10 @@ import BaseProgressBar from '../components/ProgressBar'
 
 const mapStateToProps = (state) => {
     return {
-        visible: state.ui.progressBarVisible
+        visible: state.ui.progressBar.visible
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
-
-const ProgressBar = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BaseProgressBar)
+const ProgressBar = connect(mapStateToProps)(BaseProgressBar)
 
 export default ProgressBar
