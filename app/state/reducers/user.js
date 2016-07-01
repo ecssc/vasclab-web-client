@@ -1,25 +1,21 @@
 import { USER_AUTH_SUCCESS, USER_AUTH_FAIL, USER_AUTH_LOGOUT } from '../action-types'
 
 const initialState = {
-    user: {
-        id: null,
-        email: null,
-        name: null
-    }
+    user: null
 }
 
-export default (state = initialState.user, { type }) => {
+export default (state = initialState.user, { type, ...newState }) => {
     switch (type) {
         case USER_AUTH_SUCCESS:
             return {
-                ...state
+                ...state,
+                user: newState.user
             }
         case USER_AUTH_LOGOUT:
         case USER_AUTH_FAIL:
             return {
-                id: null,
-                email: null,
-                name: null
+                ...state,
+                user: null
             }
     }
 

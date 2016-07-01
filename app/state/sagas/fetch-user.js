@@ -1,5 +1,5 @@
-import { put } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga';
+import { put } from 'redux-saga/effects';
 import * as types from '../action-types';
 import { auth, user } from '../../api/client';
 
@@ -32,10 +32,14 @@ const validateCredentials = function* (action) {
         }).catch((error) => {
             throw error;
         });
+
+        yield put({ type: types.USER_AUTH_SUCCESS, user: me });
     } catch (error) {
+        yield put({ type: types.USER_AUTH_FAIL });
+
         yield put({
             type: types.SHOW_ERROR_MESSAGE,
-            message: 'We can\'t seem to sign you in - please check your username and password'
+            message: 'We couldn\'t sign you in - please double check your username and password'
         });
     } finally {
         yield put({ type: types.HIDE_PROGRESS_BAR });
