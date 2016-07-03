@@ -13,6 +13,17 @@ export const userAuthAttempt = (model) => {
 }
 
 /**
+ * Checks the authentication status of the current user.
+ *
+ * @return {{type}}
+ */
+export const userAuthCheck = () => {
+    return {
+        type: types.USER_AUTH_CHECK
+    }
+}
+
+/**
  * Hides the error message component.
  *
  * @return {{type}}

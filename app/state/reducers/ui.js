@@ -1,21 +1,19 @@
 import * as actions from '../action-types'
 
 const initialState = {
-    ui: {
-        progressBar: {
-            visible: false,
-        },
-        formInputs: {
-            disabled: false,
-        },
-        errorMessage: {
-            visible: false,
-            message: ''
-        }
+    progressBar: {
+        visible: false,
+    },
+    formInputs: {
+        disabled: false,
+    },
+    errorMessage: {
+        visible: false,
+        message: ''
     }
 }
 
-export default (state = initialState.ui, { type, ...newState }) => {
+export default (state = initialState, { type, ...newState }) => {
     switch (type) {
         case actions.SHOW_PROGRESS_BAR:
             return {
