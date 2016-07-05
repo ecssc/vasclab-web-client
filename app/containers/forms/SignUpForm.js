@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
-import EmailPasswordForm from '../../components/EmailPasswordForm'
+import React from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import EmailPassword from '../../components/forms/EmailPassword';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,6 +19,6 @@ const mapDispatchToProps = (dispatch) => {
 const SignUpForm = connect(
     mapStateToProps,
     mapDispatchToProps
-)(EmailPasswordForm)
+)(EmailPassword);
 
-export default SignUpForm
+export default SignUpForm;

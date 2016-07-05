@@ -7,12 +7,12 @@ import { createStore, applyMiddleware } from 'redux'
 import { addResponsiveHandlers } from 'redux-responsive'
 
 export default () => {
-    let loggerMiddleware = createLogger()
+    //let loggerMiddleware = createLogger()
     let sagaMiddleware = createSagaMiddleware()
 
     let store = createStore(
         reducers,
-        applyMiddleware(sagaMiddleware, loggerMiddleware)
+        applyMiddleware(sagaMiddleware/*, loggerMiddleware*/)
     )
 
     addResponsiveHandlers(store)

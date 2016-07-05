@@ -1,8 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
-import EmailPasswordForm from '../../components/EmailPasswordForm'
-import { userAuthAttempt } from '../../state/actions'
+import React from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { userAuthAttempt } from '../../state/actions';
+import EmailPassword from '../../components/forms/EmailPassword';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,6 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 const AuthForm = connect(
     mapStateToProps,
     mapDispatchToProps
-)(EmailPasswordForm)
+)(EmailPassword);
 
-export default AuthForm
+export default AuthForm;

@@ -24,12 +24,12 @@ export const userAuthCheck = () => {
 }
 
 /**
- * Hides the error message component.
+ * Hides the error snackbar component.
  *
  * @return {{type}}
  */
-export const hideErrorMessage = () => {
+export const hideSnackbar = () => {
     return {
-        type: types.HIDE_ERROR_MESSAGE
+        type: types.HIDE_SNACKBAR
     }
 }

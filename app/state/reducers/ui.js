@@ -7,9 +7,10 @@ const initialState = {
     formInputs: {
         disabled: false,
     },
-    errorMessage: {
+    snackbar: {
         visible: false,
-        message: ''
+        message: '',
+        action: null
     }
 }
 
@@ -45,20 +46,22 @@ export default (state = initialState, { type, ...newState }) => {
                 }
             }
 
-        case actions.SHOW_ERROR_MESSAGE:
+        case actions.SHOW_SNACKBAR:
             return {
                 ...state,
-                errorMessage: {
+                snackbar: {
                     visible: true,
-                    message: newState.message
+                    message: newState.message,
+                    action: newState.action
                 }
             }
-        case actions.HIDE_ERROR_MESSAGE:
+        case actions.HIDE_SNACKBAR:
             return {
                 ...state,
-                errorMessage: {
+                snackbar: {
                     visible: false,
-                    message: ''
+                    message: '',
+                    action: null
                 }
             }
     }

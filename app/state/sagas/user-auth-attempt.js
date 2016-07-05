@@ -16,8 +16,8 @@ export default function* () {
  * @param {*} action
  */
 const validateCredentials = function* (action) {
+    yield put({ type: types.HIDE_SNACKBAR });
     yield put({ type: types.SHOW_PROGRESS_BAR });
-    yield put({ type: types.HIDE_ERROR_MESSAGE });
     yield put({ type: types.DISABLE_FORM_INPUTS });
 
     try {
@@ -38,8 +38,9 @@ const validateCredentials = function* (action) {
         yield put({ type: types.USER_AUTH_FAIL });
 
         yield put({
-            type: types.SHOW_ERROR_MESSAGE,
-            message: 'We couldn\'t sign you in - please double check your username and password'
+            type: types.SHOW_SNACKBAR,
+            message: 'We couldn\'t sign you in - please double check your username and password',
+            action: 'Ok'
         });
     } finally {
         yield put({ type: types.HIDE_PROGRESS_BAR });
