@@ -7,20 +7,13 @@ const Toolbar = ({
     showNavButton,
     onLeftIconButtonTouchTap,
     iconElementRight,
-    onRightIconButtonTouchTap
 }) => (
     <AppBar title={title}
             style={style}
-            showMenuIconButton={showNavButton}
-            iconClassNameRight={'123'}
+            showMenuIconButton={showNavButton || false}
             onLeftIconButtonTouchTap={() => onLeftIconButtonTouchTap()}
-            onRightIconButtonTouchTap={() => onRightIconButtonTouchTap()}
+            iconElementRight={iconElementRight}
     />
-)
-
-Toolbar.propTypes = {
-    title: PropTypes.string,
-    onLeftIconButtonTouchTap: PropTypes.func,
-}
+);
 
 export default Toolbar;

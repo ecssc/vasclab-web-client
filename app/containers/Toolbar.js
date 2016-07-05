@@ -1,14 +1,17 @@
-import { connect } from 'react-redux'
-import BaseToolbar from '../components/Toolbar'
+import React from 'react';
+import { connect } from 'react-redux';
+
+import Avatar from './Avatar';
+import BaseToolbar from '../components/Toolbar';
 
 const mapStateToProps = () => {
     return {
         title: 'VascLab',
-        showNavButton: false,
-        style: { position: 'fixed', top: 0, zIndex: 2000 }
+        style: { position: 'fixed', top: 0, zIndex: 2000 },
+        iconElementRight: <Avatar />
     }
 }
 
-const NoNavToolbar = connect(mapStateToProps)(BaseToolbar)
+const Toolbar = connect(mapStateToProps)(BaseToolbar);
 
-export default NoNavToolbar
+export default Toolbar;
