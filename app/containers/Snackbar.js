@@ -13,7 +13,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onActionTouchTap: (reason) => dispatch(hideSnackbar())
+        onActionTouchTap: () => dispatch(hideSnackbar()),
+        onRequestClose: (reason) => {
+            //
+        }
     }
 }
 
