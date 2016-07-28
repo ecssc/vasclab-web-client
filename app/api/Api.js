@@ -45,6 +45,38 @@ class Api {
                           .set({...headers, ...this.headers})
                           .query(query);
     }
+
+    /**
+     * Creates a promise for a patch request.
+     *
+     * @param {string} uri
+     * @param {*} data
+     * @param {*} headers
+     * @return {Promise}
+     */
+    patch(uri, data = {}, headers = {}) {
+        return this.client.post(URL + uri)
+                          .withCredentials()
+                          .use(promises)
+                          .set({...headers, ...this.headers})
+                          .send(data);
+    }
+
+    /**
+     * Creates a promise for a delete request.
+     *
+     * @param {string} uri
+     * @param {*} query
+     * @param {*} headers
+     * @return {Promise}
+     */
+    delete(uri, query = {}, headers = {}) {
+        return this.client.delete(URL + uri)
+                          .withCredentials()
+                          .use(promises)
+                          .set({...headers, ...this.headers})
+                          .query(query);
+    }
 }
 
 export default Api;
