@@ -24,6 +24,17 @@ export const userAuthCheck = () => {
 }
 
 /**
+ * Logs the currently authenticated user out.
+ *
+ * @return {{type}}
+ */
+export const userAuthLogout = () => {
+    return {
+        type: types.USER_AUTH_LOGOUT
+    }
+}
+
+/**
  * Hides the error snackbar component.
  *
  * @return {{type}}
