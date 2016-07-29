@@ -1,11 +1,18 @@
 import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../action-types'
 
-const initialState = [];
+const initialState = {
+    pageNumber: 1,
+    data: [],
+    pagination: null
+};
 
 export default (state = initialState, { type, ...newState }) => {
     switch (type) {
         case PATIENTS_FETCH:
-            return state;
+            return {
+                ...state,
+                ...newState.pageNumber
+            };
 
         case PATIENTS_FETCHED:
             return newState.patients;

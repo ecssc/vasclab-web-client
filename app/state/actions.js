@@ -50,8 +50,9 @@ export const hideSnackbar = () => {
  *
  * @return {{type}}
  */
-export const patientsFetch = () => {
+export const patientsFetch = (pageNumber) => {
     return {
-        type: types.PATIENTS_FETCH
+        type: types.PATIENTS_FETCH,
+        pageNumber: pageNumber || 1
     }
 }
