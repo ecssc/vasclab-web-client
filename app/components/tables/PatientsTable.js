@@ -9,7 +9,7 @@ import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 
-import { FormattedDate } from 'react-intl';
+import moment from 'moment';
 
 const mapStateToProps = (state) => ({
     patients: state.patients
@@ -37,6 +37,7 @@ class PatientsTable extends React.Component {
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Name</TableHeaderColumn>
+                        <TableHeaderColumn>Age</TableHeaderColumn>
                         <TableHeaderColumn>Date of Birth</TableHeaderColumn>
                         <TableHeaderColumn style={{width: 100}}></TableHeaderColumn>
                     </TableRow>
@@ -54,8 +55,15 @@ class PatientsTable extends React.Component {
         for (let patient of this.props.patients) {
             rows.push(
                 <TableRow key={patient.id} selectable={false}>
-                    <TableRowColumn>{patient.name}</TableRowColumn>
-                    <TableRowColumn>{patient.dob}</TableRowColumn>
+                    <TableRowColumn>
+                        {patient.name}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {patient.age}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {moment(patient.dob).format('Do MMMM, YYYY')}
+                    </TableRowColumn>
                     <TableRowColumn style={{width: 100}}>
                         <a href="#">Reports</a>
                     </TableRowColumn>
