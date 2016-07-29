@@ -12,3 +12,6 @@ export const USER_AUTH_CHECK     = 'USER_AUTH_CHECK';
 export const USER_AUTH_FAIL      = 'USER_AUTH_FAIL';
 export const USER_AUTH_SUCCESS   = 'USER_AUTH_SUCCESS';
 export const USER_AUTH_LOGOUT    = 'USER_AUTH_LOGOUT';
+
+export const PATIENTS_FETCH      = 'PATIENTS_FETCH';
+export const PATIENTS_FETCHED    = 'PATIENTS_FETCHED';

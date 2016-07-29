@@ -19,12 +19,13 @@ export default function* () {
 const logUserout = function* (action) {
     try {
         yield auth.revokeToken();
-        yield browserHistory.push('/login');
     } catch (error) {
         yield put({
             type: SHOW_SNACKBAR,
-            message: 'We couldn\'t sign you out - please try again',
+            message: 'You don\'t seem to be signed in - please try logging in',
             action: 'Ok'
         });
+    } finally {
+        yield browserHistory.push('/login');
     }
 }

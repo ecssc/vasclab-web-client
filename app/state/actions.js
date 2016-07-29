@@ -44,3 +44,14 @@ export const hideSnackbar = () => {
         type: types.HIDE_SNACKBAR
     }
 }
+
+/**
+ * Fetches patients from the api.
+ *
+ * @return {{type}}
+ */
+export const patientsFetch = () => {
+    return {
+        type: types.PATIENTS_FETCH
+    }
+}

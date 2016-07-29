@@ -1,7 +1,7 @@
 import React from 'react'
 import DefaultLayout from '../layouts/Default'
 
-const HomePage = () => (
+const HomePage = (props) => (
     <DefaultLayout title="VascLab">
     </DefaultLayout>
 )

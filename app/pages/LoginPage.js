@@ -1,6 +1,6 @@
-import React from 'react'
-import DefaultLayout from '../layouts/Default'
-import AuthForm from '../containers/forms/AuthForm'
+import React from 'react';
+import DefaultLayout from '../layouts/Default';
+import AuthForm from '../containers/forms/AuthForm';
 
 const LoginPage = () => (
     <DefaultLayout title="Sign into VascLab">
@@ -8,4 +8,4 @@ const LoginPage = () => (
     </DefaultLayout>
 )
 
-export default LoginPage
+export default LoginPage;

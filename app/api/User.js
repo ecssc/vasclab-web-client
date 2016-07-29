@@ -7,7 +7,7 @@ class User extends Api {
      * @return {Promise}
      */
     me() {
-        return this.get('users/me')
+        return this.get('users/me');
     }
 }
 

@@ -1,6 +1,6 @@
-import React from 'react'
-import DefaultLayout from '../layouts/Default'
-import SignUpForm from '../containers/forms/SignUpForm'
+import React from 'react';
+import DefaultLayout from '../layouts/Default';
+import SignUpForm from '../containers/forms/SignUpForm';
 
 const SignUpPage = () => (
     <DefaultLayout title="Sign up to VascLab">
@@ -8,4 +8,4 @@ const SignUpPage = () => (
     </DefaultLayout>
 )
 
-export default SignUpPage
+export default SignUpPage;
