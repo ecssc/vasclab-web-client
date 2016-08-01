@@ -41,6 +41,10 @@ class PatientsTable extends React.Component {
         this.props.dispatch(patientsFetch(pageNumber));
     }
 
+    sortChange(key) {
+        this.props.dispatch(patientsFetch(1));
+    }
+
     /**
      * Renders the application.
      *
@@ -62,12 +66,18 @@ class PatientsTable extends React.Component {
 
                 <div className="row">
                     <div className="col-xs-12">
-                        <Table style={{width: '100%'}}>
+                        <Table>
                             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                                 <TableRow>
-                                    <TableHeaderColumn>Name</TableHeaderColumn>
-                                    <TableHeaderColumn>Age</TableHeaderColumn>
-                                    <TableHeaderColumn>Date of Birth</TableHeaderColumn>
+                                    <TableHeaderColumn>
+                                        <a href="#" onClick={() => this.sortChange('name')}>Name</a>
+                                    </TableHeaderColumn>
+                                    <TableHeaderColumn>
+                                        <a href="#" onClick={() => this.sortChange('age')}>Age</a>
+                                    </TableHeaderColumn>
+                                    <TableHeaderColumn>
+                                        <a href="#" onClick={() => this.sortChange('dob')}>Date of Birth</a>
+                                    </TableHeaderColumn>
                                     <TableHeaderColumn style={{width: 50}}></TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>
@@ -166,7 +176,7 @@ class PatientsTable extends React.Component {
         }
 
         return (
-            <Slider defaultValue={this.props.pagination.current_page}
+            <Slider value={this.props.pagination.current_page}
                     step={1}
                     min={1}
                     max={this.props.pagination.total_pages}
