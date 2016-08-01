@@ -1,7 +1,6 @@
 import { takeEvery } from 'redux-saga';
 import { browserHistory } from 'react-router';
 import { USER_AUTH_SUCCESS } from '../action-types';
-import { organisation } from '../../api/client';
 
 /**
  * Watches for user auth success state change.
