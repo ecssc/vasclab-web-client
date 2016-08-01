@@ -18,19 +18,11 @@ export default function* () {
 const userWasAuthenticated = function* (action) {
     let path = ''
 
-    try {
-        let organisations = yield organisation.index().then((response) => {
-            return response.body.data;
-        }).catch((error) => {
-            throw error;
-        });
+    if (action.organisations.length > 0) {
+        path = action.organisations[0].id;
+    }
 
-        if (organisations.length > 0) {
-            path = organisations[0].id;
-        }
-    } finally {
-        if (location.pathname === '/login' || location.pathname === '/') {
-            yield browserHistory.push(`/${path}`);
-        }
+    if (location.pathname === '/login' || location.pathname === '/') {
+        yield browserHistory.push(`/${path}`);
     }
 }

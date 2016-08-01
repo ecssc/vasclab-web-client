@@ -5,7 +5,10 @@ const initialState = null;
 export default (state = initialState, { type, ...newState }) => {
     switch (type) {
         case USER_AUTH_SUCCESS:
-            return newState.user;
+            return {
+                user: newState.user,
+                organisation: newState.organisation
+            };
 
         case USER_AUTH_LOGOUT:
         case USER_AUTH_FAIL:

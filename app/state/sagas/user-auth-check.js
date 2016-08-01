@@ -41,9 +41,15 @@ const checkForAuthenticatedUser = function* (action) {
             throw error;
         });
 
-        console.info('User '+me.id+' was authenticated.');
+        console.info(`User ${me.id} was authenticated.`);
 
-        yield put({ type: types.USER_AUTH_SUCCESS, user: me });
+        let organisations = yield user.organisations(me.id).then((response) => {
+            return response.body.data;
+        }).catch((error) => {
+            throw error;
+        });
+
+        yield put({ type: types.USER_AUTH_SUCCESS, user: me, organisations: organisations });
     } catch (error) {
         console.warn('No access token available - attempting to use refresh token.');
         yield refreshAccessToken(action);
