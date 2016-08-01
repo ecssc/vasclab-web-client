@@ -2,7 +2,6 @@ import Api from './Api';
 import * as config from '../config.js';
 
 class Auth extends Api {
-
     /**
      * A promise request for creating a new access token.
      *

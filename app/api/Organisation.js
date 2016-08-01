@@ -6,8 +6,17 @@ class Organisation extends Api {
      *
      * @return {Promise}
      */
-    index() {
-        return this.get('organisations');
+    index(page = 1) {
+        return this.get('organisations', {page: page});
+    }
+
+    /**
+     * A promise request for retrieving the specified organisation's patients.
+     *
+     * @return {Promise}
+     */
+    patients(id, page = 1) {
+        return this.get(`organisations/${id}/patients`, {page: page})
     }
 }
 
