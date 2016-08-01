@@ -17,7 +17,6 @@
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
     "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.4",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.0.4",
     "redux-responsive": "^0.2.0",

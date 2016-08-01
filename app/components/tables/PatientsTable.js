@@ -18,7 +18,7 @@ import moment from 'moment';
 const mapStateToProps = (state) => ({
     patients: state.patients.data,
     pagination: state.patients.pagination,
-    pageNumber: state.routing.locationBeforeTransitions.query.page || 1
+    pageNumber: 1
 });
 
 class PatientsTable extends React.Component {

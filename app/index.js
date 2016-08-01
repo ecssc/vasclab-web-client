@@ -8,10 +8,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import configureStore from './state/store';
 import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
 
 import App from './components/App';
 
@@ -19,7 +17,7 @@ injectTapEventPlugin();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App history={history} />
+        <App history={browserHistory} />
     </Provider>,
     document.getElementById('root')
 );
