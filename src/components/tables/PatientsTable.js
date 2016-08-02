@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router'
 import { connect } from 'react-redux';
 import { TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import { date } from '../../functions/dates';
 
 import BaseTable from './BaseTable'
 
@@ -43,7 +44,7 @@ class PatientsTable extends BaseTable {
                         Date of Birth
                     </Link>
                 </TableHeaderColumn>
-                <TableHeaderColumn style={{width: 50}}></TableHeaderColumn>
+                <TableHeaderColumn style={{width: 75}}></TableHeaderColumn>
             </TableRow>
         );
     }
@@ -66,10 +67,12 @@ class PatientsTable extends BaseTable {
                         {patient.age}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {patient.dob}
+                        {date(patient.dob)}
                     </TableRowColumn>
-                    <TableRowColumn style={{width: 50}}>
-                        <a href="#">Reports</a>
+                    <TableRowColumn style={{width: 75}}>
+                        <Link to={`${window.location.pathname}/${patient.id}`}>
+                            View Patient
+                        </Link>
                     </TableRowColumn>
                 </TableRow>
             )
