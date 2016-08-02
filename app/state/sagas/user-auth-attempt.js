@@ -27,13 +27,7 @@ const validateCredentials = function* (action) {
             throw error;
         });
 
-        let me = yield user.me().then((response) => {
-            return response.body.data;
-        }).catch((error) => {
-            throw error;
-        });
-
-        yield put({ type: types.USER_AUTH_SUCCESS, user: me });
+        yield put({ type: types.USER_AUTH_CHECK });
     } catch (error) {
         yield put({ type: types.USER_AUTH_FAIL });
 

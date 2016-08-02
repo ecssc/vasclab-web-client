@@ -20,11 +20,13 @@ const logUserout = function* (action) {
     try {
         yield auth.revokeToken();
     } catch (error) {
-        yield put({
-            type: SHOW_SNACKBAR,
-            message: 'You don\'t seem to be signed in - please try logging in',
-            action: 'Ok'
-        });
+        if (location.pathname !== '/login') {
+            yield put({
+                type: SHOW_SNACKBAR,
+                message: 'You don\'t seem to be signed in - please try logging in',
+                action: 'Ok'
+            });
+        }
     } finally {
         yield browserHistory.push('/login');
     }
