@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 const ProgressBar = ({visible}) => (
     <LinearProgress

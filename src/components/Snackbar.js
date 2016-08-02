@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import BaseSnackbar from 'material-ui/lib/snackbar';
+import BaseSnackbar from 'material-ui/Snackbar';
 
 const Snackbar = ({open, message, action, autoHideDuration, onActionTouchTap, onRequestClose}) => (
     <BaseSnackbar open={open || false}

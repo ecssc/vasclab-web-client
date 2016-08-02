@@ -1,11 +1,8 @@
 import React from 'react'
-import { FormsyText }  from 'formsy-material-ui';
 import { Form } from 'formsy-react'
-import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardHeader from 'material-ui/lib/card/card-header';
-import RaisedButton from 'material-ui/lib/raised-button';
-import CardText from 'material-ui/lib/card/card-text';
+import { FormsyText }  from 'formsy-material-ui';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler, formDisabled}) => {
     return (
@@ -47,7 +44,7 @@ const EmailPasswordForm = ({title, subtitle, buttonText, submitHandler, formDisa
                     <RaisedButton type="submit"
                                   primary={true}
                                   label={buttonText}
-                                  style={{float: 'right', marginTop: '-5px'}}
+                                  style={{float: 'right'}}
                                   disabled={formDisabled}
                     />
                 </CardActions>

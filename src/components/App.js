@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { userAuthCheck } from '../state/actions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Router from './Router';
 
@@ -21,7 +22,11 @@ class App extends React.Component {
      * @return {XML}
      */
     render() {
-        return (<Router history={this.props.history} />);
+        return (
+            <MuiThemeProvider>
+                <Router history={this.props.history} />
+            </MuiThemeProvider>
+        );
     }
 }
 

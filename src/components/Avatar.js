@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import BaseAvatar from 'material-ui/lib/avatar';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import BaseAvatar from 'material-ui/Avatar';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 const Avatar = ({showAvatar, avatar, signOut}) => {
     if (showAvatar) {

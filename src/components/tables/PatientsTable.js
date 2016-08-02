@@ -2,17 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { stringify } from 'query-string';
 import { browserHistory } from 'react-router';
-
-import Table from 'material-ui/lib/table/table';
-import TableBody from 'material-ui/lib/table/table-body';
-import TableHeader from 'material-ui/lib/table/table-header';
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
-import TableRow from 'material-ui/lib/table/table-row';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
-import SelectField from 'material-ui/lib/select-field';
-import TextField from 'material-ui/lib/text-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Slider from 'material-ui/lib/slider';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import SelectField from 'material-ui/SelectField';
+import TextField from 'material-ui/TextField';
+import MenuItem from 'material-ui/MenuItem';
+import Slider from 'material-ui/Slider';
 
 const mapStateToProps = (state) => ({
     patients: state.patients.data,

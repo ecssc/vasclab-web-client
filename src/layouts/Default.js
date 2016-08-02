@@ -16,8 +16,4 @@ const Default = ({...props}) => (
     </DocumentTitle>
 )
 
-Default.propTypes = {
-    title: PropTypes.string,
-}
-
 export default Default;
