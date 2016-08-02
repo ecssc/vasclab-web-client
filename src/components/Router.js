@@ -29,6 +29,12 @@ class AppRouter extends React.Component{
                                state.location.query
                            ));
                        }}
+                       onChange={(state) => {
+                           this.props.dispatch(patientsFetch(
+                               state.params.organisationId,
+                               state.location.query
+                           ));
+                       }}
                 />
             </Router>
         )
