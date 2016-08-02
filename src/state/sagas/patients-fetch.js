@@ -19,7 +19,7 @@ const fetchPatients = function* (action) {
     yield put({ type: types.SHOW_PROGRESS_BAR });
 
     try {
-        let response = yield organisation.patients(action.organisationId, action.queryParams.page).then((response) => {
+        let response = yield organisation.patients(action.organisationId, action.queryParams).then((response) => {
             return response.body;
         }).catch((error) => {
             throw error;

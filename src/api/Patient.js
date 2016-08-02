@@ -6,8 +6,8 @@ class Patient extends Api {
      *
      * @return {Promise}
      */
-    index(page = 1) {
-        return this.get('patients', {page: page});
+    index(params = {page: 1}) {
+        return this.get('patients', params);
     }
 }
 

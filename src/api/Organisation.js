@@ -6,8 +6,8 @@ class Organisation extends Api {
      *
      * @return {Promise}
      */
-    index(page = 1) {
-        return this.get('organisations', {page: page});
+    index(params = {page: 1}) {
+        return this.get('organisations', params);
     }
 
     /**
@@ -15,8 +15,8 @@ class Organisation extends Api {
      *
      * @return {Promise}
      */
-    patients(id, page = 1) {
-        return this.get(`organisations/${id}/patients`, {page: page})
+    patients(id, params = {page: 1}) {
+        return this.get(`organisations/${id}/patients`, params)
     }
 }
 
