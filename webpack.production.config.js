@@ -7,7 +7,7 @@ var path = require('path'),
 var config = {
     target: 'web',
     devTool: 'cheap-module-source-map',
-    entry: path.resolve(__dirname, 'app/index.js'),
+    entry: path.resolve(__dirname, 'src/index.js'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/app.[chunkhash].js'
@@ -62,7 +62,7 @@ var config = {
                 removeComments: true,
                 collapseWhitespace: true,
             },
-            template: 'app/assets/templates/index.ejs'
+            template: 'src/assets/templates/index.ejs'
         })
     ],
 };
