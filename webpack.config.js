@@ -1,4 +1,5 @@
-var path = require('path');
+var path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = {
     target: 'web',
@@ -11,7 +12,7 @@ var config = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/,
                 query: {
@@ -23,7 +24,18 @@ var config = {
                 loaders: ['style', 'css', 'sass']
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            cache: true,
+            minify: {
+                html5: true,
+                removeComments: true,
+                collapseWhitespace: true,
+            },
+            template: 'app/assets/templates/index.ejs'
+        })
+    ]
 };
 
 module.exports = config;
