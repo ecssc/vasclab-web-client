@@ -14,8 +14,6 @@ import TextField from 'material-ui/lib/text-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import Slider from 'material-ui/lib/slider';
 
-import moment from 'moment';
-
 const mapStateToProps = (state) => ({
     patients: state.patients.data,
     pagination: state.patients.pagination,
@@ -136,7 +134,7 @@ class PatientsTable extends React.Component {
                         {patient.age}
                     </TableRowColumn>
                     <TableRowColumn>
-                        {moment(patient.dob).format('Do MMMM, YYYY')}
+                        {patient.dob}
                     </TableRowColumn>
                     <TableRowColumn style={{width: 50}}>
                         <a href="#">Reports</a>
