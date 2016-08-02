@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { patientsFetch } from '../../state/actions';
+import { stringify } from 'query-string';
+import { browserHistory } from 'react-router';
 
 import Table from 'material-ui/lib/table/table';
 import TableBody from 'material-ui/lib/table/table-body';
@@ -18,31 +19,51 @@ import moment from 'moment';
 const mapStateToProps = (state) => ({
     patients: state.patients.data,
     pagination: state.patients.pagination,
-    pageNumber: 1
+    queryParams: state.patients.queryParams
 });
 
 class PatientsTable extends React.Component {
 
     /**
-     * Component will mount event handler.
-     *
-     * Loads the patiens into the application.
+     * Patients table constructor.
      */
-    componentWillMount() {
-        this.props.dispatch(patientsFetch(this.props.pageNumber));
+    constructor() {
+        super();
+        this.queryParams = null;
     }
 
     /**
-     * Handler for page change events.
+     * Component will receive props event handler.
      *
-     * @param {Number} pageNumber
+     * @param props
      */
-    paginationChange(pageNumber) {
-        this.props.dispatch(patientsFetch(pageNumber));
+    componentWillReceiveProps(props) {
+        this.queryParams = props.queryParams;
     }
 
-    sortChange(key) {
-        this.props.dispatch(patientsFetch(1));
+    /**
+     * Refreshes the table with the specifed query parameters.
+     *
+     * @param queryParams
+     */
+    refreshTable(queryParams) {
+        for (var property in this.queryParams) {
+            this.queryParams[property] = queryParams[property];
+        }
+
+        if (Object.keys(this.queryParams).length === 0) {
+            this.queryParams = queryParams;
+        }
+
+        let pathname = window.location.pathname;
+        let queryString = stringify(this.queryParams);
+
+        if (queryString !== '') {
+            queryString = `?${queryString}`;
+        }
+
+        browserHistory.push('/');
+        browserHistory.replace(pathname + queryString);
     }
 
     /**
@@ -70,13 +91,13 @@ class PatientsTable extends React.Component {
                             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                                 <TableRow>
                                     <TableHeaderColumn>
-                                        <a href="#" onClick={() => this.sortChange('name')}>Name</a>
+                                        <a href="#" onClick={() => this.refreshTable({sort: 'name'})}>Name</a>
                                     </TableHeaderColumn>
                                     <TableHeaderColumn>
-                                        <a href="#" onClick={() => this.sortChange('age')}>Age</a>
+                                        <a href="#" onClick={() => this.refreshTable({sort: 'age'})}>Age</a>
                                     </TableHeaderColumn>
                                     <TableHeaderColumn>
-                                        <a href="#" onClick={() => this.sortChange('dob')}>Date of Birth</a>
+                                        <a href="#" onClick={() => this.refreshTable({sort: 'dob'})}>Date of Birth</a>
                                     </TableHeaderColumn>
                                     <TableHeaderColumn style={{width: 50}}></TableHeaderColumn>
                                 </TableRow>
@@ -157,7 +178,7 @@ class PatientsTable extends React.Component {
         return (
             <SelectField style={{float: 'right', width: 100, marginLeft: 10}}
                          value={this.props.pagination.current_page}
-                         onChange={(event, index, value) => this.paginationChange(value)}
+                         onChange={(event, index, value) => this.refreshTable({page: value})}
             >
                 <MenuItem key={1} value={1} primaryText="Page 1"/>
                 <MenuItem key={2} value={2} primaryText="Page 2"/>
@@ -180,7 +201,7 @@ class PatientsTable extends React.Component {
                     step={1}
                     min={1}
                     max={this.props.pagination.total_pages}
-                    onChange={(event, value) => this.paginationChange(value)}
+                    onChange={(event, value) => this.refreshTable({page: value})}
             />
         )
     }

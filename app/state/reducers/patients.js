@@ -1,9 +1,10 @@
 import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../action-types'
 
 const initialState = {
-    pageNumber: 1,
     data: [],
-    pagination: null
+    pageNumber: 1,
+    pagination: null,
+    queryParams: null
 };
 
 export default (state = initialState, { type, ...newState }) => {
