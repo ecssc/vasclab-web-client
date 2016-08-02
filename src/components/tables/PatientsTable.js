@@ -44,7 +44,7 @@ class PatientsTable extends BaseTable {
                         Date of Birth
                     </Link>
                 </TableHeaderColumn>
-                <TableHeaderColumn style={{width: 75}}></TableHeaderColumn>
+                <TableHeaderColumn style={{width: 73}}></TableHeaderColumn>
             </TableRow>
         );
     }
@@ -69,7 +69,7 @@ class PatientsTable extends BaseTable {
                     <TableRowColumn>
                         {date(patient.dob)}
                     </TableRowColumn>
-                    <TableRowColumn style={{width: 75}}>
+                    <TableRowColumn style={{width: 73}}>
                         <Link to={`${window.location.pathname}/${patient.id}`}>
                             View Patient
                         </Link>
