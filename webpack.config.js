@@ -7,7 +7,7 @@ var config = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'js/bundle.js'
+        filename: '/js/bundle.js'
     },
     module: {
         loaders: [
