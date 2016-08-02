@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import BaseAvatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
