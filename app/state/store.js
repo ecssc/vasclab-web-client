@@ -1,10 +1,9 @@
-import rootSaga from './sagas'
-import reducers from './reducers'
+import rootSaga from './sagas';
+import reducers from './reducers';
 
-import createLogger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga'
-import { createStore, applyMiddleware } from 'redux'
-import { addResponsiveHandlers } from 'redux-responsive'
+//import createLogger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux';
 
 export default () => {
     //let loggerMiddleware = createLogger()
@@ -14,8 +13,6 @@ export default () => {
         reducers,
         applyMiddleware(sagaMiddleware/*, loggerMiddleware*/)
     )
-
-    addResponsiveHandlers(store)
 
     sagaMiddleware.run(rootSaga)
 
