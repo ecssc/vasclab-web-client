@@ -1,5 +1,5 @@
-import client from 'superagent'
-import promises from 'superagent-promise-plugin'
+import client from 'superagent';
+import promises from 'superagent-promise-plugin';
 
 const URL = 'http://api.vasclab.app/';
 
@@ -10,8 +10,8 @@ class Api {
     constructor() {
         this.client = client;
         this.headers = {
-            'Accept': 'application/vnd.vasclab.v1+json'
-        }
+            Accept: 'application/vnd.vasclab.v1+json',
+        };
     }
 
     /**
@@ -26,7 +26,7 @@ class Api {
         return this.client.post(URL + uri)
                           .withCredentials()
                           .use(promises)
-                          .set({...headers, ...this.headers})
+                          .set({ ...headers, ...this.headers })
                           .send(data);
     }
 
@@ -38,11 +38,11 @@ class Api {
      * @param {*} headers
      * @return {Promise}
      */
-    get(uri, query = {},  headers = {}) {
+    get(uri, query = {}, headers = {}) {
         return this.client.get(URL + uri)
                           .withCredentials()
                           .use(promises)
-                          .set({...headers, ...this.headers})
+                          .set({ ...headers, ...this.headers })
                           .query(query);
     }
 
@@ -58,7 +58,7 @@ class Api {
         return this.client.post(URL + uri)
                           .withCredentials()
                           .use(promises)
-                          .set({...headers, ...this.headers})
+                          .set({ ...headers, ...this.headers })
                           .send(data);
     }
 
@@ -74,7 +74,7 @@ class Api {
         return this.client.delete(URL + uri)
                           .withCredentials()
                           .use(promises)
-                          .set({...headers, ...this.headers})
+                          .set({ ...headers, ...this.headers })
                           .query(query);
     }
 }

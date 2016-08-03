@@ -13,8 +13,8 @@ class Auth extends Api {
         return this.post('oauth/access_token', {
             grant_type: 'password',
             client_id: config.api.client_id,
-            username: username,
-            password: password
+            username,
+            password,
         });
     }
 
@@ -28,7 +28,7 @@ class Auth extends Api {
     refreshToken() {
         return this.post('oauth/access_token', {
             grant_type: 'refresh_token',
-            client_id: config.api.client_id
+            client_id: config.api.client_id,
         });
     }
 

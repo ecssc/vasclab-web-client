@@ -5,7 +5,8 @@
   "main": "public/index.html",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
-    "bootstrap-sass": "^3.3.7",
+    "classnames": "^2.2.5",
+    "flexboxgrid": "^6.3.0",
     "formsy-material-ui": "^0.5.0",
     "formsy-react": "^0.18.1",
     "material-ui": "^0.15.2",
@@ -13,6 +14,7 @@
     "react": "^15.3.0",
     "react-document-title": "^2.0.2",
     "react-dom": "^15.3.0",
+    "react-flexbox-grid": "^0.10.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "react-tap-event-plugin": "^1.0.0",
@@ -29,7 +31,11 @@
     "babel-preset-stage-1": "^6.3.13",
     "clean-webpack-plugin": "^0.1.10",
     "css-loader": "^0.23.1",
-    "eslint": "^2.2.0",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.8.0",
@@ -41,7 +47,8 @@
   },
   "scripts": {
     "build": "webpack -p --progress --config ./webpack.production.config.js",
-    "dev": "webpack-dev-server --progress --colors --hot --history-api-fallback --content-base build --config ./webpack.config.js"
+    "dev": "webpack-dev-server --progress --colors --hot --history-api-fallback --content-base build --config ./webpack.config.js",
+    "lint": "./node_modules/.bin/eslint src/ || true"
   },
   "repository": {
     "type": "git",
