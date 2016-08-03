@@ -24,7 +24,13 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('css!sass')
+                loader: ExtractTextPlugin.extract('css!sass'),
+                exclude: /flexboxgrid/
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css?modules',
+                include: /flexboxgrid/
             }
         ]
     },

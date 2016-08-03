@@ -21,7 +21,13 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                loaders: ['style', 'css', 'sass'],
+                exclude: /flexboxgrid/
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css?modules',
+                include: /flexboxgrid/
             }
         ]
     },
