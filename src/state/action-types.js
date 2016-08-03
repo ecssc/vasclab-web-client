@@ -15,3 +15,6 @@ export const USER_AUTH_LOGOUT    = 'USER_AUTH_LOGOUT';
 
 export const PATIENTS_FETCH      = 'PATIENTS_FETCH';
 export const PATIENTS_FETCHED    = 'PATIENTS_FETCHED';
+
+export const PATIENT_FETCH       = 'PATIENT_FETCH';
+export const PATIENT_FETCHED     = 'PATIENT_FETCHED';

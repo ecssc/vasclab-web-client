@@ -46,7 +46,7 @@ export const hideSnackbar = () => {
 }
 
 /**
- * Fetches patients from the api.
+ * Fetches all patients from the api.
  *
  * @return {{type}}
  */
@@ -54,6 +54,19 @@ export const patientsFetch = (organisationId, queryParams) => {
     return {
         type: types.PATIENTS_FETCH,
         organisationId: organisationId,
+        queryParams: queryParams
+    }
+}
+
+/**
+ * Fetches a single patient from the api.
+ *
+ * @return {{type}}
+ */
+export const patientFetch = (patientId, queryParams) => {
+    return {
+        type: types.PATIENT_FETCH,
+        patientId: patientId,
         queryParams: queryParams
     }
 }
