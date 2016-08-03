@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import { date } from '../../functions/dates';
 
-import BaseTable from './BaseTable'
+import { date } from '../../functions/dates';
+import BaseTable from './BaseTable';
 
 const mapStateToProps = (state) => ({
     data: state.patients.data,
     pagination: state.patients.pagination,
-    queryParams: state.patients.queryParams
+    queryParams: state.patients.queryParams,
 });
 
 class PatientsTable extends BaseTable {
@@ -44,7 +44,7 @@ class PatientsTable extends BaseTable {
                         Date of Birth
                     </Link>
                 </TableHeaderColumn>
-                <TableHeaderColumn style={{width: 73}}></TableHeaderColumn>
+                <TableHeaderColumn style={{ width: 73 }} />
             </TableRow>
         );
     }
@@ -55,9 +55,9 @@ class PatientsTable extends BaseTable {
      * @return {Array}
      */
     rows() {
-        let rows = [];
+        const rows = [];
 
-        for (let patient of this.props.data) {
+        for (const patient of this.props.data) {
             rows.push(
                 <TableRow key={patient.id} selectable={false}>
                     <TableRowColumn>
@@ -69,13 +69,13 @@ class PatientsTable extends BaseTable {
                     <TableRowColumn>
                         {date(patient.dob)}
                     </TableRowColumn>
-                    <TableRowColumn style={{width: 73}}>
+                    <TableRowColumn style={{ width: 73 }}>
                         <Link to={`${window.location.pathname}/${patient.id}`}>
                             View Patient
                         </Link>
                     </TableRowColumn>
                 </TableRow>
-            )
+            );
         }
 
         return rows;

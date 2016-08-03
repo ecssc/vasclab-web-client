@@ -2,6 +2,7 @@ import React from 'react';
 import { stringify } from 'query-string';
 import { browserHistory } from 'react-router';
 import { Table, TableBody, TableHeader } from 'material-ui/Table';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
@@ -32,7 +33,9 @@ class BaseTable extends React.Component {
      * @param queryParams
      */
     refreshTable(queryParams) {
-        for (var property in this.queryParams) {
+        const pathname = window.location.pathname;
+
+        for (const property in this.queryParams) {
             this.queryParams[property] = queryParams[property];
         }
 
@@ -40,7 +43,6 @@ class BaseTable extends React.Component {
             this.queryParams = queryParams;
         }
 
-        let pathname = window.location.pathname;
         let queryString = stringify(this.queryParams);
 
         if (queryString !== '') {
@@ -49,47 +51,6 @@ class BaseTable extends React.Component {
 
         browserHistory.push('/');
         browserHistory.replace(pathname + queryString);
-    }
-
-    /**
-     * Renders the table.
-     *
-     * @return {XML}
-     */
-    render() {
-        if (this.props.data.length === 0) {
-            return (<div />);
-        }
-
-        return (
-            <div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        {this.paginationSelect()}
-                        {this.searchBar()}
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-xs-12">
-                        <Table>
-                            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                                {this.header()}
-                            </TableHeader>
-                            <TableBody displayRowCheckbox={false}>
-                                {this.rows()}
-                            </TableBody>
-                        </Table>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-xs-offset-3 col-xs-6">
-                        {this.paginationSlider()}
-                    </div>
-                </div>
-            </div>
-        )
     }
 
     /**
@@ -121,7 +82,10 @@ class BaseTable extends React.Component {
         }
 
         return (
-            <TextField style={{float: 'right', width: 335}} hintText={this.searchHint} />
+            <TextField
+                style={{ width: '100%' }}
+                hintText={this.searchHint}
+            />
         );
     }
 
@@ -138,13 +102,14 @@ class BaseTable extends React.Component {
         let options = [];
 
         for (let i = 1; i <= this.props.pagination.total_pages; i++) {
-            options.push(<MenuItem key={i} value={i} primaryText={`Page ${i}`} />)
+            options.push(<MenuItem key={i} value={i} primaryText={`Page ${i}`} />);
         }
 
         return (
-            <SelectField style={{float: 'right', width: 100, marginLeft: 10}}
-                         value={this.props.pagination.current_page}
-                         onChange={(event, index, value) => this.refreshTable({page: value})}
+            <SelectField
+                style={{ width: '100%' }}
+                value={this.props.pagination.current_page}
+                onChange={(event, index, value) => this.refreshTable({ page: value })}
             >
                 {options}
             </SelectField>
@@ -158,18 +123,64 @@ class BaseTable extends React.Component {
      */
     paginationSlider() {
         if (this.props.pagination === null) {
-            return (<div></div>);
+            return (<div />);
         }
 
         return (
-            <Slider value={this.props.pagination.current_page}
-                    step={1}
-                    min={1}
-                    max={this.props.pagination.total_pages}
-                    onChange={(event, value) => this.refreshTable({page: value})}
+            <Slider
+                value={this.props.pagination.current_page}
+                step={1}
+                min={1}
+                max={this.props.pagination.total_pages}
+                onChange={(event, value) => this.refreshTable({ page: value })}
             />
-        )
+        );
+    }
+
+    /**
+     * Renders the table.
+     *
+     * @return {XML}
+     */
+    render() {
+        if (this.props.data.length === 0) {
+            return (<div />);
+        }
+
+        return (
+            <Grid>
+                <Row bottom="xs" end="sm">
+                    <Col xs={12} sm={3}>{this.searchBar()}</Col>
+                    <Col xs={12} sm={2}>{this.paginationSelect()}</Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <Table>
+                            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                                {this.header()}
+                            </TableHeader>
+                            <TableBody displayRowCheckbox={false}>
+                                {this.rows()}
+                            </TableBody>
+                        </Table>
+                    </Col>
+                </Row>
+
+                <Row around="xs">
+                    <Col xs={6}>
+                        {this.paginationSlider()}
+                    </Col>
+                </Row>
+            </Grid>
+        );
     }
 }
+
+BaseTable.propTypes = {
+    data: React.PropTypes.array,
+    pagination: React.PropTypes.object,
+    queryParams: React.PropTypes.object,
+};
 
 export default BaseTable;
