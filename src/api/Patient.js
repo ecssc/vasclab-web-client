@@ -20,6 +20,17 @@ class Patient extends Api {
     find(patientId, params = {}) {
         return this.get(`patients/${patientId}`, params);
     }
+
+    /**
+     * A promise request for retrieving a patient's reports.
+     *
+     * @param patientId
+     * @param params
+     * @return {Promise}
+     */
+    reports(patientId, params = {}) {
+        return this.get(`patients/${patientId}/reports`, params);
+    }
 }
 
 export default Patient;
