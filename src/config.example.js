@@ -1,3 +1,3 @@
-export const api = {
-  client_id: ""
-}
+export default {
+    client_id: '',
+};
