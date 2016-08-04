@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
-import { patientsFetch } from '../state/actions';
+import { patientFetch, patientsFetch } from '../state/actions';
 
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import PatientsPage from '../pages/PatientsPage';
+import PatientPage from '../pages/PatientPage';
 import SignUpPage from '../pages/SignUpPage';
 
 class AppRouter extends React.Component{
@@ -32,6 +33,15 @@ class AppRouter extends React.Component{
                        onChange={(state) => {
                            this.props.dispatch(patientsFetch(
                                state.params.organisationId,
+                               state.location.query
+                           ));
+                       }}
+                />
+                <Route path="/:organisationId/patients/:patientId"
+                       component={PatientPage}
+                       onEnter={(state) => {
+                           this.props.dispatch(patientFetch(
+                               state.params.patientId,
                                state.location.query
                            ));
                        }}
