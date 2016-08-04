@@ -14,10 +14,7 @@ var config = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015', 'react', 'stage-2']
-                }
+                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,
@@ -44,7 +41,12 @@ var config = {
             },
             template: 'src/assets/templates/index.ejs'
         })
-    ]
+    ],
+    externals: {
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+    }
 };
 
 module.exports = config;
