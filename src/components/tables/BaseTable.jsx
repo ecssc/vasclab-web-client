@@ -2,7 +2,7 @@ import React from 'react';
 import { stringify } from 'query-string';
 import { browserHistory } from 'react-router';
 import { Table, TableBody, TableHeader } from 'material-ui/Table';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';

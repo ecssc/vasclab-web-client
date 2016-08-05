@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
     data: state.patients.data,
     pagination: state.patients.pagination,
     queryParams: state.patients.queryParams,
+    organisation: state.user.organisation,
 });
 
 class PatientsTable extends BaseTable {
@@ -30,19 +31,13 @@ class PatientsTable extends BaseTable {
         return (
             <TableRow>
                 <TableHeaderColumn>
-                    <Link to={`${window.location.pathname}?sort=name`}>
-                        Name
-                    </Link>
+                    Name
                 </TableHeaderColumn>
                 <TableHeaderColumn>
-                    <Link to={`${window.location.pathname}?sort=age`}>
-                        Age
-                    </Link>
+                    Age
                 </TableHeaderColumn>
                 <TableHeaderColumn>
-                    <Link to={`${window.location.pathname}?sort=dob`}>
-                        Date of Birth
-                    </Link>
+                    Date of Birth
                 </TableHeaderColumn>
                 <TableHeaderColumn style={{ width: 73 }} />
             </TableRow>
@@ -70,7 +65,7 @@ class PatientsTable extends BaseTable {
                         {date(patient.dob)}
                     </TableRowColumn>
                     <TableRowColumn style={{ width: 73 }}>
-                        <Link to={`${window.location.pathname}/${patient.id}`}>
+                        <Link to={`/${this.props.organisation.id}/patients/${patient.id}`}>
                             View Patient
                         </Link>
                     </TableRowColumn>

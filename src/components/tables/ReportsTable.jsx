@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
     data: state.reports.data,
     pagination: state.reports.pagination,
     queryParams: state.reports.queryParams,
+    organisation: state.user.organisation,
 });
 
 class ReportsTable extends BaseTable {
@@ -18,7 +19,13 @@ class ReportsTable extends BaseTable {
      */
     constructor() {
         super();
+
+        this.patientNameStyle = true;
         this.searchHint = 'Search Reports';
+    }
+
+    componentWillReceiveProps(props) {
+        this.patientNameStyle = props.showPatientName ? {} : { display: 'none' };
     }
 
     /**
@@ -29,6 +36,9 @@ class ReportsTable extends BaseTable {
     header() {
         return (
             <TableRow>
+                <TableHeaderColumn style={this.patientNameStyle}>
+                    Patient
+                </TableHeaderColumn>
                 <TableHeaderColumn>
                     Test
                 </TableHeaderColumn>
@@ -54,6 +64,11 @@ class ReportsTable extends BaseTable {
         for (const report of this.props.data) {
             rows.push(
                 <TableRow key={report.id} selectable={false}>
+                    <TableRowColumn style={this.patientNameStyle}>
+                        <Link to={`/${this.props.organisation.id}/patients/${report.patient.data.id}`}>
+                            {report.patient.data.name}
+                        </Link>
+                    </TableRowColumn>
                     <TableRowColumn>
                         {report.current_revision.data.data.test}
                     </TableRowColumn>
@@ -64,7 +79,7 @@ class ReportsTable extends BaseTable {
                         {report.user.data.name}
                     </TableRowColumn>
                     <TableRowColumn style={{ width: 73 }}>
-                        <Link to={`/reports/${report.id}`}>
+                        <Link to={`/${this.props.organisation.id}/reports/${report.id}`}>
                             View Report
                         </Link>
                     </TableRowColumn>
@@ -75,5 +90,9 @@ class ReportsTable extends BaseTable {
         return rows;
     }
 }
+
+ReportsTable.propTypes = {
+    showPatientName: React.PropTypes.bool,
+};
 
 export default connect(mapStateToProps)(ReportsTable);

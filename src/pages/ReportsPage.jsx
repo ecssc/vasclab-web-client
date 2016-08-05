@@ -5,7 +5,7 @@ import ReportsTable from '../components/tables/ReportsTable';
 
 const ReportsPage = () => (
     <DefaultLayout title="VascLab">
-        <ReportsTable />
+        <ReportsTable showPatientName />
     </DefaultLayout>
 );
 
