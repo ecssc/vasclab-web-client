@@ -18,6 +18,17 @@ class Organisation extends Api {
     patients(id, params = { page: 1 }) {
         return this.get(`organisations/${id}/patients`, params);
     }
+
+    /**
+     * A promise request for retrieving a patient's reports.
+     *
+     * @param patientId
+     * @param params
+     * @return {Promise}
+     */
+    reports(patientId, params = {}) {
+        return this.get(`organisations/${patientId}/reports`, params);
+    }
 }
 
 export default Organisation;

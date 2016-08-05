@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import PatientPage from '../pages/PatientPage';
 import PatientsPage from '../pages/PatientsPage';
+import ReportsPage from '../pages/ReportsPage';
 import SignUpPage from '../pages/SignUpPage';
 
 import * as actions from '../state/actions';
@@ -16,6 +17,24 @@ const AppRouter = ({ history, dispatch }) => (
         <Route path="/login" component={LoginPage} />
         <Route path="/sign-up" component={SignUpPage} />
         <Route path="/:organisationId" component={HomePage} />
+        <Route
+            path="/:organisationId/reports"
+            component={ReportsPage}
+            onEnter={(state) => {
+                dispatch(actions.reportsFetch(
+                    null,
+                    state.params.organisationId,
+                    { include: 'user' },
+                ));
+            }}
+            onChange={(state) => {
+                dispatch(actions.reportsFetch(
+                    null,
+                    state.params.organisationId,
+                    { include: 'user' },
+                ));
+            }}
+        />
         <Route
             path="/:organisationId/patients"
             component={PatientsPage}

@@ -1,7 +1,38 @@
 import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
+
 import * as types from '../action-types';
-import { patient } from '../../api/client';
+import { organisation, patient } from '../../api/client';
+
+/**
+ * Fetches all reports associated with a patient.
+ *
+ * @param patientId
+ * @param queryParams
+ * @return {Promise.<TResult>}
+ */
+const fetchPatientReports = (patientId, queryParams) => {
+    return patient.reports(patientId, queryParams)
+        .then((response) => (response.body))
+        .catch((error) => {
+            throw error;
+        });
+};
+
+/**
+ * Fetches all reports belonging to an organisation.
+ *
+ * @param orgainisationId
+ * @param queryParams
+ * @return {Promise.<TResult>}
+ */
+const fetchOrganisationReports = (orgainisationId, queryParams) => {
+    return organisation.reports(orgainisationId, queryParams)
+        .then((response) => (response.body))
+        .catch((error) => {
+            throw error;
+        });
+};
 
 /**
  * Attempts to fetch reports from the api.
@@ -12,11 +43,15 @@ const fetchReports = function* (action) {
     yield put({ type: types.SHOW_PROGRESS_BAR });
 
     try {
-        const reports = yield patient.reports(action.patientId, action.queryParams).then((response) => {
-            return response.body;
-        }).catch((error) => {
-            throw error;
-        });
+        let reports = null;
+
+        if (action.patientId !== null) {
+            reports = yield fetchPatientReports(action.patientId, action.queryParams);
+        }
+
+        if (action.organisationId !== null) {
+            reports = yield fetchOrganisationReports(action.organisationId, action.queryParams);
+        }
 
         yield put({
             type: types.REPORTS_FETCHED,
