@@ -1,4 +1,5 @@
 import React from 'react';
+import merge from 'lodash.merge';
 import { stringify } from 'query-string';
 import { browserHistory } from 'react-router';
 import { Table, TableBody, TableHeader } from 'material-ui/Table';
@@ -35,13 +36,7 @@ class BaseTable extends React.Component {
     refreshTable(queryParams) {
         const pathname = window.location.pathname;
 
-        for (const property in this.queryParams) {
-            this.queryParams[property] = queryParams[property];
-        }
-
-        if (Object.keys(this.queryParams).length === 0) {
-            this.queryParams = queryParams;
-        }
+        this.queryParams = merge(this.queryParams, queryParams);
 
         let queryString = stringify(this.queryParams);
 
@@ -95,7 +90,7 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     paginationSelect() {
-        if (this.props.pagination === null) {
+        if (this.props.pagination === null || this.props.pagination.total_pages === 1) {
             return (<div />);
         }
 
@@ -122,7 +117,7 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     paginationSlider() {
-        if (this.props.pagination === null) {
+        if (this.props.pagination === null || this.props.pagination.total_pages === 1) {
             return (<div />);
         }
 
@@ -147,11 +142,19 @@ class BaseTable extends React.Component {
             return (<div />);
         }
 
+        let searchWidth = 3;
+        let paginationStyle = {};
+
+        if (this.props.pagination.total_pages === 1) {
+            searchWidth = 5;
+            paginationStyle = { display: 'none' };
+        }
+
         return (
             <div>
                 <Row bottom="xs" end="sm">
-                    <Col xs={12} sm={3}>{this.searchBar()}</Col>
-                    <Col xs={12} sm={2}>{this.paginationSelect()}</Col>
+                    <Col xs={12} sm={searchWidth}>{this.searchBar()}</Col>
+                    <Col xs={12} sm={2} style={paginationStyle}>{this.paginationSelect()}</Col>
                 </Row>
 
                 <Row>

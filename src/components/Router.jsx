@@ -24,14 +24,14 @@ const AppRouter = ({ history, dispatch }) => (
                 dispatch(actions.reportsFetch(
                     null,
                     state.params.organisationId,
-                    { include: 'user,patient' },
+                    state.location.query,
                 ));
             }}
             onChange={(state) => {
                 dispatch(actions.reportsFetch(
                     null,
                     state.params.organisationId,
-                    { include: 'user,patient' },
+                    state.location.query,
                 ));
             }}
         />
@@ -62,7 +62,7 @@ const AppRouter = ({ history, dispatch }) => (
                 dispatch(actions.reportsFetch(
                     state.params.patientId,
                     null,
-                    { include: 'user,patient' },
+                    state.location.query,
                 ));
             }}
         />

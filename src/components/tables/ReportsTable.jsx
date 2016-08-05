@@ -24,7 +24,13 @@ class ReportsTable extends BaseTable {
         this.searchHint = 'Search Reports';
     }
 
+    /**
+     * Component will receive props event handler.
+     *
+     * @param props
+     */
     componentWillReceiveProps(props) {
+        this.queryParams = props.queryParams;
         this.patientNameStyle = props.showPatientName ? {} : { display: 'none' };
     }
 
