@@ -5,6 +5,7 @@ const initialState = {
         salutation: null,
         first_name: null,
         last_name: null,
+        name: null,
         dob: null,
         telephone: null,
         address: {
@@ -13,6 +14,8 @@ const initialState = {
             postal_town: null,
             postcode: null,
         },
+        created_at: null,
+        updated_at: null,
     },
     queryParams: null,
 };

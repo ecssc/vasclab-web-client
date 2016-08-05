@@ -1,4 +1,4 @@
-import * as actions from '../action-types'
+import * as actions from '../action-types';
 
 const initialState = {
     progressBar: {
@@ -10,9 +10,12 @@ const initialState = {
     snackbar: {
         visible: false,
         message: '',
-        action: null
-    }
-}
+        action: null,
+    },
+    patientCard: {
+        showEditForm: false,
+    },
+};
 
 export default (state = initialState, { type, ...newState }) => {
     switch (type) {
@@ -20,31 +23,33 @@ export default (state = initialState, { type, ...newState }) => {
             return {
                 ...state,
                 progressBar: {
-                    visible: true
-                }
-            }
+                    visible: true,
+                },
+            };
+
         case actions.HIDE_PROGRESS_BAR:
             return {
                 ...state,
                 progressBar: {
-                    visible: false
-                }
-            }
+                    visible: false,
+                },
+            };
 
         case actions.ENABLE_FORM_INPUTS:
             return {
                 ...state,
                 formInputs: {
-                    disabled: false
-                }
-            }
+                    disabled: false,
+                },
+            };
+
         case actions.DISABLE_FORM_INPUTS:
             return {
                 ...state,
                 formInputs: {
-                    disabled: true
-                }
-            }
+                    disabled: true,
+                },
+            };
 
         case actions.SHOW_SNACKBAR:
             return {
@@ -52,19 +57,29 @@ export default (state = initialState, { type, ...newState }) => {
                 snackbar: {
                     visible: true,
                     message: newState.message,
-                    action: newState.action
-                }
-            }
+                    action: newState.action,
+                },
+            };
+
         case actions.HIDE_SNACKBAR:
             return {
                 ...state,
                 snackbar: {
                     visible: false,
                     message: '',
-                    action: null
-                }
-            }
-    }
+                    action: null,
+                },
+            };
 
-    return state
-}
+        case actions.PATIENT_CARD_TOGGLE_EDIT_FORM:
+            return {
+                ...state,
+                patientCard: {
+                    showEditForm: !state.patientCard.showEditForm,
+                },
+            };
+
+        default:
+            return state;
+    }
+};

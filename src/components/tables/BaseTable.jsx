@@ -148,7 +148,7 @@ class BaseTable extends React.Component {
         }
 
         return (
-            <Grid>
+            <div>
                 <Row bottom="xs" end="sm">
                     <Col xs={12} sm={3}>{this.searchBar()}</Col>
                     <Col xs={12} sm={2}>{this.paginationSelect()}</Col>
@@ -172,7 +172,7 @@ class BaseTable extends React.Component {
                         {this.paginationSlider()}
                     </Col>
                 </Row>
-            </Grid>
+            </div>
         );
     }
 }

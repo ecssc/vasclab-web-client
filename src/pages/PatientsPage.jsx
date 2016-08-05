@@ -3,12 +3,10 @@ import React from 'react';
 import DefaultLayout from '../layouts/Default';
 import PatientsTable from '../components/tables/PatientsTable';
 
-const PatientsPage = (props) => (
+const PatientsPage = () => (
     <DefaultLayout title="VascLab">
-        <div className="container">
-            <PatientsTable />
-        </div>
+        <PatientsTable />
     </DefaultLayout>
-)
+);
 
 export default PatientsPage;

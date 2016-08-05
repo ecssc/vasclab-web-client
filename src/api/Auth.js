@@ -1,5 +1,5 @@
 import Api from './Api';
-import * as config from '../config.js';
+import config from '../config';
 
 class Auth extends Api {
     /**

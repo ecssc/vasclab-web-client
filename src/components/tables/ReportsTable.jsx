@@ -52,7 +52,6 @@ class ReportsTable extends BaseTable {
         const rows = [];
 
         for (const report of this.props.data) {
-            console.log(report);
             rows.push(
                 <TableRow key={report.id} selectable={false}>
                     <TableRowColumn>

@@ -1,3 +1,5 @@
 export default {
-    client_id: '',
+    api: {
+        client_id: '',
+    },
 };

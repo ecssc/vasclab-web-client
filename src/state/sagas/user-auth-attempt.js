@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import * as types from '../action-types';
-import { auth, user } from '../../api/client';
+import { auth } from '../../api/client';
 
 /**
  * Watches for user login state change.

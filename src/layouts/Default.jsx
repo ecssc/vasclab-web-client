@@ -1,19 +1,27 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { Grid } from 'react-flexbox-grid';
 import DocumentTitle from 'react-document-title';
 
 import ProgressBar from '../containers/ProgressBar';
 import Snackbar from '../containers/Snackbar';
 import Toolbar from '../containers/Toolbar';
 
-const Default = ({...props}) => (
-    <DocumentTitle title={props.title}>
+const Default = ({ title, children }) => (
+    <DocumentTitle title={title}>
         <div>
             <Toolbar />
             <ProgressBar />
+            <Grid>
+                {children}
+            </Grid>
             <Snackbar />
-            {props.children}
         </div>
     </DocumentTitle>
-)
+);
+
+Default.propTypes = {
+    title: React.PropTypes.string,
+    children: React.PropTypes.any,
+};
 
 export default Default;
