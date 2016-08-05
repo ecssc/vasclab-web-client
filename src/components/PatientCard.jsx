@@ -115,7 +115,6 @@ class PatientCard extends React.Component {
                                 <FormsyDate
                                     name="dob"
                                     required
-                                    locale="en-GB"
                                     formatDate={(selectedDate) => date(selectedDate)}
                                     value={(this.props.patient.dob === null) ? null : new Date(this.props.patient.dob)}
                                     floatingLabelText="Date Of Birth"
