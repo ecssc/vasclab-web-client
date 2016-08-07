@@ -54,6 +54,9 @@ class ReportsTable extends BaseTable {
                 <TableHeaderColumn>
                     Technologist
                 </TableHeaderColumn>
+                <TableHeaderColumn>
+                    Report Date
+                </TableHeaderColumn>
                 <TableHeaderColumn style={{ width: 73 }} />
             </TableRow>
         );
@@ -83,6 +86,9 @@ class ReportsTable extends BaseTable {
                     </TableRowColumn>
                     <TableRowColumn>
                         {report.user.data.name}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {date(report.created_at)}
                     </TableRowColumn>
                     <TableRowColumn style={{ width: 73 }}>
                         <Link to={`/${this.props.organisation.id}/reports/${report.id}`}>

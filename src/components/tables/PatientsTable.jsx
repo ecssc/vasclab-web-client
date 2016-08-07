@@ -39,6 +39,9 @@ class PatientsTable extends BaseTable {
                 <TableHeaderColumn>
                     Date of Birth
                 </TableHeaderColumn>
+                <TableHeaderColumn>
+                    Patient Since
+                </TableHeaderColumn>
                 <TableHeaderColumn style={{ width: 73 }} />
             </TableRow>
         );
@@ -63,6 +66,9 @@ class PatientsTable extends BaseTable {
                     </TableRowColumn>
                     <TableRowColumn>
                         {date(patient.dob)}
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        {date(patient.created_at)}
                     </TableRowColumn>
                     <TableRowColumn style={{ width: 73 }}>
                         <Link to={`/${this.props.organisation.id}/patients/${patient.id}`}>
