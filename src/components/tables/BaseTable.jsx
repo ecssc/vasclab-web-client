@@ -158,7 +158,7 @@ class BaseTable extends React.Component {
                 </Row>
 
                 <Row>
-                    <Col>
+                    <Col xs={12}>
                         <Table>
                             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                                 {this.header()}
