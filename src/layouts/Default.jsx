@@ -15,9 +15,7 @@ const Default = ({ title, children }) => (
             <Grid>
                 <Row>
                     <Col xs={2}>
-                        <div style={{ width: '88.5%' }}>
-                            <MainNav />
-                        </div>
+                        <MainNav />
                     </Col>
                     <Col xs={10}>
                         {children}
