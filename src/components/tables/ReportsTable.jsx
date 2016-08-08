@@ -7,16 +7,19 @@ import BaseTable from './BaseTable';
 import { date } from '../../functions/dates';
 import { reportsFetch } from '../../state/actions';
 
-const mapStateToProps = (state) => ({
-    data: state.reports.data,
-    pagination: state.reports.pagination,
-    queryParams: state.reports.queryParams,
-    organisation: state.user.organisation,
+const mapStateToProps = (newState, state) => ({
+    data: newState.reports.data,
+    pagination: newState.reports.pagination,
+    queryParams: state.queryParams || newState.reports.queryParams,
+    organisation: newState.user.organisation,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    patientReportsFetch: (patientId, pagination) => dispatch(reportsFetch(patientId, null, pagination)),
-    organisationReportsFetch: (organisationId, pagination) => dispatch(reportsFetch(null, organisationId, pagination)),
+    patientReportsFetch: (patientId, queryParams = {}) =>
+        dispatch(reportsFetch(patientId, null, queryParams)),
+
+    organisationReportsFetch: (organisationId, queryParams = {}) =>
+        dispatch(reportsFetch(null, organisationId, queryParams)),
 });
 
 class ReportsTable extends BaseTable {
@@ -26,8 +29,8 @@ class ReportsTable extends BaseTable {
     constructor() {
         super();
 
-        this.patientNameStyle = true;
         this.searchHint = 'Search Reports';
+        this.showPatientName = true;
     }
 
     /**
@@ -36,16 +39,20 @@ class ReportsTable extends BaseTable {
      * @param props
      */
     componentWillReceiveProps(props) {
-        if (props.organisationId) {
-            this.props.organisationReportsFetch(props.organisationId);
-        }
-
-        if (props.patientId) {
-            this.props.patientReportsFetch(props.patientId);
-        }
-
-        this.queryParams = props.queryParams;
         this.patientNameStyle = props.showPatientName ? {} : { display: 'none' };
+    }
+
+    /**
+     * Called when a table refresh is required - should dispatch a request for new table data.
+     */
+    fetchFreshTableData() {
+        if (this.props.organisationId) {
+            this.props.organisationReportsFetch(this.props.organisationId, this.queryParams);
+        }
+
+        if (this.props.patientId) {
+            this.props.patientReportsFetch(this.props.patientId, this.queryParams);
+        }
     }
 
     /**

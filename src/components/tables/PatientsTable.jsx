@@ -3,14 +3,19 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
-import { date } from '../../functions/dates';
 import BaseTable from './BaseTable';
+import { date } from '../../functions/dates';
+import { patientsFetch } from '../../state/actions';
 
-const mapStateToProps = (state) => ({
-    data: state.patients.data,
-    pagination: state.patients.pagination,
-    queryParams: state.patients.queryParams,
-    organisation: state.user.organisation,
+const mapStateToProps = (newState, state) => ({
+    data: newState.patients.data,
+    pagination: newState.patients.pagination,
+    queryParams: state.queryParams || newState.reports.queryParams,
+    organisation: newState.user.organisation,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    patientsFetch: (organisationId, queryParams = {}) => dispatch(patientsFetch(organisationId, queryParams)),
 });
 
 class PatientsTable extends BaseTable {
@@ -20,6 +25,13 @@ class PatientsTable extends BaseTable {
     constructor() {
         super();
         this.searchHint = 'Search Patients';
+    }
+
+    /**
+     * Called when a table refresh is required - should dispatch a request for new table data.
+     */
+    fetchFreshTableData() {
+        this.props.patientsFetch(this.props.organisationId, this.queryParams);
     }
 
     /**
@@ -83,4 +95,4 @@ class PatientsTable extends BaseTable {
     }
 }
 
-export default connect(mapStateToProps)(PatientsTable);
+export default connect(mapStateToProps, mapDispatchToProps)(PatientsTable);

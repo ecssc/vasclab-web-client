@@ -1,7 +1,6 @@
 import React from 'react';
 import merge from 'lodash.merge';
 import { stringify } from 'query-string';
-import { browserHistory } from 'react-router';
 import { Table, TableBody, TableHeader } from 'material-ui/Table';
 import { Row, Col } from 'react-flexbox-grid';
 import SelectField from 'material-ui/SelectField';
@@ -17,6 +16,16 @@ class BaseTable extends React.Component {
         super();
         this.queryParams = null;
         this.searchHint = 'Search';
+    }
+
+    /**
+     * Component will mount event handler.
+     *
+     * @param props
+     */
+    componentWillMount() {
+        this.queryParams = this.props.queryParams;
+        this.fetchFreshTableData();
     }
 
     /**
@@ -44,8 +53,16 @@ class BaseTable extends React.Component {
             queryString = `?${queryString}`;
         }
 
-        browserHistory.push('/');
-        browserHistory.replace(pathname + queryString);
+        this.context.router.push(pathname + queryString);
+
+        this.fetchFreshTableData();
+    }
+
+    /**
+     * Called when a table refresh is required - should dispatch a request for new table data.
+     */
+    fetchFreshTableData() {
+        //
     }
 
     /**
@@ -184,6 +201,10 @@ BaseTable.propTypes = {
     data: React.PropTypes.array,
     pagination: React.PropTypes.object,
     queryParams: React.PropTypes.object,
+};
+
+BaseTable.contextTypes = {
+    router: React.PropTypes.func.isRequired,
 };
 
 export default BaseTable;

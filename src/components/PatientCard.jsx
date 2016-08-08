@@ -24,7 +24,7 @@ class PatientCard extends React.Component {
             return (
                 <div>
                     <RaisedButton
-                        primary={true}
+                        primary
                         icon={<Create />}
                         label="Save Changes"
                         style={{ marginRight: 10 }}
@@ -41,7 +41,7 @@ class PatientCard extends React.Component {
         return (
             <div>
                 <RaisedButton
-                    primary={true}
+                    primary
                     label="New Report"
                     icon={<ContentCopy />}
                     style={{ marginRight: 10 }}
@@ -76,7 +76,7 @@ class PatientCard extends React.Component {
                         subtitle={subTitle}
                         avatar={<Avatar icon={<PersonOutline />} />}
                     />
-                    <CardText expandable={true}>
+                    <CardText expandable>
                         <Row>
                             <Col xs={6}>
                                 <Row>
