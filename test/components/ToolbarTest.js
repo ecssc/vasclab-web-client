@@ -37,7 +37,7 @@ describe('[Component] Toolbar Test Suite', function() {
             </MuiThemeProvider>
         );
 
-        expect(toolbar.props().style).to.equal({ foo: 'bar' });
+        expect(toolbar.props().style.foo).to.equal('bar');
     });
 
 });
