@@ -3,14 +3,20 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
-import { date } from '../../functions/dates';
 import BaseTable from './BaseTable';
+import { date } from '../../functions/dates';
+import { reportsFetch } from '../../state/actions';
 
 const mapStateToProps = (state) => ({
     data: state.reports.data,
     pagination: state.reports.pagination,
     queryParams: state.reports.queryParams,
     organisation: state.user.organisation,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    patientReportsFetch: (patientId, pagination) => dispatch(reportsFetch(patientId, null, pagination)),
+    organisationReportsFetch: (organisationId, pagination) => dispatch(reportsFetch(null, organisationId, pagination)),
 });
 
 class ReportsTable extends BaseTable {
@@ -30,6 +36,14 @@ class ReportsTable extends BaseTable {
      * @param props
      */
     componentWillReceiveProps(props) {
+        if (props.organisationId) {
+            this.props.organisationReportsFetch(props.organisationId);
+        }
+
+        if (props.patientId) {
+            this.props.patientReportsFetch(props.patientId);
+        }
+
         this.queryParams = props.queryParams;
         this.patientNameStyle = props.showPatientName ? {} : { display: 'none' };
     }
@@ -105,6 +119,8 @@ class ReportsTable extends BaseTable {
 
 ReportsTable.propTypes = {
     showPatientName: React.PropTypes.bool,
+    organisationId: React.PropTypes.string,
+    patientId: React.PropTypes.string,
 };
 
-export default connect(mapStateToProps)(ReportsTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsTable);

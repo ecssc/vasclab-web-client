@@ -5,17 +5,21 @@ import DefaultLayout from '../layouts/Default';
 import PatientCard from '../containers/PatientCard';
 import ReportsTable from '../components/tables/ReportsTable';
 
-const PatientPage = () => (
+const PatientPage = ({ routeParams }) => (
     <DefaultLayout title="VascLab">
         <Row>
             <Col xs={12}>
                 <PatientCard />
             </Col>
             <Col xs={12}>
-                <ReportsTable />
+                <ReportsTable patientId={routeParams.patientId} />
             </Col>
         </Row>
     </DefaultLayout>
 );
+
+PatientPage.propTypes = {
+    routeParams: React.PropTypes.object,
+};
 
 export default PatientPage;

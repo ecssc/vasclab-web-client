@@ -54,7 +54,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "build": "webpack -p --progress --config ./webpack.production.config.js",
+    "build": "webpack -p --progress --config ./webpack.config.production.js",
     "dev": "webpack-dev-server -d --progress --colors --hot --history-api-fallback --content-base build --config ./webpack.config.js",
     "lint": "./node_modules/.bin/eslint src/ || true",
     "test": "mocha test/.setup.js test/**/*Test.js --compilers js:babel-register"

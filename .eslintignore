@@ -2,4 +2,4 @@
 **/test/**
 **/node_modules/**
 **/webpack.config.js
-**/webpack.production.config.js
+**/webpack.config.production.js

@@ -1,23 +1,24 @@
 import 'babel-polyfill';
-import './assets/styles/app.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+
+import './assets/styles/app.scss';
+
+import routes from './components/routes';
 import configureStore from './state/store';
-import { browserHistory } from 'react-router';
 
 const store = configureStore();
-
-import App from './components/App';
 
 injectTapEventPlugin();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App history={browserHistory} />
+        <Router history={browserHistory} routes={routes} />
     </Provider>,
     document.getElementById('root')
 );

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userAuthCheck } from '../state/actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Router from './Router';
+import HomePage from '../pages/HomePage';
+import { userAuthCheck } from '../state/actions';
 
 class App extends React.Component {
-
     /**
      * Component will mount event handler.
      *
@@ -24,10 +23,15 @@ class App extends React.Component {
     render() {
         return (
             <MuiThemeProvider>
-                <Router history={this.props.history} />
+                {this.props.children || <HomePage />}
             </MuiThemeProvider>
         );
     }
 }
+
+App.propTypes = {
+    dispatch: React.PropTypes.any,
+    children: React.PropTypes.any,
+};
 
 export default connect()(App);

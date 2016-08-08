@@ -4,13 +4,23 @@ var path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var globals = {
+    React: 'react',
+    ReactDom: 'react-dom',
+    ReactRouter: 'react-router'
+};
+
 var config = {
     target: 'web',
     devTool: 'cheap-module-source-map',
-    entry: path.resolve(__dirname, 'src/index.js'),
+    entry: {
+        app: path.resolve(__dirname, 'src/index.jsx'),
+        libs: Object.keys(globals).map(function(k){ return globals[k]; })
+    },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: '/js/app.[chunkhash].js'
+        filename: '/js/bundle.[hash].js',
+        chunkFilename: '/js/bundle.[chunkhash].js'
     },
     module: {
         loaders: [

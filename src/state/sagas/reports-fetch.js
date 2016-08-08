@@ -62,6 +62,7 @@ const fetchReports = function* (action) {
             },
         });
     } catch (error) {
+        console.log(error);
         yield put({
             type: types.SHOW_SNACKBAR,
             message: 'There was a problem loading your reports',
