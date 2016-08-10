@@ -7,6 +7,7 @@ import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
 import Slider from 'material-ui/Slider';
+import Paper from 'material-ui/Paper';
 
 class BaseTable extends React.Component {
     /**
@@ -145,6 +146,7 @@ class BaseTable extends React.Component {
                 min={1}
                 max={this.props.pagination.total_pages}
                 onChange={(event, value) => this.refreshTable({ page: value })}
+                style={{ marginBottom: -30 }}
             />
         );
     }
@@ -168,7 +170,7 @@ class BaseTable extends React.Component {
         }
 
         return (
-            <div>
+            <Paper style={{ padding: 10 }}>
                 <Row bottom="xs" end="sm">
                     <Col xs={12} sm={searchWidth}>{this.searchBar()}</Col>
                     <Col xs={12} sm={2} style={paginationStyle}>{this.paginationSelect()}</Col>
@@ -192,7 +194,7 @@ class BaseTable extends React.Component {
                         {this.paginationSlider()}
                     </Col>
                 </Row>
-            </div>
+            </Paper>
         );
     }
 }
