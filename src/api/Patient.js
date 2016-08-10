@@ -15,10 +15,21 @@ class Patient extends Api {
      *
      * @param patientId
      * @param params
-     * @return {*}
+     * @return {Promise}
      */
     find(patientId, params = {}) {
         return this.get(`patients/${patientId}`, params);
+    }
+
+    /**
+     * A promise request for updating a patient.
+     *
+     * @param patientId
+     * @param data
+     * @return {Promise}
+     */
+    update(patientId, data = {}) {
+        return this.put(`patients/${patientId}`, data);
     }
 
     /**

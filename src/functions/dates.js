@@ -1,17 +1,32 @@
 import { leftPad } from './helpers';
 
 /**
- * Returns the supplied date in DD/MM/YYY format.
+ * Returns the supplied ISO 8601 date in DD/MM/YYY format.
  *
  * @param date
  * @return {string}
  */
-export const date = (date) => {
-    let dateObj = new Date(date);
+export const date = (isoDate) => {
+    const dateObj = new Date(isoDate);
 
-    let day = leftPad(dateObj.getDate(), 2);
-    let month = leftPad(dateObj.getMonth() + 1, 2);
+    const day = leftPad(dateObj.getDate(), 2);
+    const month = leftPad(dateObj.getMonth() + 1, 2);
 
 
     return `${day}/${month}/${dateObj.getFullYear()}`;
-}
+};
+
+/**
+ * Returns the supplied ISO 8601 date in DD/MM/YYY HH:MM format.
+ *
+ * @param date
+ * @return {string}
+ */
+export const dateTime = (isoDate) => {
+    const dateObj = new Date(isoDate);
+
+    const day = leftPad(dateObj.getDate(), 2);
+    const month = leftPad(dateObj.getMonth() + 1, 2);
+
+    return `${day}/${month}/${dateObj.getFullYear()} at ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+};

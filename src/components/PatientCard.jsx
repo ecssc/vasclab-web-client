@@ -22,6 +22,15 @@ class PatientCard extends React.Component {
     }
 
     /**
+     * Form submit handler.
+     *
+     * @param model
+     */
+    submitHandler(model) {
+        this.props.submitHandler(this.props.patientId, model);
+    }
+
+    /**
      * Renders the correct buttons.
      *
      * @return {XML}
@@ -32,6 +41,7 @@ class PatientCard extends React.Component {
                 <div>
                     <RaisedButton
                         primary
+                        type="submit"
                         icon={<Create />}
                         label="Save Changes"
                         style={{ marginRight: 10 }}
@@ -76,7 +86,7 @@ class PatientCard extends React.Component {
                           ${date(this.props.patient.created_at)}`;
 
         return (
-            <Form onValidSubmit={this.props.submitHandler}>
+            <Form onValidSubmit={(model) => this.submitHandler(model)}>
                 <Card style={{ marginBottom: 60 }} expanded={this.props.showEditForm}>
                     <CardHeader
                         title={this.props.patient.name}
@@ -100,7 +110,7 @@ class PatientCard extends React.Component {
                                     </Col>
                                     <Col xs={10}>
                                         <FormsyText
-                                            name="firstname"
+                                            name="first_name"
                                             required
                                             value={this.props.patient.first_name}
                                             floatingLabelText="First Name"
@@ -111,7 +121,7 @@ class PatientCard extends React.Component {
                                     </Col>
                                 </Row>
                                 <FormsyText
-                                    name="lastname"
+                                    name="last_name"
                                     required
                                     floatingLabelText="Last Name"
                                     value={this.props.patient.last_name}
@@ -130,7 +140,7 @@ class PatientCard extends React.Component {
                                     disabled={this.props.formDisabled}
                                 />
                                 <FormsyText
-                                    name="phoneNumber"
+                                    name="telephone"
                                     required
                                     value={this.props.patient.telephone}
                                     floatingLabelText="Phone Number"
@@ -141,7 +151,7 @@ class PatientCard extends React.Component {
                             </Col>
                             <Col xs={6}>
                                 <FormsyText
-                                    name="address1"
+                                    name="address[address_1]"
                                     required
                                     value={this.props.patient.address.address_1}
                                     floatingLabelText="Address"
@@ -150,7 +160,7 @@ class PatientCard extends React.Component {
                                     disabled={this.props.formDisabled}
                                 />
                                 <FormsyText
-                                    name="address2"
+                                    name="address[address_2]"
                                     value={this.props.patient.address.address_2}
                                     floatingLabelText="Street Name"
                                     validationError="Please Enter The Patient's Street Name"
@@ -158,7 +168,7 @@ class PatientCard extends React.Component {
                                     disabled={this.props.formDisabled}
                                 />
                                 <FormsyText
-                                    name="postalTown"
+                                    name="address[postal_town]"
                                     required
                                     value={this.props.patient.address.postal_town}
                                     floatingLabelText="Town"
@@ -167,7 +177,7 @@ class PatientCard extends React.Component {
                                     disabled={this.props.formDisabled}
                                 />
                                 <FormsyText
-                                    name="postcode"
+                                    name="address[postcode]"
                                     required
                                     value={this.props.patient.address.postcode}
                                     floatingLabelText="Postcode"

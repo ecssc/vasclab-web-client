@@ -48,6 +48,16 @@ export const patientFetch = (patientId, queryParams) => ({
 });
 
 /**
+ * Fetches a single patient from the api.
+ */
+export const patientUpdate = (patientId, model, queryParams = {}) => ({
+    type: types.PATIENT_UPDATE,
+    patientId,
+    model,
+    queryParams,
+});
+
+/**
  * Fetches all reports from the api.
  */
 export const reportsFetch = (patientId = null, organisationId = null, queryParams = {}) => ({

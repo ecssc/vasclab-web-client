@@ -11,6 +11,7 @@ const initialState = {
         visible: false,
         message: '',
         action: null,
+        autoHideDuration: 0,
     },
     patientCard: {
         showEditForm: false,
@@ -58,17 +59,14 @@ export default (state = initialState, { type, ...newState }) => {
                     visible: true,
                     message: newState.message,
                     action: newState.action,
+                    autoHideDuration: newState.autoHideDuration || initialState.snackbar.autoHideDuration,
                 },
             };
 
         case actions.HIDE_SNACKBAR:
             return {
                 ...state,
-                snackbar: {
-                    visible: false,
-                    message: '',
-                    action: null,
-                },
+                snackbar: initialState.snackbar,
             };
 
         case actions.PATIENT_CARD_TOGGLE_EDIT_FORM:

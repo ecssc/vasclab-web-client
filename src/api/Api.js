@@ -55,11 +55,27 @@ class Api {
      * @return {Promise}
      */
     patch(uri, data = {}, headers = {}) {
-        return this.client.post(URL + uri)
+        return this.client.patch(URL + uri)
                           .withCredentials()
                           .use(promises)
                           .set({ ...headers, ...this.headers })
                           .send(data);
+    }
+
+    /**
+     * Creates a promise for a put request.
+     *
+     * @param {string} uri
+     * @param {*} data
+     * @param {*} headers
+     * @return {Promise}
+     */
+    put(uri, data = {}, headers = {}) {
+        return this.client.put(URL + uri)
+                   .withCredentials()
+                   .use(promises)
+                   .set({ ...headers, ...this.headers })
+                   .send(data);
     }
 
     /**

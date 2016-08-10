@@ -1,4 +1,4 @@
-import { USER_AUTH_SUCCESS, USER_AUTH_FAIL, USER_AUTH_LOGOUT } from '../action-types'
+import { USER_AUTH_CHECK, USER_AUTH_SUCCESS, USER_AUTH_FAIL, USER_AUTH_LOGOUT } from '../action-types';
 
 const initialState = {
     account: {
@@ -36,9 +36,12 @@ export default (state = initialState, { type, ...newState }) => {
                 organisations: newState.organisations,
             };
 
-        default:
+        case USER_AUTH_CHECK:
         case USER_AUTH_LOGOUT:
         case USER_AUTH_FAIL:
+            return initialState;
+
+        default:
             return state;
     }
 };
