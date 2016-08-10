@@ -9,7 +9,7 @@ const PatientPage = ({ routeParams }) => (
     <DefaultLayout title="VascLab">
         <Row>
             <Col xs={12}>
-                <PatientCard />
+                <PatientCard patientId={routeParams.patientId} />
             </Col>
             <Col xs={12}>
                 <ReportsTable patientId={routeParams.patientId} />

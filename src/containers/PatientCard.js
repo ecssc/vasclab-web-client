@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { patientCardToggleEditForm } from '../state/actions';
+import { patientFetch, patientCardToggleEditForm } from '../state/actions';
 
 import BasePatientCard from '../components/PatientCard';
 
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    patientFetch: (patientId, queryParams = {}) => dispatch(patientFetch(patientId, queryParams)),
     toggleEditForm: () => dispatch(patientCardToggleEditForm()),
     submitHandler: (model) => console.log(model),
 });

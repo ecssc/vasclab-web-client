@@ -15,6 +15,13 @@ import { date } from '../functions/dates';
 
 class PatientCard extends React.Component {
     /**
+     * Component will mount event handler.
+     */
+    componentWillMount() {
+        this.props.patientFetch(this.props.patientId);
+    }
+
+    /**
      * Renders the correct buttons.
      *
      * @return {XML}
@@ -182,10 +189,12 @@ class PatientCard extends React.Component {
 
 PatientCard.propTypes = {
     patient: React.PropTypes.object,
+    patientId: React.PropTypes.string,
     showEditForm: React.PropTypes.bool,
     formDisabled: React.PropTypes.bool,
     toggleEditForm: React.PropTypes.any,
     submitHandler: React.PropTypes.any,
+    patientFetch: React.PropTypes.any,
 };
 
 export default PatientCard;
