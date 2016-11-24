@@ -10,9 +10,9 @@
     "formsy-material-ui": "^0.5.0",
     "formsy-react": "^0.18.1",
     "lodash.merge": "^4.5.1",
-    "material-ui": "^0.15.3",
+    "material-ui": "^0.15.4",
     "query-string": "^3.0.3",
-    "react": "^15.3.0",
+    "react": "^15.3.1",
     "react-document-title": "^2.0.2",
     "react-dom": "^15.3.0",
     "react-flexbox-grid": "^0.10.2",
@@ -55,7 +55,7 @@
   },
   "scripts": {
     "build": "webpack -p --progress --config ./webpack.config.production.js",
-    "dev": "webpack-dev-server -d --progress --colors --hot --history-api-fallback --content-base build --config ./webpack.config.js",
+    "dev": "open http://localhost:8080/; webpack-dev-server -d --progress --colors --hot --history-api-fallback --content-base build --config ./webpack.config.js",
     "lint": "./node_modules/.bin/eslint src/ || true",
     "test": "mocha test/.setup.js test/**/*Test.js --compilers js:babel-register"
   },
