@@ -40,5 +40,11 @@ export default {
                 require.ensure([], (require) => cb(null, require('../pages/ReportsPage').default));
             },
         },
+        {
+            path: ':organisationId/reports/:reportId',
+            getComponents: (location, cb) => {
+                require.ensure([], (require) => cb(null, require('../pages/ReportPage').default));
+            },
+        },
     ],
 };
