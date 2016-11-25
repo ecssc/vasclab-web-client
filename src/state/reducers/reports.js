@@ -3,8 +3,14 @@ import { REPORTS_FETCH, REPORTS_FETCHED } from '../action-types';
 const initialState = {
     data: [],
     pageNumber: 1,
-    pagination: null,
-    queryParams: null,
+    pagination: {
+        count: 0,
+        current_page: 0,
+        total_pages: 0,
+    },
+    queryParams: {
+        query: '',
+    },
 };
 
 export default (state = initialState, { type, ...newState }) => {

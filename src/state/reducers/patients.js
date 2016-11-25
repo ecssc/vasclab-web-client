@@ -1,23 +1,28 @@
-import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../action-types'
+import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../action-types';
 
 const initialState = {
     data: [],
     pageNumber: 1,
-    pagination: null,
-    queryParams: null
+    pagination: {
+        count: 0,
+        current_page: 0,
+        total_pages: 0,
+    },
+    queryParams: {
+        query: '',
+    },
 };
 
 export default (state = initialState, { type, ...newState }) => {
     switch (type) {
+        case PATIENTS_FETCHED:
         case PATIENTS_FETCH:
             return {
                 ...state,
-                ...newState.pageNumber
+                ...newState.patients,
             };
 
-        case PATIENTS_FETCHED:
-            return newState.patients;
+        default:
+            return state;
     }
-
-    return state
-}
+};

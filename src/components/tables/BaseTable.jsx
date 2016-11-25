@@ -90,15 +90,22 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     searchBar() {
-        if (this.props.data.length === 0) {
-            return (<div />);
-        }
-
         return (
-            <TextField
-                style={{ width: '100%' }}
-                hintText={this.searchHint}
-            />
+            <form
+                style={{ marginBottom: 0 }}
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    this.refreshTable({ query: this.queryParams.query });
+                }}
+            >
+                <TextField
+                    style={{ width: '100%' }}
+                    hintText={this.searchHint}
+                    onChange={(event, query) => {
+                        this.refreshTable({ query });
+                    }}
+                />
+            </form>
         );
     }
 
@@ -108,11 +115,11 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     paginationSelect() {
-        if (this.props.pagination === null || this.props.pagination.total_pages === 1) {
+        if (this.props.pagination.total_pages <= 1) {
             return (<div />);
         }
 
-        let options = [];
+        const options = [];
 
         for (let i = 1; i <= this.props.pagination.total_pages; i++) {
             options.push(<MenuItem key={i} value={i} primaryText={`Page ${i}`} />);
@@ -135,7 +142,7 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     paginationSlider() {
-        if (this.props.pagination === null || this.props.pagination.total_pages === 1) {
+        if (this.props.pagination.total_pages <= 1) {
             return (<div />);
         }
 
@@ -157,14 +164,10 @@ class BaseTable extends React.Component {
      * @return {XML}
      */
     render() {
-        if (this.props.data.length === 0) {
-            return (<div />);
-        }
-
         let searchWidth = 3;
         let paginationStyle = {};
 
-        if (this.props.pagination.total_pages === 1) {
+        if (this.props.pagination.total_pages <= 1) {
             searchWidth = 5;
             paginationStyle = { display: 'none' };
         }
@@ -206,7 +209,7 @@ BaseTable.propTypes = {
 };
 
 BaseTable.contextTypes = {
-    router: React.PropTypes.func.isRequired,
+    router: React.PropTypes.object.isRequired,
 };
 
 export default BaseTable;

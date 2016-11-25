@@ -14,6 +14,7 @@ const PatientsPage = ({ routeParams, location }) => (
 
 PatientsPage.propTypes = {
     routeParams: React.PropTypes.object,
+    location: React.PropTypes.object,
 };
 
 export default PatientsPage;

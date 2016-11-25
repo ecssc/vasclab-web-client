@@ -19,27 +19,27 @@ const fetchPatients = function* (action) {
     yield put({ type: types.SHOW_PROGRESS_BAR });
 
     try {
-        let response = yield organisation.patients(action.organisationId, action.queryParams).then((response) => {
-            return response.body;
-        }).catch((error) => {
-            throw error;
-        });
+        const patients = yield organisation.patients(action.organisationId, action.queryParams)
+                                           .then((response) => (response.body))
+                                           .catch((error) => {
+                                               throw error;
+                                           });
 
         yield put({
             type: types.PATIENTS_FETCHED,
             patients: {
-                data: response.data,
-                pagination: response.meta.pagination,
-                queryParams: action.queryParams
-            }
+                data: patients.data,
+                pagination: patients.meta.pagination,
+                queryParams: action.queryParams,
+            },
         });
     } catch (error) {
         yield put({
             type: types.SHOW_SNACKBAR,
             message: 'There was a problem loading your patients',
-            action: 'Ok'
+            action: 'Ok',
         });
     } finally {
         yield put({ type: types.HIDE_PROGRESS_BAR });
     }
-}
+};
