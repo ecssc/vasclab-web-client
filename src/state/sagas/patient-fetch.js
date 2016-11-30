@@ -13,7 +13,7 @@ const fetchPatient = function* (action) {
 
     try {
         const patients = yield patient.find(action.patientId, action.queryParams)
-            .then((response) => response.body)
+            .then(response => response.body)
             .catch((error) => {
                 throw error;
             });

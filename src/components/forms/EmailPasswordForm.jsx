@@ -57,7 +57,7 @@ const EmailPasswordForm = ({ title, subtitle, buttonText, submitHandler, formDis
 
 EmailPasswordForm.propTypes = {
     title: React.PropTypes.string,
-    subtitle: React.PropTypes.string,
+    subtitle: React.PropTypes.element,
     buttonText: React.PropTypes.string,
     submitHandler: React.PropTypes.func,
     formDisabled: React.PropTypes.bool,

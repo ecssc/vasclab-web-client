@@ -14,10 +14,10 @@ const fetchPatient = function* (action) {
 
     try {
         const updated = yield patient.update(action.patientId, action.model)
-                                     .then((response) => (response.body))
-                                     .catch((error) => {
-                                         throw error;
-                                     });
+            .then(response => response.body)
+            .catch((error) => {
+                throw error;
+            });
 
         yield put({
             type: types.PATIENT_FETCHED,

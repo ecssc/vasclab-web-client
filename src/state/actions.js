@@ -3,7 +3,7 @@ import * as types from './action-types';
 /**
  * Attempts to authenticate a user.
  */
-export const userAuthAttempt = (model) => ({
+export const userAuthAttempt = model => ({
     type: types.USER_AUTH_ATTEMPT,
     ...model,
 });

@@ -3,13 +3,13 @@ import { patientFetch, patientUpdate, patientCardToggleEditForm } from '../state
 
 import BasePatientCard from '../components/PatientCard';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     patient: state.patient.data,
     formDisabled: state.ui.formDisabled,
     showEditForm: state.ui.patientCard.showEditForm,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     patientFetch: (patientId, queryParams = {}) => dispatch(patientFetch(patientId, queryParams)),
     submitHandler: (patientId, model) => dispatch(patientUpdate(patientId, model)),
     toggleEditForm: () => dispatch(patientCardToggleEditForm()),

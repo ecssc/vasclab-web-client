@@ -6,6 +6,6 @@ const SignUpPage = () => (
     <DefaultLayout title="Sign up to VascLab">
         <SignUpForm />
     </DefaultLayout>
-)
+);
 
 export default SignUpPage;

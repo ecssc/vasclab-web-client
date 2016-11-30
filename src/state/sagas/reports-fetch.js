@@ -11,13 +11,11 @@ import { organisation, patient } from '../../api/client';
  * @param queryParams
  * @return {Promise.<TResult>}
  */
-const fetchPatientReports = (patientId, queryParams) => {
-    return patient.reports(patientId, queryParams)
-        .then((response) => (response.body))
-        .catch((error) => {
-            throw error;
-        });
-};
+const fetchPatientReports = (patientId, queryParams) => patient.reports(patientId, queryParams)
+    .then(response => response.body)
+    .catch((error) => {
+        throw error;
+    });
 
 /**
  * Fetches all reports belonging to an organisation.
@@ -26,13 +24,11 @@ const fetchPatientReports = (patientId, queryParams) => {
  * @param queryParams
  * @return {Promise.<TResult>}
  */
-const fetchOrganisationReports = (orgainisationId, queryParams) => {
-    return organisation.reports(orgainisationId, queryParams)
-        .then((response) => (response.body))
-        .catch((error) => {
-            throw error;
-        });
-};
+const fetchOrganisationReports = (orgainisationId, queryParams) => organisation.reports(orgainisationId, queryParams)
+    .then(response => response.body)
+    .catch((error) => {
+        throw error;
+    });
 
 /**
  * Attempts to fetch reports from the api.

@@ -6,6 +6,6 @@ const LoginPage = () => (
     <DefaultLayout title="Sign into VascLab">
         <AuthForm />
     </DefaultLayout>
-)
+);
 
 export default LoginPage;
