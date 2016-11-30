@@ -1,33 +1,45 @@
 import React from 'react';
 
-import BaseAvatar from 'material-ui/Avatar';
+import AccountBox from 'material-ui/svg-icons/action/account-box';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
+import Divider from 'material-ui/Divider';
+import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import Chip from 'material-ui/Chip';
 
-const chipSize = 46;
+import { fullWhite } from 'material-ui/styles/colors';
 
 const Avatar = ({ showAvatar, user, signOut }) => {
     if (showAvatar) {
-        const chip = (
-            <Chip style={{ height: chipSize, borderRadius: chipSize / 2 }} labelStyle={{ lineHeight: `${chipSize}px` }}>
-                <BaseAvatar src={user.avatar} style={{ height: chipSize, width: chipSize }} />
-                {user.name}
-            </Chip>
-        );
-
         return (
-            <IconMenu
-                iconButtonElement={chip}
-                targetOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-            >
-                <MenuItem onTouchTap={signOut} primaryText="Sign out" />
-            </IconMenu>
+            <div>
+                <IconMenu
+                    iconButtonElement={
+                        <IconButton>
+                            <AccountBox color={fullWhite} />
+                        </IconButton>
+                    }
+                    targetOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+                >
+                    <MenuItem
+                        leftIcon={<AccountBox />}
+                        primaryText={`${user.first_name} ${user.last_name}`}
+                    />
+
+                    <Divider />
+
+                    <MenuItem
+                        leftIcon={<Cancel />}
+                        onTouchTap={signOut}
+                        primaryText="Sign Out"
+                    />
+                </IconMenu>
+            </div>
         );
     }
 
-    return (<BaseAvatar size={0} />);
+    return (<div />);
 };
 
 Avatar.propTypes = {
