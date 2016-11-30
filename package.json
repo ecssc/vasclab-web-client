@@ -56,7 +56,8 @@
     "build": "webpack -p --progress --config ./webpack.config.production.js",
     "dev": "webpack-dev-server -d --hot --inline --config ./webpack.config.js",
     "lint": "./node_modules/.bin/eslint src/ || true",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -71,5 +72,12 @@
   "author": "Edward Coleridge Smith <e.coleridgesmith@edcs.me>",
   "license": "UNLICENSED",
   "private": true,
-  "homepage": "https://bitbucket.org/vasclab/web-app#readme"
+  "homepage": "https://bitbucket.org/vasclab/web-app#readme",
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/config.*"
+    ]
+  }
 }
