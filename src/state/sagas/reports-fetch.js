@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga';
+import { takeLatest } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 
 import * as types from '../action-types';
@@ -76,5 +76,5 @@ const fetchReports = function* (action) {
  * Watches for reports fetch state change.
  */
 export default function* () {
-    yield* takeEvery(types.REPORTS_FETCH, fetchReports);
+    yield* takeLatest(types.REPORTS_FETCH, fetchReports);
 }
