@@ -47,6 +47,13 @@ var config = {
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': true
+    },
+    devServer: {
+        open: true,
+        progress: true,
+        colors: true,
+        historyApiFallback: true,
+        contentBase: 'build'
     }
 };
 
