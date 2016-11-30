@@ -1,15 +1,13 @@
-import client from 'superagent';
-import promises from 'superagent-promise-plugin';
-
-const URL = 'http://api.vasclab.app/';
-
 class Api {
     /**
      * API wrapper constructor.
      */
-    constructor() {
+    constructor(client, promises, config) {
         this.client = client;
-        this.headers = {
+        this.promises = promises;
+        this.config = config;
+
+        this.initialHeaders = {
             Accept: 'application/vnd.vasclab.v1+json',
         };
     }
@@ -23,10 +21,10 @@ class Api {
      * @return {Promise}
      */
     post(uri, data = {}, headers = {}) {
-        return this.client.post(URL + uri)
+        return this.client.post(this.config.url + uri)
                           .withCredentials()
-                          .use(promises)
-                          .set({ ...headers, ...this.headers })
+                          .use(this.promises)
+                          .set({ ...headers, ...this.initialHeaders })
                           .send(data);
     }
 
@@ -39,10 +37,10 @@ class Api {
      * @return {Promise}
      */
     get(uri, query = {}, headers = {}) {
-        return this.client.get(URL + uri)
+        return this.client.get(this.config.url + uri)
                           .withCredentials()
-                          .use(promises)
-                          .set({ ...headers, ...this.headers })
+                          .use(this.promises)
+                          .set({ ...headers, ...this.initialHeaders })
                           .query(query);
     }
 
@@ -55,10 +53,10 @@ class Api {
      * @return {Promise}
      */
     patch(uri, data = {}, headers = {}) {
-        return this.client.patch(URL + uri)
+        return this.client.patch(this.config.url + uri)
                           .withCredentials()
-                          .use(promises)
-                          .set({ ...headers, ...this.headers })
+                          .use(this.promises)
+                          .set({ ...headers, ...this.initialHeaders })
                           .send(data);
     }
 
@@ -71,10 +69,10 @@ class Api {
      * @return {Promise}
      */
     put(uri, data = {}, headers = {}) {
-        return this.client.put(URL + uri)
+        return this.client.put(this.config.url + uri)
                    .withCredentials()
-                   .use(promises)
-                   .set({ ...headers, ...this.headers })
+                   .use(this.promises)
+                   .set({ ...headers, ...this.initialHeaders })
                    .send(data);
     }
 
@@ -87,10 +85,10 @@ class Api {
      * @return {Promise}
      */
     delete(uri, query = {}, headers = {}) {
-        return this.client.delete(URL + uri)
+        return this.client.delete(this.config.url + uri)
                           .withCredentials()
-                          .use(promises)
-                          .set({ ...headers, ...this.headers })
+                          .use(this.promises)
+                          .set({ ...headers, ...this.initialHeaders })
                           .query(query);
     }
 }

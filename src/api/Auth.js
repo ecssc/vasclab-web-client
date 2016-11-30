@@ -1,5 +1,4 @@
 import Api from './Api';
-import config from '../config';
 
 class Auth extends Api {
     /**
@@ -12,7 +11,7 @@ class Auth extends Api {
     accessToken(username, password) {
         return this.post('oauth/access_token', {
             grant_type: 'password',
-            client_id: config.api.client_id,
+            client_id: this.conf.client_id,
             username,
             password,
         });
@@ -28,7 +27,7 @@ class Auth extends Api {
     refreshToken() {
         return this.post('oauth/access_token', {
             grant_type: 'refresh_token',
-            client_id: config.api.client_id,
+            client_id: this.conf.client_id,
         });
     }
 
