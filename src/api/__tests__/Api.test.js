@@ -1,10 +1,10 @@
 jest.mock('superagent');
 jest.mock('superagent-promise-plugin');
 
+import Api from '../Api';
+
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';
-
-import Api from '../Api';
 
 const api = new Api(client, promises, {
     url: 'https://api.vasclab.test/',
