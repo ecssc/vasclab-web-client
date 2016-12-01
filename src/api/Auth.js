@@ -11,7 +11,7 @@ class Auth extends Api {
     accessToken(username, password) {
         return this.post('oauth/access_token', {
             grant_type: 'password',
-            client_id: this.conf.client_id,
+            client_id: this.config.client_id,
             username,
             password,
         });
@@ -20,22 +20,18 @@ class Auth extends Api {
     /**
      * A promise request for refreshing an access token.
      *
-     * @param {string} username
-     * @param {string} password
      * @return {Promise}
      */
     refreshToken() {
         return this.post('oauth/access_token', {
             grant_type: 'refresh_token',
-            client_id: this.conf.client_id,
+            client_id: this.config.client_id,
         });
     }
 
     /**
      * A promise request for revoking an access token.
      *
-     * @param {string} username
-     * @param {string} password
      * @return {Promise}
      */
     revokeToken() {
