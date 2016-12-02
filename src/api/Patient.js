@@ -39,7 +39,7 @@ class Patient extends Api {
      * @param params
      * @return {Promise}
      */
-    reports(patientId, params = {}) {
+    reports(patientId, params = { page: 1 }) {
         return this.get(`patients/${patientId}/reports`, params);
     }
 }

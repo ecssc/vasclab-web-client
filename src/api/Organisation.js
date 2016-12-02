@@ -13,6 +13,8 @@ class Organisation extends Api {
     /**
      * A promise request for retrieving the specified organisation's patients.
      *
+     * @param {int} id
+     * @param {*} params
      * @return {Promise}
      */
     patients(id, params = { page: 1 }) {
@@ -20,14 +22,14 @@ class Organisation extends Api {
     }
 
     /**
-     * A promise request for retrieving a patient's reports.
+     * A promise request for retrieving an organisation's reports.
      *
-     * @param patientId
-     * @param params
+     * @param {int} id
+     * @param {*} params
      * @return {Promise}
      */
-    reports(patientId, params = {}) {
-        return this.get(`organisations/${patientId}/reports`, params);
+    reports(id, params = { page: 1 }) {
+        return this.get(`organisations/${id}/reports`, params);
     }
 }
 

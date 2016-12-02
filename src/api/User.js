@@ -15,7 +15,7 @@ class User extends Api {
      *
      * @return {Promise}
      */
-    organisations(id, params = { page: 1 }) {
+    organisations(id = 'me', params = { page: 1 }) {
         return this.get(`users/${id}/organisations`, params);
     }
 }
