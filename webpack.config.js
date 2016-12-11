@@ -1,5 +1,7 @@
 var path = require('path'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin'),
+    DotenvPlugin = require('webpack-dotenv-plugin');
 
 var config = {
     target: 'web',
@@ -41,7 +43,12 @@ var config = {
                 collapseWhitespace: true,
             },
             template: 'src/assets/templates/index.ejs'
-        })
+        }),
+        new DotenvPlugin({
+            sample: './.env.sample',
+            path: './.env'
+        }),
+        new InlineEnviromentVariablesPlugin()
     ],
     externals: {
         'react/addons': true,

@@ -1,8 +1,11 @@
 {
   "name": "@vasclab/web-app",
-  "version": "0.0.0",
-  "description": "The VascLab web app",
+  "version": "1.0.0",
+  "description": "The VascLab web client",
   "main": "build/index.html",
+  "engines": {
+    "node": "6.9.2"
+  },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.5",
@@ -43,6 +46,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "faker": "^3.1.0",
     "html-webpack-plugin": "^2.22.0",
+    "inline-environment-variables-webpack-plugin": "^1.1.0",
     "jest": "^17.0.3",
     "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.3.0",
@@ -51,7 +55,8 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.6",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-dotenv-plugin": "^1.4.0"
   },
   "scripts": {
     "build": "webpack -p --progress --config ./webpack.config.production.js",
@@ -73,7 +78,7 @@
   "author": "Edward Coleridge Smith <e.coleridgesmith@edcs.me>",
   "license": "UNLICENSED",
   "private": true,
-  "homepage": "https://bitbucket.org/vasclab/web-app#readme",
+  "homepage": "https://github.com/edcs/vasclab-web-client",
   "jest": {
     "verbose": true,
     "collectCoverageFrom": [

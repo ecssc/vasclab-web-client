@@ -2,7 +2,9 @@ var path = require('path'),
     webpack = require('webpack'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin'),
+    DotenvPlugin = require('webpack-dotenv-plugin');
 
 var globals = {
     React: 'react',
@@ -79,7 +81,12 @@ var config = {
                 collapseWhitespace: true,
             },
             template: 'src/assets/templates/index.ejs'
-        })
+        }),
+        new DotenvPlugin({
+            sample: './.env.sample',
+            path: './.env'
+        }),
+        new InlineEnviromentVariablesPlugin()
     ],
 };
 
