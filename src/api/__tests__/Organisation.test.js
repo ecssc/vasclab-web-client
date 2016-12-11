@@ -3,13 +3,8 @@ import Organisation from '../Organisation';
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';
 
-const config = {
-    url: 'https://api.vasclab.test/',
-    client_id: 'client_id'
-};
-
 test('Organisation index can be requested', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.index();
 
@@ -18,7 +13,7 @@ test('Organisation index can be requested', () => {
 });
 
 test('Organisation index can be requested with a query parameter', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.index({ page: 1, search: 'foo' });
 
@@ -27,7 +22,7 @@ test('Organisation index can be requested with a query parameter', () => {
 });
 
 test('Organisation patients can be requested', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.patients(1);
 
@@ -36,7 +31,7 @@ test('Organisation patients can be requested', () => {
 });
 
 test('Organisation patients can be requested with a query parameter', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.patients(1, { page: 1, search: 'foo' });
 
@@ -45,7 +40,7 @@ test('Organisation patients can be requested with a query parameter', () => {
 });
 
 test('Organisation reports can be requested', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.reports(1);
 
@@ -54,7 +49,7 @@ test('Organisation reports can be requested', () => {
 });
 
 test('Organisation reports can be requested with a query parameter', () => {
-    const organisation = new Organisation(client, promises, config);
+    const organisation = new Organisation(client, promises);
 
     organisation.reports(1, { page: 1, search: 'foo' });
 

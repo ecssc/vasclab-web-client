@@ -2,10 +2,9 @@ class Api {
     /**
      * API wrapper constructor.
      */
-    constructor(client, promises, config) {
+    constructor(client, promises) {
         this.client = client;
         this.promises = promises;
-        this.config = config;
 
         this.initialHeaders = {
             Accept: 'application/vnd.vasclab.v1+json',
@@ -21,7 +20,7 @@ class Api {
      * @return {Promise}
      */
     post(uri, data = {}, headers = {}) {
-        return this.client.post(this.config.url + uri)
+        return this.client.post(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -37,7 +36,7 @@ class Api {
      * @return {Promise}
      */
     get(uri, query = {}, headers = {}) {
-        return this.client.get(this.config.url + uri)
+        return this.client.get(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -53,7 +52,7 @@ class Api {
      * @return {Promise}
      */
     patch(uri, data = {}, headers = {}) {
-        return this.client.patch(this.config.url + uri)
+        return this.client.patch(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -69,7 +68,7 @@ class Api {
      * @return {Promise}
      */
     put(uri, data = {}, headers = {}) {
-        return this.client.put(this.config.url + uri)
+        return this.client.put(process.env.API_URL + uri)
                    .withCredentials()
                    .use(this.promises)
                    .set({ ...headers, ...this.initialHeaders })
@@ -85,7 +84,7 @@ class Api {
      * @return {Promise}
      */
     delete(uri, query = {}, headers = {}) {
-        return this.client.delete(this.config.url + uri)
+        return this.client.delete(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })

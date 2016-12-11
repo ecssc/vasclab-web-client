@@ -11,7 +11,7 @@ class Auth extends Api {
     accessToken(username, password) {
         return this.post('oauth/access_token', {
             grant_type: 'password',
-            client_id: this.config.client_id,
+            client_id: process.env.OAUTH_CLIENT_ID,
             username,
             password,
         });
@@ -25,7 +25,7 @@ class Auth extends Api {
     refreshToken() {
         return this.post('oauth/access_token', {
             grant_type: 'refresh_token',
-            client_id: this.config.client_id,
+            client_id: process.env.OAUTH_CLIENT_ID,
         });
     }
 

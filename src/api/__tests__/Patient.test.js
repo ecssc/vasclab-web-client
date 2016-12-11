@@ -3,13 +3,8 @@ import Patient from '../Patient';
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';
 
-const config = {
-    url: 'https://api.vasclab.test/',
-    client_id: 'client_id'
-};
-
 test('Patient index can be requested', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.index();
 
@@ -18,7 +13,7 @@ test('Patient index can be requested', () => {
 });
 
 test('Patient index can be requested with a query parameter', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.index({ page: 1, search: 'foo' });
 
@@ -27,7 +22,7 @@ test('Patient index can be requested with a query parameter', () => {
 });
 
 test('Patient can be requested', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.find(1);
 
@@ -36,7 +31,7 @@ test('Patient can be requested', () => {
 });
 
 test('Patient can be requested with a query parameter', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.find(1, { search: 'foo' });
 
@@ -45,7 +40,7 @@ test('Patient can be requested with a query parameter', () => {
 });
 
 test('Patient can be updated', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.update(1, { foo: 'bar' });
 
@@ -54,7 +49,7 @@ test('Patient can be updated', () => {
 });
 
 test('Patient reports can be requested', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.reports(1);
 
@@ -63,7 +58,7 @@ test('Patient reports can be requested', () => {
 });
 
 test('Patient reports can be requested with a query parameter', () => {
-    const patient = new Patient(client, promises, config);
+    const patient = new Patient(client, promises);
 
     patient.reports(1, { page: 1, search: 'foo' });
 

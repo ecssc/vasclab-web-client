@@ -3,13 +3,8 @@ import User from '../User';
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';
 
-const config = {
-    url: 'https://api.vasclab.test/',
-    client_id: 'client_id'
-};
-
 test('User can request themselves', () => {
-    const user = new User(client, promises, config);
+    const user = new User(client, promises);
 
     user.me();
 
@@ -17,7 +12,7 @@ test('User can request themselves', () => {
 });
 
 test('User organisations can be requested', () => {
-    const user = new User(client, promises, config);
+    const user = new User(client, promises);
 
     user.organisations();
 
@@ -25,7 +20,7 @@ test('User organisations can be requested', () => {
 });
 
 test('User organisations can be requested with id', () => {
-    const user = new User(client, promises, config);
+    const user = new User(client, promises);
 
     user.organisations(1);
 
@@ -33,7 +28,7 @@ test('User organisations can be requested with id', () => {
 });
 
 test('User organisations can be requested with a query parameter', () => {
-    const user = new User(client, promises, config);
+    const user = new User(client, promises);
 
     user.organisations(1, { page: 1, search: 'foo' });
 
