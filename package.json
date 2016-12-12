@@ -62,8 +62,8 @@
     "build": "webpack -p --progress --config ./webpack.config.production.js",
     "dev": "webpack-dev-server -d --hot --inline --config ./webpack.config.js",
     "lint": "./node_modules/.bin/eslint src/ || true",
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "test": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest",
+    "coverage": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest --coverage"
   },
   "repository": {
     "type": "git",

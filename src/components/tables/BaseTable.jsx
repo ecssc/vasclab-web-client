@@ -92,7 +92,6 @@ class BaseTable extends React.Component {
     searchBar() {
         return (
             <form
-                style={{ marginBottom: 0 }}
                 onSubmit={(event) => {
                     event.preventDefault();
                     this.refreshTable({ query: this.queryParams.query });
@@ -126,13 +125,15 @@ class BaseTable extends React.Component {
         }
 
         return (
-            <SelectField
-                style={{ width: '100%' }}
-                value={this.props.pagination.current_page}
-                onChange={(event, index, value) => this.refreshTable({ page: value })}
-            >
-                {options}
-            </SelectField>
+            <form>
+                <SelectField
+                    style={{ width: '100%' }}
+                    value={this.props.pagination.current_page}
+                    onChange={(event, index, value) => this.refreshTable({ page: value })}
+                >
+                    {options}
+                </SelectField>
+            </form>
         );
     }
 
