@@ -1,6 +1,6 @@
 # VascLab Web Client
 
-[ ![Codeship Status for edcs/vasclab-web-client](https://app.codeship.com/projects/05bd3e30-a101-0134-d2ce-3ef013e8cc8e/status?branch=master)](https://app.codeship.com/projects/189800)
+[ ![Codeship Status for edcs/vasclab-web-client](https://img.shields.io/codeship/05bd3e30-a101-0134-d2ce-3ef013e8cc8e/master.svg?style=flat-square)](https://app.codeship.com/projects/189800)
 
 This is a React project which makes use of the VascLab non-confidential ReST API to allow people to access the VascLab
 application.
