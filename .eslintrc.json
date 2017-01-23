@@ -1,3 +1,15 @@
 {
-  "extends": "react-app"
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env":{
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "max-len": [2, 120],
+    "react/jsx-indent": [2, 4],
+    "react/jsx-indent-props": [2, 4],
+    "func-names": ["error", "as-needed"],
+    "indent": [2, 4, { "SwitchCase": 1, "VariableDeclarator": 1, "outerIIFEBody": 1 }]
+  }
 }

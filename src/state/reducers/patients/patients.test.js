@@ -15,12 +15,12 @@ describe('Patients Reducer', () => {
     it('should handle PATIENTS_FETCHED', () => {
         const newSate = {
             ...initialSate,
-            data: [{ foo: 'bar' }, { foo: 'baz' }]
+            data: [{ foo: 'bar' }, { foo: 'baz' }],
         };
 
         expect(reducer(initialSate, {
             type: PATIENTS_FETCHED,
-            state: newSate
+            state: newSate,
         })).toEqual(newSate);
     });
 
