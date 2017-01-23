@@ -1,4 +1,4 @@
-import initialState from './initial-state';
+import initialState from '../collection-initial-state';
 import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../../action-types';
 
 export default (state = initialState, action) => {
