@@ -1,6 +1,4 @@
-import { PATIENT_FETCH, PATIENT_FETCHED } from '../action-types';
-
-const initialState = {
+export default {
     data: {
         salutation: null,
         first_name: null,
@@ -18,17 +16,4 @@ const initialState = {
         updated_at: null,
     },
     queryParams: null,
-};
-
-export default (state = initialState, action) => {
-    switch (action.type) {
-        case PATIENT_FETCH:
-            return state;
-
-        case PATIENT_FETCHED:
-            return action.state;
-
-        default:
-            return state;
-    }
 };
