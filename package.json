@@ -1,6 +1,6 @@
 {
-  "name": "vasclab-web-client1",
-  "version": "0.1.0",
+  "name": "vasclab-web-client",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "eslint": "^3.14.0",
@@ -12,12 +12,17 @@
   },
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^2.6.1",
+    "redux-saga": "^0.14.3",
+    "superagent": "^3.3.2",
+    "superagent-promise-plugin": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "REACT_APP__API_URL=https://api.vasclab.test/ REACT_APP__OAUTH_CLIENT_ID=client_id react-scripts test --env=jsdom",
+    "coverage": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint src/ || true"
   },
@@ -26,6 +31,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/config.*"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "./__mocks__/localStorage.js"
   }
 }
