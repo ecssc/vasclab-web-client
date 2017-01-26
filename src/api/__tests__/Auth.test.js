@@ -1,4 +1,4 @@
-import Auth from './Auth';
+import Auth from '../Auth';
 
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';

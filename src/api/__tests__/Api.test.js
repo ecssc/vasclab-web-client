@@ -1,4 +1,4 @@
-import Api from './Api';
+import Api from '../Api';
 
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';

@@ -1,4 +1,4 @@
-import Patient from './Patient';
+import Patient from '../Patient';
 
 import client from 'superagent';
 import promises from 'superagent-promise-plugin';

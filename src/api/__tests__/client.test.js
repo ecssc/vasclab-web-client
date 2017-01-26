@@ -1,9 +1,9 @@
-import * as client from './client';
+import * as client from '../client';
 
-import Auth from './Auth';
-import Organisation from './Organisation';
-import Patient from './Patient';
-import User from './User';
+import Auth from '../Auth';
+import Organisation from '../Organisation';
+import Patient from '../Patient';
+import User from '../User';
 
 test('Client returns instance of Auth()', () => {
     expect(client.auth).toBeInstanceOf(Auth);

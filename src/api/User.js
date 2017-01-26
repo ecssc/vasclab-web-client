@@ -1,4 +1,4 @@
-import Api from '../Api';
+import Api from './Api';
 
 class User extends Api {
     /**
