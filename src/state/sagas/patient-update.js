@@ -8,7 +8,7 @@ import {
     PATIENT_FETCHED,
     SHOW_SNACKBAR,
     COMPLETE_HTTP,
-    PATIENT_UPDATE
+    PATIENT_UPDATE,
 } from '../action-types';
 
 /**

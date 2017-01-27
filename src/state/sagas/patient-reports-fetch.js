@@ -7,7 +7,7 @@ import {
     PATIENT_REPORTS_FETCHED,
     SHOW_SNACKBAR,
     COMPLETE_HTTP,
-    PATIENT_REPORTS_FETCH
+    PATIENT_REPORTS_FETCH,
 } from '../action-types';
 
 /**
