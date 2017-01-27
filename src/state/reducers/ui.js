@@ -1,7 +1,21 @@
-import initialState from './initial-state';
-import * as actions from '../../action-types';
+import * as actions from '../action-types';
 
-export default (state = initialState, action) => {
+export const initialState = {
+    http: {
+        inProgress: false,
+    },
+    forms: {
+        disabled: false,
+    },
+    snackbar: {
+        visible: false,
+        message: '',
+        action: null,
+        autoHideDuration: 0,
+    },
+};
+
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.START_HTTP:
             return {

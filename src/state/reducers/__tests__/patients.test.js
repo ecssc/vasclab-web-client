@@ -1,24 +1,26 @@
-import reducer from './patients';
-import initialSate from '../collection-initial-state';
+import { initialState, reducer } from '../patients';
 import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../../action-types';
 
 describe('Patients Reducer', () => {
 
     it('should return the initial state', () => {
-        expect(reducer(initialSate, { type: 'default' })).toEqual(initialSate);
+        expect(reducer(initialState, { type: 'default' })).toEqual(initialState);
     });
 
     it('should handle PATIENTS_FETCH', () => {
-        expect(reducer(initialSate, { type: PATIENTS_FETCH })).toEqual(initialSate);
+        expect(reducer(initialState, { type: PATIENTS_FETCH })).toEqual(initialState);
     });
 
     it('should handle PATIENTS_FETCHED', () => {
         const newSate = {
-            ...initialSate,
-            data: [{ foo: 'bar' }, { foo: 'baz' }],
+            ...initialState,
+            data: {
+                first_name: 'Edward',
+                last_name: 'Coleridge Smith',
+            },
         };
 
-        expect(reducer(initialSate, {
+        expect(reducer(initialState, {
             type: PATIENTS_FETCHED,
             state: newSate,
         })).toEqual(newSate);

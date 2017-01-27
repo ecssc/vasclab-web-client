@@ -1,5 +1,4 @@
-import reducer from './reports';
-import initialSate from '../collection-initial-state';
+import { initialState, reducer } from '../reports';
 
 import {
     ORG_REPORTS_FETCH,
@@ -11,36 +10,36 @@ import {
 describe('Reports Reducer', () => {
 
     it('should return the initial state', () => {
-        expect(reducer(initialSate, { type: 'default' })).toEqual(initialSate);
+        expect(reducer(initialState, { type: 'default' })).toEqual(initialState);
     });
 
     it('should handle ORG_REPORTS_FETCH', () => {
-        expect(reducer(initialSate, { type: ORG_REPORTS_FETCH })).toEqual(initialSate);
+        expect(reducer(initialState, { type: ORG_REPORTS_FETCH })).toEqual(initialState);
     });
 
     it('should handle ORG_REPORTS_FETCHED', () => {
         const newSate = {
-            ...initialSate,
+            ...initialState,
             data: [{ foo: 'bar' }, { foo: 'baz' }],
         };
 
-        expect(reducer(initialSate, {
+        expect(reducer(initialState, {
             type: ORG_REPORTS_FETCHED,
             state: newSate,
         })).toEqual(newSate);
     });
 
     it('should handle PATIENT_REPORTS_FETCH', () => {
-        expect(reducer(initialSate, { type: PATIENT_REPORTS_FETCH })).toEqual(initialSate);
+        expect(reducer(initialState, { type: PATIENT_REPORTS_FETCH })).toEqual(initialState);
     });
 
     it('should handle PATIENT_REPORTS_FETCHED', () => {
         const newSate = {
-            ...initialSate,
+            ...initialState,
             data: [{ foo: 'bar' }, { foo: 'baz' }],
         };
 
-        expect(reducer(initialSate, {
+        expect(reducer(initialState, {
             type: PATIENT_REPORTS_FETCHED,
             state: newSate,
         })).toEqual(newSate);

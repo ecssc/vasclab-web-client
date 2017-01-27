@@ -1,23 +1,22 @@
-import reducer from './user';
-import initialSate from './initial-state';
+import { initialState, reducer } from '../user';
 import { USER_AUTH_CHECK, USER_AUTH_SUCCESS, USER_AUTH_FAIL, USER_AUTH_LOGOUT } from '../../action-types';
 
 describe('User Reducer', () => {
 
     it('should return the initial state', () => {
-        expect(reducer(initialSate, { type: 'default' })).toEqual(initialSate);
+        expect(reducer(initialState, { type: 'default' })).toEqual(initialState);
     });
 
     it('should handle USER_AUTH_CHECK', () => {
-        expect(reducer(initialSate, { type: USER_AUTH_CHECK })).toEqual(initialSate);
+        expect(reducer(initialState, { type: USER_AUTH_CHECK })).toEqual(initialState);
     });
 
     it('should handle USER_AUTH_FAIL', () => {
-        expect(reducer(initialSate, { type: USER_AUTH_FAIL })).toEqual(initialSate);
+        expect(reducer(initialState, { type: USER_AUTH_FAIL })).toEqual(initialState);
     });
 
     it('should handle USER_AUTH_LOGOUT', () => {
-        expect(reducer(initialSate, { type: USER_AUTH_LOGOUT })).toEqual(initialSate);
+        expect(reducer(initialState, { type: USER_AUTH_LOGOUT })).toEqual(initialState);
     });
 
     it('should handle USER_AUTH_SUCCESS', () => {
@@ -31,11 +30,11 @@ describe('User Reducer', () => {
             ]
         };
 
-        expect(reducer(initialSate, {
+        expect(reducer(initialState, {
             type: USER_AUTH_SUCCESS,
             state: newState
         })).toEqual({
-            ...initialSate,
+            ...initialState,
             ...newState
         });
     });
