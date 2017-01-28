@@ -1,33 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
 
-class App extends Component {
-    /**
-     * Component will mount event handler.
-     *
-     * Checks the authentication status of the current user.
-     */
-    componentWillMount() {
-        this.props.dispatch(() => {});
-    }
+import routes from '../../routes';
+import configureStore from '../../state/store';
 
-    /**
-     * Renders the application.
-     *
-     * @return {XML}
-     */
-    render() {
-        return (this.props.children);
-    }
-}
+const store = configureStore();
 
-App.defaultProps = {
-    dispatch: () => {},
-    children: (<div />),
-};
-
-App.propTypes = {
-    dispatch: React.PropTypes.func,
-    children: React.PropTypes.element,
-};
-
-export default App;
+export default () => (
+    <Provider store={store}>
+        <Router history={browserHistory} routes={routes} />
+    </Provider>
+);
