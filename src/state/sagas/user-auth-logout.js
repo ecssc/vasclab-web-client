@@ -1,6 +1,5 @@
 import lockr from 'lockr';
-import { takeEvery } from 'redux-saga';
-import { call } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { USER_AUTH_LOGOUT } from '../action-types';
 

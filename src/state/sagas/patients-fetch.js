@@ -1,5 +1,4 @@
-import { takeLatest } from 'redux-saga';
-import { put, call } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import { organisation } from '../../api/client';
 import { START_HTTP, PATIENTS_FETCHED, SHOW_SNACKBAR, COMPLETE_HTTP, PATIENTS_FETCH } from '../action-types';
 
