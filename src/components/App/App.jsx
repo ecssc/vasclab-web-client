@@ -7,8 +7,10 @@ import configureStore from '../../state/store';
 
 const store = configureStore();
 
-export default () => (
+const App = () => (
     <Provider store={store}>
         <Router history={browserHistory} routes={routes} />
     </Provider>
 );
+
+export default App;
