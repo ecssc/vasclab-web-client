@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from 'react-bootstrap/lib/Grid';
 
 const Main = ({ children }) => (
-    <Grid>
+    <Grid fluid>
         { children }
     </Grid>
 );
