@@ -12,8 +12,10 @@
     "redux-logger": "^2.7.4"
   },
   "dependencies": {
+    "bootstrap": "3",
     "lockr": "^0.8.4",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
