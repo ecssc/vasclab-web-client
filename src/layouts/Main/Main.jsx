@@ -1,9 +1,9 @@
 import React from 'react';
-import Grid from 'react-bootstrap/lib/Grid';
+import { Grid } from 'react-flexbox-grid/lib/index';
 
 const Main = ({ children }) => (
-    <Grid fluid>
-        { children }
+    <Grid>
+        {children}
     </Grid>
 );
 

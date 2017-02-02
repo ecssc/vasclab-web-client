@@ -20,7 +20,7 @@ class Api {
      * @return {Promise}
      */
     post(uri, data = {}, headers = {}) {
-        return this.client.post(process.env.REACT_APP__API_URL + uri)
+        return this.client.post(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -36,7 +36,7 @@ class Api {
      * @return {Promise}
      */
     get(uri, query = {}, headers = {}) {
-        return this.client.get(process.env.REACT_APP__API_URL + uri)
+        return this.client.get(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -52,7 +52,7 @@ class Api {
      * @return {Promise}
      */
     patch(uri, data = {}, headers = {}) {
-        return this.client.patch(process.env.REACT_APP__API_URL + uri)
+        return this.client.patch(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })
@@ -68,7 +68,7 @@ class Api {
      * @return {Promise}
      */
     put(uri, data = {}, headers = {}) {
-        return this.client.put(process.env.REACT_APP__API_URL + uri)
+        return this.client.put(process.env.API_URL + uri)
                    .withCredentials()
                    .use(this.promises)
                    .set({ ...headers, ...this.initialHeaders })
@@ -84,7 +84,7 @@ class Api {
      * @return {Promise}
      */
     delete(uri, query = {}, headers = {}) {
-        return this.client.delete(process.env.REACT_APP__API_URL + uri)
+        return this.client.delete(process.env.API_URL + uri)
                           .withCredentials()
                           .use(this.promises)
                           .set({ ...headers, ...this.initialHeaders })

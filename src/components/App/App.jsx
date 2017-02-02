@@ -1,15 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
-import routes from '../../routes';
-import configureStore from '../../state/store';
+import createStore from '../../state/store';
 
-const store = configureStore();
+import Home from '../../views/Home';
+import NoMatch from '../../views/NoMatch';
+import SignIn from '../../views/SignIn';
+
+const store = createStore();
 
 const App = () => (
     <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
+        <Router history={browserHistory}>
+            <Route path="/" component={Home} />
+            <Route path="/login" component={SignIn} />
+            <Route path="*" component={NoMatch} />
+        </Router>
     </Provider>
 );
 

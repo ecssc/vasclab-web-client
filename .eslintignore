@@ -1,5 +1,6 @@
-*.test.js
 **/build/**
-**/node_modules/**
+**/__tests__/**
 **/__mocks__/**
-/src/index.js
+**/node_modules/**
+webpack.config.js
+webpack.config.production.js
