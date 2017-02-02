@@ -1,4 +1,3 @@
-
 var path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin'),
