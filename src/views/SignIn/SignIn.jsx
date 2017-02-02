@@ -1,9 +1,13 @@
 import React from 'react';
-import Main from '../../layouts/Main';
+import { Row, Col } from 'react-flexbox-grid';
 import SignInForm from '../../components/SignInForm';
 
 const SignIn = () => (
-    <div></div>
+    <Row>
+        <Col mdOffset={4} md={4} xs={12}>
+            <SignInForm />
+        </Col>
+    </Row>
 );
 
 export default SignIn;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import createStore from '../../state/store';
 
@@ -12,11 +13,13 @@ const store = createStore();
 
 const App = () => (
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={Home} />
-            <Route path="/login" component={SignIn} />
-            <Route path="*" component={NoMatch} />
-        </Router>
+        <MuiThemeProvider>
+            <Router history={browserHistory}>
+                <Route path="/" component={Home} />
+                <Route path="/login" component={SignIn} />
+                <Route path="*" component={NoMatch} />
+            </Router>
+        </MuiThemeProvider>
     </Provider>
 );
 
