@@ -12,7 +12,7 @@ describe('User Auth Success Saga', () => {
     });
 
     it('can login a user with an organisation', () => {
-        const generator = userAuthSuccess({ organisation: { id: 123 } });
+        const generator = userAuthSuccess({ organisation: { id: 123 }, redirect: true });
 
         expect(generator.next().value).toEqual(call(browserHistory.push, '/123'));
     });

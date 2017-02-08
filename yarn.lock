@@ -788,7 +788,7 @@ babel-plugin-transform-strict-mode@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
-babel-polyfill@^6.22.2:
+babel-polyfill@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.22.0.tgz#1ac99ebdcc6ba4db1e2618c387b2084a82154a3b"
   dependencies:
@@ -2263,9 +2263,9 @@ formidable@^1.0.17:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.1.1.tgz#96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9"
 
-formsy-material-ui@^0.5.0:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/formsy-material-ui/-/formsy-material-ui-0.5.3.tgz#825c087ee2094218760be139e253bffe3963aa14"
+formsy-material-ui@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/formsy-material-ui/-/formsy-material-ui-0.5.4.tgz#d28f13f2d05d55b06c27b9c332e356f07d905c54"
   dependencies:
     keycode "^2.1.0"
 

@@ -1,5 +1,5 @@
+test.js
 **/build/**
-**/__tests__/**
 **/__mocks__/**
 **/node_modules/**
 webpack.config.js

@@ -34,7 +34,6 @@
     "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.3.0",
     "react-test-renderer": "^15.4.1",
-    "redux-logger": "^2.6.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.6",
@@ -47,7 +46,6 @@
     "flexboxgrid": "^6.3.1",
     "formsy-material-ui": "^0.5.0",
     "formsy-react": "^0.18.1",
-    "lockr": "^0.8.4",
     "material-ui": "^0.16.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -61,7 +59,7 @@
     "superagent-promise-plugin": "^3.2.0"
   },
   "scripts": {
-    "start": "webpack-dev-server -d --hot --inline --config ./webpack.config.js",
+    "start": "webpack-dev-server -d --hot --inline --config ./webpack.config.js --port 3000",
     "lint": "./node_modules/.bin/eslint src/ || true",
     "test": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest",
     "coverage": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest --coverage",

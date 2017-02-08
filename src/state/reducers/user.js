@@ -11,18 +11,6 @@ export const initialState = {
         last_login: null,
         activated_at: null,
     },
-    organisation: {
-        id: null,
-        name: null,
-        address: {
-            business_name: null,
-            address_1: null,
-            address_2: null,
-            postal_town: null,
-            postcode: null,
-            country: null,
-        },
-    },
     organisations: [],
 };
 
@@ -32,8 +20,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 account: action.state.account,
-                organisation: action.state.organisation,
-                organisations: action.state.organisations,
+                organisations: action.state.organisations || initialState.organisations,
             };
 
         case USER_AUTH_CHECK:

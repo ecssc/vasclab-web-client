@@ -7,12 +7,16 @@ import { START_HTTP, USER_AUTH_REFRESH, USER_AUTH_CHECK, USER_AUTH_LOGOUT, COMPL
  */
 export function* userAuthRefresh() {
     try {
+        console.info('Attempting to refresh access token');
+
         yield put({ type: START_HTTP });
 
         yield call(auth.refreshToken);
 
         yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
+        console.warn('Failed to refresh access token');
+
         yield put({ type: USER_AUTH_LOGOUT });
     } finally {
         yield put({ type: COMPLETE_HTTP });

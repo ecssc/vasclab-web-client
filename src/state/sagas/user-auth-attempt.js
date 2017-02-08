@@ -1,4 +1,5 @@
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { apply, call, put, takeEvery } from 'redux-saga/effects';
+import { set, unsetAfterTimeout } from '../../helpers/local-storage';
 import { auth } from '../../api/client';
 
 import {
@@ -20,14 +21,22 @@ import {
  */
 export function* userAuthAttempt(action) {
     try {
+        console.info('Requesting access token');
+
         yield put({ type: START_HTTP });
         yield put({ type: HIDE_SNACKBAR });
         yield put({ type: DISABLE_FORMS });
 
-        yield call(auth.accessToken, action.username, action.password);
+        const response = yield apply(auth, auth.accessToken, [action.model.username, action.model.password]);
+
+        yield call(set, 'jwt', response.body.access_token);
+        yield call(set, 'ret', response.body.refresh_token);
+        yield call(unsetAfterTimeout, 'jwt', response.body.expires_in);
 
         yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
+        console.warn('Failed to obtain access token');
+
         yield put({ type: USER_AUTH_FAIL });
 
         yield put({
@@ -47,5 +56,5 @@ export function* userAuthAttempt(action) {
  * Watches for user login state change.
  */
 export function* watchUserAuthAttempt() {
-    yield* takeEvery(USER_AUTH_ATTEMPT, userAuthAttempt);
+    yield takeEvery(USER_AUTH_ATTEMPT, userAuthAttempt);
 }

@@ -1,41 +1,69 @@
 import React from 'react';
+import { Form } from 'formsy-react';
+import { connect } from 'react-redux';
 import Avatar from 'material-ui/Avatar';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import LockOutline from 'material-ui/svg-icons/action/lock-outline';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 
-const SignInForm = () => (
-    <Card>
-        <CardHeader
-            title="Sign Into VascLab"
-            subtitle="Secure Sign In"
-            avatar={<Avatar icon={<LockOutline />} />}
-        />
-        <CardText>
-            <TextField
-                fullWidth
-                id="email"
-                hintText="Your Email Address"
+import { userAuthAttempt } from '../../state/actions/user';
+
+const mapStateToProps = state => ({
+    formDisabled: state.ui.forms.disabled,
+});
+
+const mapDispatchToProps = dispatch => ({
+    submitHandler: model => dispatch(userAuthAttempt(model)),
+});
+
+const SignInForm = ({ submitHandler, formDisabled }) => (
+    <Form
+        onValidSubmit={submitHandler}
+        onInvalidSubmit={() => console.log('invalid!')}
+    >
+        <Card>
+            <CardHeader
+                title="Sign Into VascLab"
+                subtitle="Secure Sign In"
+                avatar={<Avatar icon={<LockOutline />} />}
             />
-            <TextField
-                fullWidth
-                type="password"
-                id="password"
-                hintText="Your Password"
-            />
-        </CardText>
-        <CardActions>
-            <RaisedButton
-                primary
-                label="Sign In"
-            />
-        </CardActions>
-    </Card>
+            <CardText>
+                <FormsyText
+                    required
+                    fullWidth
+                    name="username"
+                    disabled={formDisabled}
+                    validations="isEmail,isExisty"
+                    floatingLabelText="Your Email Address"
+                    validationError="This isn't a valid email address"
+                    value="e.coleridgesmith@edcs.me"
+                />
+                <FormsyText
+                    required
+                    fullWidth
+                    type="password"
+                    name="password"
+                    disabled={formDisabled}
+                    floatingLabelText="Your Password"
+                    value="password"
+                />
+            </CardText>
+            <CardActions style={{ textAlign: 'right' }}>
+                <RaisedButton
+                    primary
+                    type="submit"
+                    label="Sign In"
+                    disabled={formDisabled}
+                />
+            </CardActions>
+        </Card>
+    </Form>
 );
 
 SignInForm.propTypes = {
-    //
+    submitHandler: React.PropTypes.func,
+    formDisabled: React.PropTypes.bool,
 };
 
-export default SignInForm;
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

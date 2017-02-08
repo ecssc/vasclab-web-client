@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Main from './Main';
 
-describe('App component', () => {
+describe('Main layout', () => {
 
     it('renders', () => {
         const div = document.createElement('div');
 
-        ReactDOM.render(<App />, div);
+        ReactDOM.render(<Main />, div);
     });
 
 });

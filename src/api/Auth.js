@@ -14,7 +14,7 @@ class Auth extends Api {
             client_id: process.env.OAUTH_CLIENT_ID,
             username,
             password,
-        });
+        }, {}, false);
     }
 
     /**
@@ -26,16 +26,7 @@ class Auth extends Api {
         return this.post('oauth/access_token', {
             grant_type: 'refresh_token',
             client_id: process.env.OAUTH_CLIENT_ID,
-        });
-    }
-
-    /**
-     * A promise request for revoking an access token.
-     *
-     * @return {Promise}
-     */
-    revokeToken() {
-        return this.delete('oauth/access_token');
+        }, {}, false);
     }
 }
 

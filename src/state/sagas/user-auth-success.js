@@ -8,12 +8,8 @@ import { USER_AUTH_SUCCESS } from '../action-types';
  * @param {*} action
  */
 export function* userAuthSuccess(action) {
-    if (action.organisation === null) {
-        return;
-    }
-
-    if (location.pathname === '/login' || location.pathname === '/') {
-        yield call(browserHistory.push, `/${action.organisation.id}`);
+    if (action.redirect === true && action.state.organisations.length !== 0) {
+        yield call(browserHistory.push, `/${action.state.organisations[0].id}`);
     }
 }
 
@@ -21,5 +17,5 @@ export function* userAuthSuccess(action) {
  * Watches for user auth success state change.
  */
 export function* watchUserAuthSuccess() {
-    yield* takeEvery(USER_AUTH_SUCCESS, userAuthSuccess);
+    yield takeEvery(USER_AUTH_SUCCESS, userAuthSuccess);
 }

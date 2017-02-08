@@ -16,7 +16,7 @@ import {
 describe('User Auth Attempt Saga', () => {
 
     it('can successfully call the API', () => {
-        const generator = userAuthAttempt({ username: 'ecs@edcs.me', password: 'password123' });
+        const generator = userAuthAttempt({ model: { username: 'ecs@edcs.me', password: 'password123' } });
 
         expect(generator.next().value).toEqual(put({ type: START_HTTP }));
         expect(generator.next().value).toEqual(put({ type: HIDE_SNACKBAR }));
@@ -28,7 +28,7 @@ describe('User Auth Attempt Saga', () => {
     });
 
     it('can handle an error when calling the API', () => {
-        const generator = userAuthAttempt({ username: 'ecs@edcs.me', password: 'password123' });
+        const generator = userAuthAttempt({ model: { username: 'ecs@edcs.me', password: 'password123' } });
 
         expect(generator.next().value).toEqual(put({ type: START_HTTP }));
         expect(generator.next().value).toEqual(put({ type: HIDE_SNACKBAR }));
@@ -39,7 +39,7 @@ describe('User Auth Attempt Saga', () => {
             type: SHOW_SNACKBAR,
             state: {
                 message: 'We couldn\'t sign you in - please double check your username and password',
-                action: 'Ok'
+                action: 'Ok',
             },
         }));
     });

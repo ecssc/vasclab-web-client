@@ -1,10 +1,15 @@
 import React from 'react';
 import { Grid } from 'react-flexbox-grid/lib/index';
 
+import MainAppBar from '../../components/MainAppBar';
+
 const Main = ({ children }) => (
-    <Grid>
-        {children}
-    </Grid>
+    <div>
+        <MainAppBar />
+        <Grid>
+            {children}
+        </Grid>
+    </div>
 );
 
 Main.propTypes = {
