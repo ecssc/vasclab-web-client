@@ -21,22 +21,18 @@ import {
  */
 export function* userAuthAttempt(action) {
     try {
-        console.info('Requesting access token');
-
         yield put({ type: START_HTTP });
         yield put({ type: HIDE_SNACKBAR });
         yield put({ type: DISABLE_FORMS });
 
         const response = yield apply(auth, auth.accessToken, [action.model.username, action.model.password]);
 
-        yield call(set, 'jwt', response.body.access_token);
-        yield call(set, 'ret', response.body.refresh_token);
-        yield call(unsetAfterTimeout, 'jwt', response.body.expires_in);
+        yield call(set, process.env.ACCESS_TOKEN_NAME, response.body.access_token);
+        yield call(set, process.env.REFRESH_TOKEN_NAME, response.body.refresh_token);
+        yield call(unsetAfterTimeout, process.env.ACCESS_TOKEN_NAME, response.body.expires_in);
 
         yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
-        console.warn('Failed to obtain access token');
-
         yield put({ type: USER_AUTH_FAIL });
 
         yield put({

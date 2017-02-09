@@ -14,6 +14,19 @@ export const set = (key, value) => new Promise((resolve, reject) => {
 });
 
 /**
+ * Reads a value from localStorage using a promise.
+ *
+ * @param {string} key
+ */
+export const get = key => new Promise((resolve, reject) => {
+    try {
+        resolve(localStorage.getItem(key));
+    } catch (e) {
+        reject(e);
+    }
+});
+
+/**
  * Unsets a value in localStorage.
  *
  * @param {string} key

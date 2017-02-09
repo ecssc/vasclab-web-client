@@ -7,8 +7,6 @@ import { START_HTTP, USER_AUTH_CHECK, USER_AUTH_SUCCESS, USER_AUTH_REFRESH, COMP
  */
 export function* userAuthCheck() {
     try {
-        console.info('Attempting to load user and organisation');
-
         yield put({ type: START_HTTP });
 
         const me = yield apply(user, user.me);
@@ -23,8 +21,6 @@ export function* userAuthCheck() {
             },
         });
     } catch (error) {
-        console.warn('Failed to load user and organisation');
-
         yield put({ type: USER_AUTH_REFRESH });
     } finally {
         yield put({ type: COMPLETE_HTTP });

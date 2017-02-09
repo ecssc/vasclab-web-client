@@ -1,5 +1,3 @@
-import lockr from 'lockr';
-
 class Api {
     /**
      * API wrapper constructor.
@@ -23,7 +21,7 @@ class Api {
         const headers = this.initialHeaders;
 
         if (withAuthHeaders) {
-            headers.Authorization = `Bearer ${lockr.get('jwt') || ''}`;
+            headers.Authorization = `Bearer ${localStorage.getItem(process.env.ACCESS_TOKEN_NAME) || ''}`;
         }
 
         return headers;
