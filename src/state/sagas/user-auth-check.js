@@ -9,15 +9,18 @@ export function* userAuthCheck() {
     try {
         yield put({ type: START_HTTP });
 
-        const me = yield apply(user, user.me);
-        const organisations = yield apply(user, user.organisations, [me.body.data.id]);
+        const response = yield apply(user, user.me, [{ include: 'organisations' }]);
+
+        const organisations = response.body.data.organisations.data;
+        const account = response.body.data;
+        delete account.organisations;
 
         yield put({
             type: USER_AUTH_SUCCESS,
             redirect: true,
             state: {
-                account: me.body.data,
-                organisations: organisations.body.data,
+                account,
+                organisations,
             },
         });
     } catch (error) {

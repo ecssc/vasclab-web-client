@@ -19,7 +19,7 @@ describe('User Auth Check Saga', () => {
 
         expect(generator.next().value).toEqual(put({
             type: USER_AUTH_SUCCESS,
-            state: { user: undefined }
+            state: { user: undefined },
         }));
 
         expect(generator.next().value).toEqual(put({ type: COMPLETE_HTTP }));
