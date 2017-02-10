@@ -1,44 +1,35 @@
-import { takeLatest } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-import * as types from '../action-types';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import { patient } from '../../api/client';
+import { START_HTTP, COMPLETE_HTTP, PATIENT_FETCH, PATIENT_FETCHED, SHOW_SNACKBAR } from '../action-types';
 
 /**
  * Attempts to fetch a patient from the api.
  *
  * @param {*} action
  */
-const fetchPatient = function* (action) {
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-
+export function* patientFetch(action) {
     try {
-        const patients = yield patient.find(action.patientId, action.queryParams)
-            .then(response => response.body)
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
+
+        const response = yield call(patient.find, action.patientId, action.queryParams);
 
         yield put({
-            type: types.PATIENT_FETCHED,
-            patient: {
-                data: patients.data,
-                queryParams: action.queryParams,
-            },
+            type: PATIENT_FETCHED,
+            state: response,
         });
     } catch (error) {
         yield put({
-            type: types.SHOW_SNACKBAR,
-            message: 'There was a problem loading this patient',
-            action: 'Ok',
+            type: SHOW_SNACKBAR,
+            state: { message: 'There was a problem loading this patient', action: 'Ok' },
         });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
+        yield put({ type: COMPLETE_HTTP });
     }
-};
+}
 
 /**
- * Watches for patient fetch state change.
+ * Watches for patient fetch action.
  */
-export default function* () {
-    yield* takeLatest(types.PATIENT_FETCH, fetchPatient);
+export function* watchPatientFetch() {
+    yield* takeLatest(PATIENT_FETCH, patientFetch);
 }

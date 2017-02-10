@@ -12,19 +12,50 @@ class Api {
     }
 
     /**
+     * Returns the request headers, with or without an authorization JWT.
+     *
+     * @param {Boolean} withAuthHeaders
+     * @returns {*}
+     */
+    headers(withAuthHeaders) {
+        const headers = this.initialHeaders;
+
+        if (withAuthHeaders) {
+            headers.Authorization = `Bearer ${localStorage.getItem(process.env.ACCESS_TOKEN_NAME) || ''}`;
+        }
+
+        return headers;
+    }
+
+    /**
+     * Returns a promise which times out after the specified number of milliseconds.
+     *
+     * @param {Number} ms
+     * @returns {Promise}
+     */
+    timeout(ms = 5000) {
+        return new Promise((resolve, reject) => {
+            setTimeout(reject, ms, { error: 'Network Timeout' });
+        });
+    }
+
+    /**
      * Creates a promise for a post request.
      *
      * @param {string} uri
      * @param {*} data
      * @param {*} headers
+     * @param {Boolean} withAuthHeaders
      * @return {Promise}
      */
-    post(uri, data = {}, headers = {}) {
-        return this.client.post(process.env.API_URL + uri)
-                          .withCredentials()
-                          .use(this.promises)
-                          .set({ ...headers, ...this.initialHeaders })
-                          .send(data);
+    post(uri, data = {}, headers = {}, withAuthHeaders = true) {
+        const promise = this.client
+            .post(process.env.API_URL + uri)
+            .use(this.promises)
+            .set({ ...headers, ...this.headers(withAuthHeaders) })
+            .send(data);
+
+        return Promise.race([this.timeout(), promise]);
     }
 
     /**
@@ -33,14 +64,17 @@ class Api {
      * @param {string} uri
      * @param {*} query
      * @param {*} headers
+     * @param {Boolean} withAuthHeaders
      * @return {Promise}
      */
-    get(uri, query = {}, headers = {}) {
-        return this.client.get(process.env.API_URL + uri)
-                          .withCredentials()
-                          .use(this.promises)
-                          .set({ ...headers, ...this.initialHeaders })
-                          .query(query);
+    get(uri, query = {}, headers = {}, withAuthHeaders = true) {
+        const promise = this.client
+            .get(process.env.API_URL + uri)
+            .use(this.promises)
+            .set({ ...headers, ...this.headers(withAuthHeaders) })
+            .query(query);
+
+        return Promise.race([this.timeout(), promise]);
     }
 
     /**
@@ -49,14 +83,17 @@ class Api {
      * @param {string} uri
      * @param {*} data
      * @param {*} headers
+     * @param {Boolean} withAuthHeaders
      * @return {Promise}
      */
-    patch(uri, data = {}, headers = {}) {
-        return this.client.patch(process.env.API_URL + uri)
-                          .withCredentials()
-                          .use(this.promises)
-                          .set({ ...headers, ...this.initialHeaders })
-                          .send(data);
+    patch(uri, data = {}, headers = {}, withAuthHeaders = true) {
+        const promise = this.client
+            .patch(process.env.API_URL + uri)
+            .use(this.promises)
+            .set({ ...headers, ...this.headers(withAuthHeaders) })
+            .send(data);
+
+        return Promise.race([this.timeout(), promise]);
     }
 
     /**
@@ -65,14 +102,17 @@ class Api {
      * @param {string} uri
      * @param {*} data
      * @param {*} headers
+     * @param {Boolean} withAuthHeaders
      * @return {Promise}
      */
-    put(uri, data = {}, headers = {}) {
-        return this.client.put(process.env.API_URL + uri)
-                   .withCredentials()
-                   .use(this.promises)
-                   .set({ ...headers, ...this.initialHeaders })
-                   .send(data);
+    put(uri, data = {}, headers = {}, withAuthHeaders = true) {
+        const promise = this.client
+            .put(process.env.API_URL + uri)
+            .use(this.promises)
+            .set({ ...headers, ...this.headers(withAuthHeaders) })
+            .send(data);
+
+        return Promise.race([this.timeout(), promise]);
     }
 
     /**
@@ -81,14 +121,17 @@ class Api {
      * @param {string} uri
      * @param {*} query
      * @param {*} headers
+     * @param {Boolean} withAuthHeaders
      * @return {Promise}
      */
-    delete(uri, query = {}, headers = {}) {
-        return this.client.delete(process.env.API_URL + uri)
-                          .withCredentials()
-                          .use(this.promises)
-                          .set({ ...headers, ...this.initialHeaders })
-                          .query(query);
+    delete(uri, query = {}, headers = {}, withAuthHeaders = true) {
+        const promise = this.client
+            .delete(process.env.API_URL + uri)
+            .use(this.promises)
+            .set({ ...headers, ...this.headers(withAuthHeaders) })
+            .query(query);
+
+        return Promise.race([this.timeout(), promise]);
     }
 }
 

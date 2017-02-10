@@ -1,6 +1,6 @@
 import { PATIENTS_FETCH, PATIENTS_FETCHED } from '../action-types';
 
-const initialState = {
+export const initialState = {
     data: [],
     pageNumber: 1,
     pagination: {
@@ -13,14 +13,13 @@ const initialState = {
     },
 };
 
-export default (state = initialState, { type, ...newState }) => {
-    switch (type) {
-        case PATIENTS_FETCHED:
+export const reducer = (state = initialState, action) => {
+    switch (action.type) {
         case PATIENTS_FETCH:
-            return {
-                ...state,
-                ...newState.patients,
-            };
+            return state;
+
+        case PATIENTS_FETCHED:
+            return action.state;
 
         default:
             return state;

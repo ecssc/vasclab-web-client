@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-
-import patient from './reducers/patient';
-import patients from './reducers/patients';
-import reports from './reducers/reports';
-import ui from './reducers/ui';
-import user from './reducers/user';
+import { reducer as patient } from './reducers/patient';
+import { reducer as patients } from './reducers/patients';
+import { reducer as reports } from './reducers/reports';
+import { reducer as ui } from './reducers/ui';
+import { reducer as user } from './reducers/user';
 
 export default combineReducers({
     patient,
@@ -13,4 +12,3 @@ export default combineReducers({
     ui,
     user,
 });
-

@@ -1,10 +1,10 @@
 import * as actions from '../action-types';
 
-const initialState = {
-    progressBar: {
-        visible: false,
+export const initialState = {
+    http: {
+        inProgress: false,
     },
-    formInputs: {
+    forms: {
         disabled: false,
     },
     snackbar: {
@@ -13,41 +13,38 @@ const initialState = {
         action: null,
         autoHideDuration: 0,
     },
-    patientCard: {
-        showEditForm: false,
-    },
 };
 
-export default (state = initialState, { type, ...newState }) => {
-    switch (type) {
-        case actions.SHOW_PROGRESS_BAR:
+export const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actions.START_HTTP:
             return {
                 ...state,
-                progressBar: {
-                    visible: true,
+                http: {
+                    inProgress: true,
                 },
             };
 
-        case actions.HIDE_PROGRESS_BAR:
+        case actions.COMPLETE_HTTP:
             return {
                 ...state,
-                progressBar: {
-                    visible: false,
+                http: {
+                    inProgress: false,
                 },
             };
 
-        case actions.ENABLE_FORM_INPUTS:
+        case actions.ENABLE_FORMS:
             return {
                 ...state,
-                formInputs: {
+                forms: {
                     disabled: false,
                 },
             };
 
-        case actions.DISABLE_FORM_INPUTS:
+        case actions.DISABLE_FORMS:
             return {
                 ...state,
-                formInputs: {
+                forms: {
                     disabled: true,
                 },
             };
@@ -57,9 +54,9 @@ export default (state = initialState, { type, ...newState }) => {
                 ...state,
                 snackbar: {
                     visible: true,
-                    message: newState.message,
-                    action: newState.action,
-                    autoHideDuration: newState.autoHideDuration || initialState.snackbar.autoHideDuration,
+                    message: action.state.message,
+                    action: action.state.action,
+                    autoHideDuration: action.state.autoHideDuration || initialState.snackbar.autoHideDuration,
                 },
             };
 
@@ -67,14 +64,6 @@ export default (state = initialState, { type, ...newState }) => {
             return {
                 ...state,
                 snackbar: initialState.snackbar,
-            };
-
-        case actions.PATIENT_CARD_TOGGLE_EDIT_FORM:
-            return {
-                ...state,
-                patientCard: {
-                    showEditForm: !state.patientCard.showEditForm,
-                },
             };
 
         default:

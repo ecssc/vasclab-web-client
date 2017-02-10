@@ -1,23 +1,25 @@
-import patientFetch from './sagas/patient-fetch';
-import patientUpdate from './sagas/patient-update';
-import patientsFetch from './sagas/patients-fetch';
-import reportsFetch from './sagas/reports-fetch';
-import userAuthAttempt from './sagas/user-auth-attempt';
-import userAuthCheck from './sagas/user-auth-check';
-import userAuthRefresh from './sagas/user-auth-refresh';
-import userAuthLogout from './sagas/user-auth-logout';
-import userAuthSuccess from './sagas/user-auth-success';
+import { watchOrgReportsFetch } from './sagas/org-reports-fetch';
+import { watchPatientFetch } from './sagas/patient-fetch';
+import { watchPatientUpdate } from './sagas/patient-update';
+import { watchPatientsFetch } from './sagas/patients-fetch';
+import { watchUserAuthAttempt } from './sagas/user-auth-attempt';
+import { watchUserAuthCheck } from './sagas/user-auth-check';
+import { watchUserAuthExpire } from './sagas/user-auth-expire';
+import { watchUserAuthRefresh } from './sagas/user-auth-refresh';
+import { watchUserAuthLogout } from './sagas/user-auth-logout';
+import { watchUserAuthSuccess } from './sagas/user-auth-success';
 
 export default function* rootSaga() {
     yield [
-        patientFetch(),
-        patientUpdate(),
-        patientsFetch(),
-        reportsFetch(),
-        userAuthAttempt(),
-        userAuthCheck(),
-        userAuthRefresh(),
-        userAuthLogout(),
-        userAuthSuccess(),
+        watchOrgReportsFetch(),
+        watchPatientFetch(),
+        watchPatientUpdate(),
+        watchPatientsFetch(),
+        watchUserAuthAttempt(),
+        watchUserAuthCheck(),
+        watchUserAuthExpire(),
+        watchUserAuthRefresh(),
+        watchUserAuthLogout(),
+        watchUserAuthSuccess(),
     ];
 }

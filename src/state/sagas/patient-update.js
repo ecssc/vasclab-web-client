@@ -1,52 +1,55 @@
-import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-import * as types from '../action-types';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { patient } from '../../api/client';
+
+import {
+    START_HTTP,
+    HIDE_SNACKBAR,
+    PATIENT_FETCHED,
+    SHOW_SNACKBAR,
+    COMPLETE_HTTP,
+    PATIENT_UPDATE,
+} from '../action-types';
 
 /**
  * Attempts to update the patient via the api.
  *
  * @param {*} action
  */
-const fetchPatient = function* (action) {
-    yield put({ type: types.HIDE_SNACKBAR });
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-
+export function* patientUpdate(action) {
     try {
-        const updated = yield patient.update(action.patientId, action.model)
-            .then(response => response.body)
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
+        yield put({ type: HIDE_SNACKBAR });
+
+        const response = yield call(patient.update, action.patientId, action.model);
 
         yield put({
-            type: types.PATIENT_FETCHED,
-            patient: {
-                data: updated.data,
-                queryParams: action.queryParams,
-            },
+            type: PATIENT_FETCHED,
+            state: response,
         });
 
         yield put({
-            type: types.SHOW_SNACKBAR,
-            message: 'Your patient\'s details have been updated',
-            action: 'Ok',
-            autoHideDuration: 2500,
+            type: SHOW_SNACKBAR,
+            state: {
+                message: 'Your patient\'s details have been updated',
+                action: 'Ok',
+            },
         });
     } catch (error) {
         yield put({
-            type: types.SHOW_SNACKBAR,
-            message: 'There was a problem updating your patient',
-            action: 'Ok',
+            type: SHOW_SNACKBAR,
+            state: {
+                message: 'There was a problem updating your patient',
+                action: 'Ok',
+            },
         });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
+        yield put({ type: COMPLETE_HTTP });
     }
-};
+}
 
 /**
- * Watches for patient update state change.
+ * Watches for patient update action.
  */
-export default function* () {
-    yield* takeEvery(types.PATIENT_UPDATE, fetchPatient);
+export function* watchPatientUpdate() {
+    yield* takeEvery(PATIENT_UPDATE, patientUpdate);
 }

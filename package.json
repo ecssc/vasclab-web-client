@@ -6,27 +6,10 @@
   "engines": {
     "node": "6.9.2"
   },
-  "dependencies": {
-    "babel-polyfill": "^6.9.1",
-    "classnames": "^2.2.5",
-    "flexboxgrid": "^6.3.0",
-    "formsy-material-ui": "^0.5.0",
-    "formsy-react": "^0.18.1",
-    "lodash.merge": "^4.5.1",
-    "material-ui": "^0.16.0",
-    "query-string": "^3.0.3",
-    "react": "^15.4.0",
-    "react-document-title": "^2.0.2",
-    "react-dom": "^15.4.0",
-    "react-flexbox-grid": "^0.10.2",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.6.1",
-    "react-tap-event-plugin": "^2.0.0",
-    "redux": "^3.6.0",
-    "redux-saga": "^0.13.0",
-    "superagent": "^2.0.0-alpha.3",
-    "superagent-promise-plugin": "^3.2.0"
-  },
+  "author": "Edward Coleridge Smith <e.coleridgesmith@edcs.me>",
+  "license": "UNLICENSED",
+  "private": true,
+  "homepage": "https://github.com/edcs/vasclab-web-client",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.4",
@@ -51,34 +34,37 @@
     "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.3.0",
     "react-test-renderer": "^15.4.1",
-    "redux-logger": "^2.6.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.6",
     "webpack-dev-server": "^1.14.1",
     "webpack-dotenv-plugin": "^1.4.0"
   },
+  "dependencies": {
+    "babel-polyfill": "^6.22.0",
+    "classnames": "^2.2.5",
+    "flexboxgrid": "^6.3.1",
+    "formsy-material-ui": "^0.5.0",
+    "formsy-react": "^0.18.1",
+    "material-ui": "^0.16.7",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-flexbox-grid": "^0.10.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.14.3",
+    "superagent": "^3.3.2",
+    "superagent-promise-plugin": "^3.2.0"
+  },
   "scripts": {
-    "build": "webpack -p --progress --config ./webpack.config.production.js",
-    "dev": "webpack-dev-server -d --hot --inline --config ./webpack.config.js",
+    "start": "webpack-dev-server -d --hot --inline --config ./webpack.config.js --port 3000",
     "lint": "./node_modules/.bin/eslint src/ || true",
     "test": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest",
-    "coverage": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest --coverage"
+    "coverage": "API_URL=https://api.vasclab.test/ OAUTH_CLIENT_ID=client_id jest --coverage",
+    "build": "webpack -p --progress --config ./webpack.config.production.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/vasclab/web-app.git"
-  },
-  "keywords": [
-    "VascLab",
-    "Web",
-    "App",
-    "React"
-  ],
-  "author": "Edward Coleridge Smith <e.coleridgesmith@edcs.me>",
-  "license": "UNLICENSED",
-  "private": true,
-  "homepage": "https://github.com/edcs/vasclab-web-client",
   "jest": {
     "verbose": true,
     "collectCoverageFrom": [

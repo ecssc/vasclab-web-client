@@ -1,61 +1,48 @@
-import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-
-import * as types from '../action-types';
+import { apply, put, takeEvery } from 'redux-saga/effects';
 import { user } from '../../api/client';
+
+import {
+    START_HTTP,
+    USER_AUTH_CHECK,
+    USER_AUTH_SUCCESS,
+    USER_AUTH_REFRESH,
+    USER_AUTH_EXPIRE,
+    COMPLETE_HTTP,
+} from '../action-types';
 
 /**
  * Checks to see whether or not the user has a valid access token.
- *
- * @param {*} action
- * @return {*}
  */
-const checkForAuthenticatedUser = function* () {
+export function* userAuthCheck() {
     try {
-        const me = yield user.me()
-            .then(response => response.body.data)
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
 
-        const organisations = yield user.organisations(me.id)
-            .then(response => response.body.data)
-            .catch((error) => {
-                throw error;
-            });
+        const response = yield apply(user, user.me, [{ include: 'organisations' }]);
 
-        let organisation = null;
+        const organisations = response.body.data.organisations.data;
+        const account = response.body.data;
+        delete account.organisations;
 
-        if (organisations.length > 0) {
-            organisation = organisations[0];
-        }
+        yield put({
+            type: USER_AUTH_SUCCESS,
+            redirect: true,
+            state: {
+                account,
+                organisations,
+            },
+        });
 
-        yield put({ type: types.USER_AUTH_SUCCESS, user: me, organisations, organisation });
+        yield put({ type: USER_AUTH_EXPIRE });
     } catch (error) {
-        yield put({ type: types.USER_AUTH_REFRESH });
-    }
-};
-
-/**
- * Attempts to authenticate a user via the api.
- *
- * @param {*} action
- */
-const checkUserStatus = function* () {
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-
-    try {
-        yield checkForAuthenticatedUser();
-    } catch (error) {
-        yield put({ type: types.USER_AUTH_LOGOUT });
+        yield put({ type: USER_AUTH_REFRESH });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
+        yield put({ type: COMPLETE_HTTP });
     }
-};
+}
 
 /**
- * Watches for user auth check state change.
+ * Watches for user auth check action.
  */
-export default function* () {
-    yield* takeEvery(types.USER_AUTH_CHECK, checkUserStatus);
+export function* watchUserAuthCheck() {
+    yield takeEvery(USER_AUTH_CHECK, userAuthCheck);
 }

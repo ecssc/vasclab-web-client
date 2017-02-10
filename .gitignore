@@ -2,4 +2,4 @@
 /build/*
 !/build/.htaccess
 /coverage
-config.js
+.env

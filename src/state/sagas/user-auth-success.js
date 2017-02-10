@@ -1,26 +1,21 @@
-import { takeEvery } from 'redux-saga';
+import { call, takeEvery } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-
 import { USER_AUTH_SUCCESS } from '../action-types';
 
 /**
- * Called when a user was succesfully authenticated.
+ * Called when a user was successfully authenticated.
  *
  * @param {*} action
  */
-const userWasAuthenticated = function* (action) {
-    if (action.organisation === null) {
-        return;
+export function* userAuthSuccess(action) {
+    if (action.redirect === true && action.state.organisations.length !== 0) {
+        yield call(browserHistory.push, `/${action.state.organisations[0].id}`);
     }
-
-    if (location.pathname === '/login' || location.pathname === '/') {
-        yield browserHistory.push(`/${action.organisation.id}`);
-    }
-};
+}
 
 /**
- * Watches for user auth success state change.
+ * Watches for user auth success action.
  */
-export default function* () {
-    yield* takeEvery(USER_AUTH_SUCCESS, userWasAuthenticated);
+export function* watchUserAuthSuccess() {
+    yield takeEvery(USER_AUTH_SUCCESS, userAuthSuccess);
 }

@@ -10,7 +10,7 @@ application.
 To run the application locally, run the following command:
 
 ```
-# yarn dev
+# yarn start
 ```
 
 ## Testing the Web Client
@@ -19,12 +19,6 @@ To run the test suite, use the following command:
 
 ```
 # yarn test
-```
-
-If you'd like to check the code coverage report, run this command instead:
-
-```
-# yarn coverage
 ```
 
 ## Building the Web Client for Production

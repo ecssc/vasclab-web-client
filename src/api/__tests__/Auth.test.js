@@ -30,11 +30,3 @@ test('Token refresh can be requested', () => {
         client_id: process.env.OAUTH_CLIENT_ID,
     });
 });
-
-test('Token refresh can be revoked', () => {
-    const auth = new Auth(client, promises);
-
-    auth.revokeToken();
-
-    expect(auth.client.delete.mock.calls[0][0]).toEqual('https://api.vasclab.test/oauth/access_token');
-});

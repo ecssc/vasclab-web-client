@@ -1,48 +1,40 @@
-import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-
-import * as types from '../action-types';
+import { put, call, apply, takeEvery } from 'redux-saga/effects';
 import { auth } from '../../api/client';
+import { set } from '../../helpers/local-storage';
+
+import {
+    START_HTTP,
+    USER_AUTH_REFRESH,
+    USER_AUTH_CHECK,
+    USER_AUTH_LOGOUT,
+    COMPLETE_HTTP,
+} from '../action-types';
 
 /**
- * Attempts to refresh the current user's access token.
- *
- * @param {*} action
+ * Attempts to refresh a user's access token via the api.
  */
-const refreshAccessToken = function* () {
+export function* userAuthRefresh() {
     try {
-        yield auth.refreshToken()
-            .then(response => response.body)
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
 
-        yield put({ type: types.USER_AUTH_CHECK });
+        const now = new Date();
+        const response = yield apply(auth, auth.refreshToken);
+
+        yield call(set, process.env.ACCESS_TOKEN_NAME, response.body.access_token);
+        yield call(set, process.env.REFRESH_TOKEN_NAME, response.body.refresh_token);
+        yield call(set, process.env.EXPIRE_TIME_NAME, new Date(now.getTime() + (response.body.expires_in * 1000)));
+
+        yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
-        throw error;
-    }
-};
-
-/**
- * Attempts to refresh a user'ss access token via the api.
- *
- * @param {*} action
- */
-const refreshUserStatus = function* () {
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-
-    try {
-        yield refreshAccessToken();
-    } catch (error) {
-        yield put({ type: types.USER_AUTH_LOGOUT });
+        yield put({ type: USER_AUTH_LOGOUT });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
+        yield put({ type: COMPLETE_HTTP });
     }
-};
+}
 
 /**
- * Watches for user auth refrsh state change.
+ * Watches for user auth refresh action.
  */
-export default function* () {
-    yield* takeEvery(types.USER_AUTH_REFRESH, refreshUserStatus);
+export function* watchUserAuthRefresh() {
+    yield takeEvery(USER_AUTH_REFRESH, userAuthRefresh);
 }

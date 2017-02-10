@@ -1,45 +1,38 @@
-import { takeLatest } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-import * as types from '../action-types';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import { organisation } from '../../api/client';
+import { START_HTTP, PATIENTS_FETCHED, SHOW_SNACKBAR, COMPLETE_HTTP, PATIENTS_FETCH } from '../action-types';
 
 /**
  * Attempts to fetch patients from the api.
  *
  * @param {*} action
  */
-const fetchPatients = function* (action) {
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-
+export function* patientsFetch(action) {
     try {
-        const patients = yield organisation.patients(action.organisationId, action.queryParams)
-            .then(response => response.body)
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
+
+        const response = yield call(organisation.patients, action.organisationId, action.queryParams);
 
         yield put({
-            type: types.PATIENTS_FETCHED,
-            patients: {
-                data: patients.data,
-                pagination: patients.meta.pagination,
-                queryParams: action.queryParams,
-            },
+            type: PATIENTS_FETCHED,
+            state: response,
         });
     } catch (error) {
         yield put({
-            type: types.SHOW_SNACKBAR,
-            message: 'There was a problem loading your patients',
-            action: 'Ok',
+            type: SHOW_SNACKBAR,
+            state: {
+                message: 'There was a problem loading your patients',
+                action: 'Ok',
+            },
         });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
+        yield put({ type: COMPLETE_HTTP });
     }
-};
+}
 
 /**
- * Watches for patients fetch state change.
+ * Watches for patients fetch action.
  */
-export default function* () {
-    yield* takeLatest(types.PATIENTS_FETCH, fetchPatients);
+export function* watchPatientsFetch() {
+    yield* takeLatest(PATIENTS_FETCH, patientsFetch);
 }

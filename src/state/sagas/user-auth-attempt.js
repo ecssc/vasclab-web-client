@@ -1,43 +1,57 @@
-import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-import * as types from '../action-types';
+import { apply, call, put, takeEvery } from 'redux-saga/effects';
+import { set } from '../../helpers/local-storage';
 import { auth } from '../../api/client';
 
+import {
+    START_HTTP,
+    HIDE_SNACKBAR,
+    DISABLE_FORMS,
+    USER_AUTH_CHECK,
+    USER_AUTH_FAIL,
+    SHOW_SNACKBAR,
+    COMPLETE_HTTP,
+    ENABLE_FORMS,
+    USER_AUTH_ATTEMPT,
+} from '../action-types';
+
 /**
- * Attempts to validate a user's credentials via the api.
+ * Attempts to exchange user credentials for an access token via the api.
  *
  * @param {*} action
  */
-const validateCredentials = function* (action) {
-    yield put({ type: types.HIDE_SNACKBAR });
-    yield put({ type: types.SHOW_PROGRESS_BAR });
-    yield put({ type: types.DISABLE_FORM_INPUTS });
-
+export function* userAuthAttempt(action) {
     try {
-        yield auth.accessToken(action.username, action.password)
-            .then(response => response.body.response[0])
-            .catch((error) => {
-                throw error;
-            });
+        yield put({ type: START_HTTP });
+        yield put({ type: HIDE_SNACKBAR });
+        yield put({ type: DISABLE_FORMS });
 
-        yield put({ type: types.USER_AUTH_CHECK });
+        const now = new Date();
+        const response = yield apply(auth, auth.accessToken, [action.model.username, action.model.password]);
+
+        yield call(set, process.env.ACCESS_TOKEN_NAME, response.body.access_token);
+        yield call(set, process.env.REFRESH_TOKEN_NAME, response.body.refresh_token);
+        yield call(set, process.env.EXPIRE_TIME_NAME, new Date(now.getTime() + (response.body.expires_in * 1000)));
+
+        yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
-        yield put({ type: types.USER_AUTH_FAIL });
+        yield put({ type: USER_AUTH_FAIL });
 
         yield put({
-            type: types.SHOW_SNACKBAR,
-            message: 'We couldn\'t sign you in - please double check your username and password',
-            action: 'Ok',
+            type: SHOW_SNACKBAR,
+            state: {
+                message: 'We couldn\'t sign you in - please double check your username and password',
+                action: 'Ok',
+            },
         });
     } finally {
-        yield put({ type: types.HIDE_PROGRESS_BAR });
-        yield put({ type: types.ENABLE_FORM_INPUTS });
+        yield put({ type: COMPLETE_HTTP });
+        yield put({ type: ENABLE_FORMS });
     }
-};
+}
 
 /**
- * Watches for user login state change.
+ * Watches for user login action.
  */
-export default function* () {
-    yield* takeEvery(types.USER_AUTH_ATTEMPT, validateCredentials);
+export function* watchUserAuthAttempt() {
+    yield takeEvery(USER_AUTH_ATTEMPT, userAuthAttempt);
 }

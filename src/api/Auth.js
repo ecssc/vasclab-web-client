@@ -10,11 +10,11 @@ class Auth extends Api {
      */
     accessToken(username, password) {
         return this.post('oauth/access_token', {
-            grant_type: 'password',
             client_id: process.env.OAUTH_CLIENT_ID,
+            grant_type: 'password',
             username,
             password,
-        });
+        }, {}, false);
     }
 
     /**
@@ -24,18 +24,10 @@ class Auth extends Api {
      */
     refreshToken() {
         return this.post('oauth/access_token', {
-            grant_type: 'refresh_token',
             client_id: process.env.OAUTH_CLIENT_ID,
-        });
-    }
-
-    /**
-     * A promise request for revoking an access token.
-     *
-     * @return {Promise}
-     */
-    revokeToken() {
-        return this.delete('oauth/access_token');
+            grant_type: 'refresh_token',
+            refresh_token: localStorage.getItem(process.env.REFRESH_TOKEN_NAME),
+        }, {}, false);
     }
 }
 

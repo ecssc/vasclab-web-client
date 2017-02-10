@@ -1,34 +1,20 @@
-import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import { USER_AUTH_LOGOUT, SHOW_SNACKBAR } from '../action-types';
-import { auth } from '../../api/client';
+import { USER_AUTH_LOGOUT } from '../action-types';
+import { clear } from '../../helpers/local-storage';
 
 /**
- * Called when a user was logged out.
- *
- * @param {*} action
+ * Flushes local storage in order to log the user out.
  */
-const logUserout = function* () {
-    try {
-        yield auth.revokeToken();
-    } catch (error) {
-        if (location.pathname !== '/login') {
-            yield put({
-                type: SHOW_SNACKBAR,
-                message: 'You don\'t seem to be signed in - please try logging in',
-                action: 'Ok',
-            });
-        }
-    } finally {
-        yield browserHistory.push('/login');
-    }
-};
+export function* userAuthLogout() {
+    yield call(clear);
 
+    yield call(browserHistory.push, '/sign-in');
+}
 
 /**
- * Watches for user auth success state change.
+ * Watches for user auth logout action..
  */
-export default function* () {
-    yield* takeEvery(USER_AUTH_LOGOUT, logUserout);
+export function* watchUserAuthLogout() {
+    yield takeEvery(USER_AUTH_LOGOUT, userAuthLogout);
 }
