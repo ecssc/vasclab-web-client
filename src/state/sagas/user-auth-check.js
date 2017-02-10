@@ -1,6 +1,14 @@
 import { apply, put, takeEvery } from 'redux-saga/effects';
 import { user } from '../../api/client';
-import { START_HTTP, USER_AUTH_CHECK, USER_AUTH_SUCCESS, USER_AUTH_REFRESH, COMPLETE_HTTP } from '../action-types';
+
+import {
+    START_HTTP,
+    USER_AUTH_CHECK,
+    USER_AUTH_SUCCESS,
+    USER_AUTH_REFRESH,
+    USER_AUTH_EXPIRE,
+    COMPLETE_HTTP,
+} from '../action-types';
 
 /**
  * Checks to see whether or not the user has a valid access token.
@@ -23,6 +31,8 @@ export function* userAuthCheck() {
                 organisations,
             },
         });
+
+        yield put({ type: USER_AUTH_EXPIRE });
     } catch (error) {
         yield put({ type: USER_AUTH_REFRESH });
     } finally {
@@ -31,7 +41,7 @@ export function* userAuthCheck() {
 }
 
 /**
- * Watches for user auth check state change.
+ * Watches for user auth check action.
  */
 export function* watchUserAuthCheck() {
     yield takeEvery(USER_AUTH_CHECK, userAuthCheck);

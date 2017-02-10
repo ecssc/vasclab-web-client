@@ -4,6 +4,7 @@ import { watchPatientUpdate } from './sagas/patient-update';
 import { watchPatientsFetch } from './sagas/patients-fetch';
 import { watchUserAuthAttempt } from './sagas/user-auth-attempt';
 import { watchUserAuthCheck } from './sagas/user-auth-check';
+import { watchUserAuthExpire } from './sagas/user-auth-expire';
 import { watchUserAuthRefresh } from './sagas/user-auth-refresh';
 import { watchUserAuthLogout } from './sagas/user-auth-logout';
 import { watchUserAuthSuccess } from './sagas/user-auth-success';
@@ -16,6 +17,7 @@ export default function* rootSaga() {
         watchPatientsFetch(),
         watchUserAuthAttempt(),
         watchUserAuthCheck(),
+        watchUserAuthExpire(),
         watchUserAuthRefresh(),
         watchUserAuthLogout(),
         watchUserAuthSuccess(),

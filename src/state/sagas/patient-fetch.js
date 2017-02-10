@@ -28,7 +28,7 @@ export function* patientFetch(action) {
 }
 
 /**
- * Watches for patient fetch state change.
+ * Watches for patient fetch action.
  */
 export function* watchPatientFetch() {
     yield* takeLatest(PATIENT_FETCH, patientFetch);

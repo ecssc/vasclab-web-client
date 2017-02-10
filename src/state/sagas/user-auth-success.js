@@ -14,7 +14,7 @@ export function* userAuthSuccess(action) {
 }
 
 /**
- * Watches for user auth success state change.
+ * Watches for user auth success action.
  */
 export function* watchUserAuthSuccess() {
     yield takeEvery(USER_AUTH_SUCCESS, userAuthSuccess);

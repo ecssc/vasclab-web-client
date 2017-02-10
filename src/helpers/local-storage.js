@@ -41,23 +41,6 @@ export const unset = key => new Promise((resolve, reject) => {
 });
 
 /**
- * Unsets a value in localStorage after the timeout period specified in seconds.
- *
- * @param {string} key
- * @param {Number} timeout
- */
-export const unsetAfterTimeout = (key, timeout) => new Promise((resolve, reject) => {
-    const seconds = timeout * 1000;
-
-    try {
-        setTimeout(() => localStorage.removeItem(key), seconds);
-        resolve();
-    } catch (e) {
-        reject(e);
-    }
-});
-
-/**
  * Clears all items from localStorage using a promise.
  */
 export const clear = () => new Promise((resolve, reject) => {

@@ -13,7 +13,7 @@ export function* userAuthLogout() {
 }
 
 /**
- * Watches for user auth logout state changes.
+ * Watches for user auth logout action..
  */
 export function* watchUserAuthLogout() {
     yield takeEvery(USER_AUTH_LOGOUT, userAuthLogout);

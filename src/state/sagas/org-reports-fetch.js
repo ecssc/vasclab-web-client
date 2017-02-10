@@ -31,7 +31,7 @@ export function* orgReportsFetch(action) {
 }
 
 /**
- * Watches for reports fetch state change.
+ * Watches for reports fetch action.
  */
 export function* watchOrgReportsFetch() {
     yield* takeLatest(ORG_REPORTS_FETCH, orgReportsFetch);

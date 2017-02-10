@@ -1,5 +1,5 @@
 import { apply, call, put, takeEvery } from 'redux-saga/effects';
-import { set, unsetAfterTimeout } from '../../helpers/local-storage';
+import { set } from '../../helpers/local-storage';
 import { auth } from '../../api/client';
 
 import {
@@ -25,11 +25,12 @@ export function* userAuthAttempt(action) {
         yield put({ type: HIDE_SNACKBAR });
         yield put({ type: DISABLE_FORMS });
 
+        const now = new Date();
         const response = yield apply(auth, auth.accessToken, [action.model.username, action.model.password]);
 
         yield call(set, process.env.ACCESS_TOKEN_NAME, response.body.access_token);
         yield call(set, process.env.REFRESH_TOKEN_NAME, response.body.refresh_token);
-        yield call(unsetAfterTimeout, process.env.ACCESS_TOKEN_NAME, response.body.expires_in);
+        yield call(set, process.env.EXPIRE_TIME_NAME, new Date(now.getTime() + (response.body.expires_in * 1000)));
 
         yield put({ type: USER_AUTH_CHECK });
     } catch (error) {
@@ -49,7 +50,7 @@ export function* userAuthAttempt(action) {
 }
 
 /**
- * Watches for user login state change.
+ * Watches for user login action.
  */
 export function* watchUserAuthAttempt() {
     yield takeEvery(USER_AUTH_ATTEMPT, userAuthAttempt);

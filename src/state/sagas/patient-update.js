@@ -48,7 +48,7 @@ export function* patientUpdate(action) {
 }
 
 /**
- * Watches for patient update state change.
+ * Watches for patient update action.
  */
 export function* watchPatientUpdate() {
     yield* takeEvery(PATIENT_UPDATE, patientUpdate);
